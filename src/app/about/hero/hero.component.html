@@ -1,0 +1,41 @@
+<section class="hero">
+  <div class="container">
+    <div class="hero__main">
+      <h1 class="hero__title"><em>Tedori</em><sup class="beta">β</sup></h1>
+      <p class="hero__main-text">
+        条件を入力して、給与をカンタン試算。
+      </p>
+      <p class="hero__sub-text">
+        Googleアカウントでログインすると、試算結果が自動保存されます。<br />
+        他デバイス間でも試算結果を共有したい時におすすめです。
+      </p>
+      <div class="hero__images">
+        <img src="/assets/images/hero_laptop.png" alt="" class="hero__laptop" />
+        <img src="/assets/images/hero_phone.png" alt="" class="hero__phone" />
+      </div>
+      <ul class="hero__actions">
+        <li>
+          <button
+            mat-flat-button
+            color="primary"
+            class="hero__home"
+            (click)="home()"
+            aria-label="計算する"
+          >
+            計算する
+          </button>
+        </li>
+        <li>
+          <button
+            mat-flat-button
+            color="primary"
+            class="hero__login"
+            aria-label="Googleアカウントでログインする"
+          >
+            Googleアカウントでログイン
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
