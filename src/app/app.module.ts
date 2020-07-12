@@ -15,6 +15,9 @@ import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { SharedModule } from './shared/shared.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
@@ -27,6 +30,8 @@ import { FooterComponent } from './footer/footer.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireFunctionsModule,
+    SharedModule,
+    MatToolbarModule,
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],

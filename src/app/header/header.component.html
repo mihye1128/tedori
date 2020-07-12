@@ -1,1 +1,28 @@
-<p>header works!</p>
+<mat-toolbar class="header">
+  <mat-toolbar-row class="header__inner">
+    <div class="header__left">
+      <p class="header__title">
+        <a href="" class="header__link">
+          <img
+            src="/assets/images/logo_header.svg"
+            alt="テドリ ベータ版"
+            class="header__logo"
+          />
+          <span class="header__desc">給与試算ツール</span>
+        </a>
+      </p>
+    </div>
+    <div class="header__right">
+      <button
+        mat-flat-button
+        color="primary"
+        class="header__login"
+        matTooltip="Googleアカウントでログインする"
+        aria-label="Googleアカウントでログインする"
+      >
+        <img src="/assets/images/icon_google.svg" alt="Googleアカウント" />
+        ログイン
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
