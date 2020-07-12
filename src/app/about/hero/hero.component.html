@@ -26,14 +26,28 @@
           </button>
         </li>
         <li>
-          <button
-            mat-flat-button
-            color="primary"
-            class="hero__login"
-            aria-label="Googleアカウントでログインする"
-          >
-            Googleアカウントでログイン
-          </button>
+          <ng-template #default>
+            <button
+              mat-flat-button
+              color="primary"
+              class="hero__login"
+              aria-label="Googleアカウントでログインする"
+              (click)="login()"
+            >
+              Googleアカウントでログイン
+            </button>
+          </ng-template>
+          <ng-container *ngIf="user$ | async as user; else default">
+            <button
+              mat-flat-button
+              color="primary"
+              class="hero__login"
+              aria-label="Googleアカウントでログインする"
+              (click)="mypage()"
+            >
+              マイページを見る
+            </button>
+          </ng-container>
         </li>
       </ul>
     </div>
