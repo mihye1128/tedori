@@ -23,7 +23,7 @@ export class FormComponent implements OnInit {
   public formConditions = ['first', 'second'];
   public formSelect: 'single' | 'malti';
 
-  dependents = [1, 2, 3, 4, 5, 6, 7];
+  dependents = [...Array(7)].map((_, i) => i + 1);
   areas = [
     '北海道',
     '青森県',
