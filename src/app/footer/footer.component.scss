@@ -1,0 +1,91 @@
+@import 'variables';
+@import 'mixins';
+
+.footer {
+  padding: 30px 0;
+  background-color: $color-footer;
+  color: #fff;
+  @include sm {
+    padding: 40px 0;
+  }
+  &__container {
+    padding: 0 16px;
+  }
+  &__logo {
+    display: inline-block;
+    font-size: 20px;
+    font-family: $font-logo;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    transition: opacity 0.4s;
+    &:hover {
+      opacity: 0.64;
+    }
+    @include sm {
+      font-size: 30px;
+    }
+  }
+  &__dev {
+    margin: 20px 0 0;
+    font-family: $font-logo;
+  }
+  &__sns {
+    margin-top: 8px;
+    font-size: 24px;
+    a {
+      display: inline-block;
+      transition: opacity 0.4s;
+      &:hover {
+        opacity: 0.64;
+      }
+      &:not(:first-of-type) {
+        margin-left: 8px;
+      }
+    }
+  }
+  &__end {
+    margin-top: 20px;
+    font-size: 12px;
+    @include sm {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  &__nav {
+    margin: 0;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    li {
+      &:not(:first-of-type) {
+        &::before {
+          content: '/';
+          margin-left: 0.5em;
+          margin-right: 0.5em;
+          opacity: 0.64;
+        }
+      }
+    }
+    a {
+      transition: opacity 0.4s;
+      opacity: 0.64;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    .logo {
+      text-transform: uppercase;
+    }
+  }
+  &__copy {
+    margin: 0.5em 0 0;
+    font-family: $font-logo;
+    opacity: 0.64;
+    @include sm {
+      margin: 0;
+    }
+  }
+}
