@@ -1,0 +1,17 @@
+<svg id="tedori" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#F57C00;}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" x="0" width="512" height="512"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="st0">
+		<path class="st1" d="M392.4,204h-54.5v-84.7h-51.6v273.3H347v54.5H165.3v-54.5h60.4V119.3h-52.1V204h-53.9V64.8h272.8V204z"/>
+	</g>
+</g>
+</svg>

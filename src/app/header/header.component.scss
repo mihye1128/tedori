@@ -1,0 +1,65 @@
+@import 'variables';
+@import 'mixins';
+
+.header {
+  min-height: 48px;
+  background-color: #fff;
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.23);
+
+  &__inner {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    margin: 0;
+    line-height: 1;
+  }
+  &__link {
+    display: flex;
+    align-items: flex-end;
+    transition: opacity 0.4s;
+    &:hover {
+      opacity: 0.64;
+    }
+  }
+  &__logo {
+    font-size: 20px;
+    font-family: $font-logo;
+    font-weight: 700;
+  }
+  &__desc {
+    display: none;
+    margin-left: 14px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2;
+    @include sm {
+      display: block;
+    }
+  }
+  &__login {
+    background-color: $color-google;
+    color: #fff;
+    img {
+      display: inline-block;
+      margin-right: 2px;
+      transform: translateY(-2px);
+    }
+  }
+  &__icon {
+    background-color: transparent;
+    background-position: center;
+    background-size: cover;
+    box-shadow: none;
+  }
+}
