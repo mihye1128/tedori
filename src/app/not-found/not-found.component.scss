@@ -1,0 +1,93 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+.nf {
+  padding-top: 40px;
+  padding-bottom: 60px;
+  text-align: center;
+  @include md {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  &__img {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    @include md {
+      margin-right: 0;
+      max-width: 320px;
+    }
+  }
+  &__main {
+    @include md {
+      padding-left: 32px;
+      text-align: left;
+      margin-right: auto;
+    }
+  }
+  &__title {
+    margin: 0;
+    font-family: $font-logo;
+    font-size: 32px;
+    @include sm {
+      font-size: 40px;
+    }
+  }
+  &__contents {
+    margin: 20px auto 0;
+    max-width: 360px;
+    font-size: 14px;
+    text-align: left;
+    br {
+      display: none;
+    }
+    @include sm {
+      margin: 40px 0 0;
+      max-width: 100%;
+      font-size: 16px;
+      text-align: center;
+      br {
+        display: inline;
+      }
+    }
+    @include md {
+      margin-top: 32px;
+      text-align: left;
+    }
+  }
+  &__actions {
+    margin-top: 40px;
+    text-align: center;
+    @include sm {
+      margin-top: 60px;
+    }
+    @include md {
+      text-align: left;
+    }
+  }
+  &__home {
+    border-radius: 36px;
+    padding: 0.25em 2em;
+    width: 100%;
+    max-width: 360px;
+    font-size: 16px;
+    background-color: $color-main;
+    color: #fff;
+    @include sm {
+      width: auto;
+      max-width: inherit;
+    }
+  }
+}
