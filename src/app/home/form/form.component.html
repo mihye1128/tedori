@@ -1,0 +1,291 @@
+<section class="form">
+  <div class="main-container">
+    <h2 class="main-title">条件設定</h2>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+      <mat-card class="form__card">
+        <div class="select">
+          <mat-radio-group
+            aria-label=""
+            class="select__group"
+            formControlName="formSelect"
+          >
+            <mat-radio-button class="select__btn" value="single"
+              >単一の条件で試算する</mat-radio-button
+            >
+            <mat-radio-button class="select__btn" value="multi" #multi
+              >２件の条件を比較する</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+
+        <ng-container
+          *ngFor="let condition of formConditions; let i = index"
+          [formArrayName]="'formConditions'"
+        >
+          <ng-container [formGroupName]="i">
+            <ng-container *ngIf="i === 0 || multi.checked">
+              <mat-divider></mat-divider>
+              <div class="condition">
+                <h3 class="condition__title" *ngIf="multi.checked">
+                  条件 {{ i + 1 }}
+                </h3>
+                <mat-form-field class="condition__field">
+                  <mat-label>条件名</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    autocomplete="off"
+                    [formControlName]="'title'"
+                  />
+                </mat-form-field>
+                <div class="condition__detail">
+                  <div class="condition__income">
+                    <div class="condition__item">
+                      <mat-radio-group
+                        aria-label=""
+                        class="condition-type__group"
+                        formControlName="type"
+                      >
+                        <mat-radio-button
+                          class="condition-type__btn"
+                          value="monthly"
+                          #typeMonthly
+                          >月給</mat-radio-button
+                        >
+                        <mat-radio-button
+                          class="condition-type__btn"
+                          value="hourly"
+                          #typeHourly
+                          >時給</mat-radio-button
+                        >
+                      </mat-radio-group>
+                    </div>
+                    <ng-container *ngIf="typeMonthly.checked">
+                      <div class="condition__item">
+                        <mat-form-field class="condition__field">
+                          <mat-label>基本給</mat-label>
+                          <input
+                            placeholder="320000"
+                            type="text"
+                            matInput
+                            autocomplete="off"
+                            [formControlName]="'base'"
+                          />
+                          <span class="unit" matSuffix>円</span>
+                        </mat-form-field>
+                      </div>
+                      <div class="condition__item">
+                        <mat-form-field class="condition__field">
+                          <mat-label>諸手当（課税分）</mat-label>
+                          <input
+                            placeholder="40000"
+                            type="text"
+                            matInput
+                            autocomplete="off"
+                            [formControlName]="'allowance'"
+                          />
+                          <span class="unit" matSuffix>円</span>
+                        </mat-form-field>
+                      </div>
+                      <div class="condition__item">
+                        <mat-form-field class="condition__field">
+                          <mat-label>交通費（非課税）</mat-label>
+                          <input
+                            placeholder="15000"
+                            type="text"
+                            matInput
+                            autocomplete="off"
+                            [formControlName]="'travelCost'"
+                          />
+                          <span class="unit" matSuffix>円</span>
+                        </mat-form-field>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="typeHourly.checked">
+                      <div class="condition__item">
+                        <mat-form-field class="condition__field">
+                          <mat-label>時給</mat-label>
+                          <input
+                            placeholder="1400"
+                            type="text"
+                            matInput
+                            autocomplete="off"
+                            [formControlName]="'basePerHour'"
+                          />
+                          <span class="unit" matSuffix>円</span>
+                        </mat-form-field>
+                      </div>
+                      <div class="condition__item">
+                        <mat-form-field class="condition__field">
+                          <mat-label>1日あたりの交通費</mat-label>
+                          <input
+                            placeholder="400"
+                            type="text"
+                            matInput
+                            autocomplete="off"
+                            [formControlName]="'travelCostPerDay'"
+                          />
+                          <span class="unit" matSuffix>円</span>
+                        </mat-form-field>
+                      </div>
+                      <div class="condition__item">
+                        <mat-form-field class="condition__field">
+                          <mat-label>1日あたりの就業時間</mat-label>
+                          <input
+                            placeholder="5"
+                            type="text"
+                            matInput
+                            autocomplete="off"
+                            [formControlName]="'hourPerDay'"
+                          />
+                          <span class="unit" matSuffix>時間</span>
+                        </mat-form-field>
+                      </div>
+                      <div class="condition__item">
+                        <mat-form-field class="condition__field">
+                          <mat-label>1ヶ月あたりの就業日数</mat-label>
+                          <input
+                            placeholder="15"
+                            type="text"
+                            matInput
+                            autocomplete="off"
+                            [formControlName]="'dayPerMonth'"
+                          />
+                          <span class="unit" matSuffix>日</span>
+                        </mat-form-field>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="condition__deduction">
+                    <div class="condition__item condition-radio">
+                      <p class="condition-radio__title">社会保険</p>
+                      <mat-radio-group
+                        aria-label=""
+                        class="condition-radio__group"
+                        formControlName="ins"
+                      >
+                        <mat-radio-button
+                          class="condition-radio__btn"
+                          [value]="true"
+                          #insTrue
+                          >加入</mat-radio-button
+                        >
+                        <mat-radio-button
+                          class="condition-radio__btn"
+                          [value]="false"
+                          >なし</mat-radio-button
+                        >
+                      </mat-radio-group>
+                    </div>
+                    <div class="condition__item condition-radio">
+                      <p class="condition-radio__title">雇用保険</p>
+                      <mat-radio-group
+                        aria-label=""
+                        class="condition-radio__group"
+                        formControlName="unemploymentIns"
+                      >
+                        <mat-radio-button
+                          class="condition-radio__btn"
+                          [value]="true"
+                          >加入</mat-radio-button
+                        >
+                        <mat-radio-button
+                          class="condition-radio__btn"
+                          [value]="false"
+                          >なし</mat-radio-button
+                        >
+                      </mat-radio-group>
+                    </div>
+                    <ng-container *ngIf="insTrue.checked">
+                      <div class="condition__item">
+                        <mat-form-field
+                          appearance="fill"
+                          class="condition__field"
+                        >
+                          <mat-label>就業地</mat-label>
+                          <mat-select [formControlName]="'area'">
+                            <mat-option
+                              *ngFor="let area of areas"
+                              [value]="area"
+                            >
+                              {{ area }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="condition__item">
+                        <mat-form-field
+                          appearance="fill"
+                          class="condition__field"
+                        >
+                          <mat-label>年齢</mat-label>
+                          <mat-select [formControlName]="'age'">
+                            <mat-option value="young">〜 39歳</mat-option>
+                            <mat-option value="middle">40歳 〜 64歳</mat-option>
+                            <mat-option value="adult">65歳 〜</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </ng-container>
+                    <div class="condition__item">
+                      <mat-form-field
+                        appearance="fill"
+                        class="condition__field"
+                      >
+                        <mat-label>扶養家族</mat-label>
+                        <mat-select [formControlName]="'dependents'">
+                          <mat-option [value]="0">なし</mat-option>
+                          <mat-option
+                            *ngFor="let dependent of dependents"
+                            [value]="dependent"
+                          >
+                            {{ dependent }}人
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="condition__item">
+                      <mat-form-field class="condition__field">
+                        <mat-label>住民税</mat-label>
+                        <input
+                          placeholder="20000"
+                          type="text"
+                          matInput
+                          autocomplete="off"
+                          [formControlName]="'cityTax'"
+                        />
+                        <span class="unit" matSuffix>円</span>
+                      </mat-form-field>
+                    </div>
+                    <div class="condition__item">
+                      <mat-form-field class="condition__field">
+                        <mat-label>その他控除</mat-label>
+                        <input
+                          type="text"
+                          matInput
+                          autocomplete="off"
+                          [formControlName]="'otherDeduction'"
+                        />
+                        <span class="unit" matSuffix>円</span>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </mat-card>
+      <div class="form__actions">
+        <button mat-raised-button color="accent" class="form__submit-btn">
+          計算する
+        </button>
+        <ng-container *ngIf="user$ | async">
+          <button mat-raised-button color="accent" class="form__save-btn">
+            計算して保存する
+          </button>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+</section>
