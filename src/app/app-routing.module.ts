@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./privacy/privacy.module').then((m) => m.PrivacyModule),
   },
+  {
+    path: 'terms',
+    loadChildren: () =>
+      import('./terms/terms.module').then((m) => m.TermsModule),
+  },
 ];
 
 @NgModule({
