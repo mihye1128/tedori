@@ -19,7 +19,9 @@ export class AuthService {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.afUser$.subscribe((user) => console.log(user));
+    this.afUser$.subscribe((user) => {
+      this.uid = user ? user.uid : null;
+    });
   }
 
   login() {
