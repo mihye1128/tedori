@@ -118,6 +118,10 @@
               "devServerTarget": "tedori-beta:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

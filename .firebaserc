@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tedori-beta": {
+      "hosting": {
+        "tedori-beta": [
+          "tedori-beta"
+        ]
+      }
+    }
+  }
+}
