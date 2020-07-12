@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'material-custom';
+@import 'variables';
+@import 'mixins';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Noto Sans JP', 'Helvetica Neue', sans-serif;
+}
