@@ -281,7 +281,12 @@
           計算する
         </button>
         <ng-container *ngIf="user$ | async">
-          <button mat-raised-button color="accent" class="form__save-btn">
+          <button
+            mat-raised-button
+            color="accent"
+            class="form__save-btn"
+            (click)="save()"
+          >
             計算して保存する
           </button>
         </ng-container>

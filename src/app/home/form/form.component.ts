@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Condition } from 'src/app/interfaces/condition';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConditionService } from 'src/app/services/condition.service';
 
 @Component({
   selector: 'app-form',
@@ -16,6 +17,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class FormComponent implements OnInit {
   user$ = this.authService.afUser$;
+  uid: string;
 
   public formGroup: FormGroup;
   public formConditions = ['first', 'second'];
@@ -72,7 +74,11 @@ export class FormComponent implements OnInit {
     '沖縄県',
   ];
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private conditionService: ConditionService
+  ) {
     this.formGroup = this.fb.group({
       formConditions: this.fb.array([]),
     });
@@ -144,40 +150,55 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  formDataPush(data: Condition[], condition: Condition) {
+    data.push({
+      title: condition.title,
+      type: condition.type,
+      base: +condition.base,
+      allowance: +condition.allowance,
+      travelCost: +condition.travelCost,
+      basePerHour: +condition.basePerHour,
+      travelCostPerDay: +condition.travelCostPerDay,
+      hourPerDay: +condition.hourPerDay,
+      dayPerMonth: +condition.dayPerMonth,
+      ins: condition.ins,
+      unemploymentIns: condition.unemploymentIns,
+      area: condition.area,
+      age: condition.age,
+      dependents: condition.dependents,
+      cityTax: +condition.cityTax,
+      otherDeduction: +condition.otherDeduction,
+      userId: this.authService.uid,
+    });
+  }
+
   submit() {
     const formValue = this.formGroup.value;
     const conditions = formValue.formConditions;
-
     const formData: Condition[] = [];
-    const formDataPush = (condition) => {
-      formData.push({
-        title: condition.title,
-        type: condition.type,
-        base: +condition.base,
-        allowance: +condition.allowance,
-        travelCost: +condition.travelCost,
-        basePerHour: +condition.basePerHour,
-        travelCostPerDay: +condition.travelCostPerDay,
-        hourPerDay: +condition.hourPerDay,
-        dayPerMonth: +condition.dayPerMonth,
-        ins: condition.ins,
-        unemploymentIns: condition.unemploymentIns,
-        area: condition.area,
-        age: condition.age,
-        dependents: condition.dependents,
-        cityTax: +condition.cityTax,
-        otherDeduction: +condition.otherDeduction,
-      });
-    };
 
     if (formValue.formSelect === 'single') {
-      formDataPush(conditions[0]);
+      this.formDataPush(formData, conditions[0]);
     } else {
       for (const condition of conditions) {
-        formDataPush(condition);
+        this.formDataPush(formData, condition);
       }
     }
+    this.conditionService.setCalc(formData);
+  }
 
-    console.log(formData);
+  save() {
+    const formValue = this.formGroup.value;
+    const conditions = formValue.formConditions;
+    const formData: Condition[] = [];
+
+    if (formValue.formSelect === 'single') {
+      this.formDataPush(formData, conditions[0]);
+    } else {
+      for (const condition of conditions) {
+        this.formDataPush(formData, condition);
+      }
+    }
+    this.conditionService.saveCondition(formData);
   }
 }
