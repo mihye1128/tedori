@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
   {
     path: 'privacy',
     loadChildren: () =>
@@ -11,6 +17,10 @@ const routes: Routes = [
     path: 'terms',
     loadChildren: () =>
       import('./terms/terms.module').then((m) => m.TermsModule),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
