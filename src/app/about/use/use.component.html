@@ -1,0 +1,21 @@
+<section class="use">
+  <div class="container">
+    <ul class="use__list">
+      <li *ngFor="let use of uses" class="use__item">
+        <img src="{{ use.img }}" alt="" class="use__img" />
+        <dl class="use__data">
+          <dt class="use__target">{{ use.target }}</dt>
+          <dd class="use__catch">{{ use.title }}</dd>
+          <dd class="use__text">
+            <ng-container :*ngFor="let text of use.text; let i = index">
+              {{ text }}
+              <ng-container *ngIf="i + 1 !== use.text.length">
+                <br />
+              </ng-container>
+            </ng-container>
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+</section>
