@@ -7,5 +7,5 @@ export interface Deductions {
   socialIns: SocialIns;
   compensationIns: CompensationIns;
   unemploymentIns: UnemploymentIns;
-  NationalTax: NationalTax;
+  nationalTax: NationalTax;
 }
