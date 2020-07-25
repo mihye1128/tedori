@@ -1,10 +1,10 @@
-<div class="method">
+<div class="method" *ngIf="rate$ | async as rate">
   <div class="main-container">
     <h2 class="main-title">各種保険料率 早見表</h2>
     <table class="method__table">
       <thead>
         <tr>
-          <th>項目</th>
+          <th>種別</th>
           <th>料率</th>
           <th>労働者<br />負担割合</th>
           <th>事業者<br />負担割合</th>
@@ -15,7 +15,9 @@
           <th>健康保険</th>
           <td>
             <small>標準報酬月額の</small>
-            <a href="">各都道府県の<br />料率</a>
+            <a [href]="rate.socialIns.healthInsRateListUrl" target="_blank"
+              >各都道府県の<br />料率</a
+            >
           </td>
           <td>50<span class="unit">%</span></td>
           <td>50<span class="unit">%</span></td>
@@ -24,7 +26,7 @@
           <th>介護保険</th>
           <td>
             <small>標準報酬月額の</small>
-            1.79<span class="unit">%</span>
+            {{ rate.socialIns.nursingInsRate }}<span class="unit">%</span>
           </td>
           <td>50<span class="unit">%</span></td>
           <td>50<span class="unit">%</span></td>
@@ -33,7 +35,7 @@
           <th>厚生年金保険</th>
           <td>
             <small>標準報酬月額の</small>
-            18.300<span class="unit">%</span>
+            {{ rate.socialIns.pensionInsRate }}<span class="unit">%</span>
           </td>
           <td>50<span class="unit">%</span></td>
           <td>50<span class="unit">%</span></td>
@@ -42,7 +44,7 @@
           <th>子ども・子育て<br />拠出金</th>
           <td>
             <small>標準報酬月額の</small>
-            0.36<span class="unit">%</span>
+            {{ rate.socialIns.childrenInsRate }}<span class="unit">%</span>
           </td>
           <td>-</td>
           <td>100<span class="unit">%</span></td>
@@ -51,7 +53,7 @@
           <th>労災保険</th>
           <td>
             <small>総支給額の</small>
-            3/1000
+            {{ rate.compensationIns.rate }}/1000
           </td>
           <td>-</td>
           <td>100<span class="unit">%</span></td>
@@ -60,10 +62,10 @@
           <th>雇用保険</th>
           <td>
             <small>総支給額の</small>
-            9/1000
+            {{ rate.unemploymentIns.rate }}/1000
           </td>
-          <td>3/9</td>
-          <td>6/9</td>
+          <td>{{ rate.unemploymentIns.workerBurden }}/9</td>
+          <td>{{ rate.unemploymentIns.ownerBurden }}/9</td>
         </tr>
       </tbody>
     </table>
@@ -76,10 +78,9 @@
           社会保険料の算出に関する詳細は、全国健康保険協会HPの下記のページをご参照ください。
         </span>
         <span>
-          「<a
-            href="https://www.kyoukaikenpo.or.jp/g3/cat330/sb3150/r02/r2ryougakuhyou4gatukara/"
-            target="_blank"
-            >令和2年度の保険料率額表（令和2年4月から）</a
+          「<a [href]="rate.socialIns.url" target="_blank">{{
+            rate.socialIns.title
+          }}</a
           >」
         </span>
       </dd>
@@ -91,10 +92,9 @@
           雇用保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
         </span>
         <span>
-          「<a
-            href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000108634.html"
-            target="_blank"
-            >令和２年度の雇用保険料率</a
+          「<a [href]="rate.unemploymentIns.url" target="_blank">{{
+            rate.unemploymentIns.title
+          }}</a
           >」
         </span>
       </dd>
@@ -106,10 +106,9 @@
           労災保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
         </span>
         <span>
-          「<a
-            href="https://www.mhlw.go.jp/bunya/roudoukijun/rousaihoken.html"
-            target="_blank"
-            >労災保険料率（平成30年度〜）</a
+          「<a [href]="rate.compensationIns.url" target="_blank">{{
+            rate.compensationIns.title
+          }}</a
           >」
         </span>
       </dd>
@@ -120,10 +119,9 @@
           源泉所得税額の算出に関する詳細は、国税庁HPの下記のページをご参照ください。
         </span>
         <span>
-          「<a
-            href="https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2019/02.htm"
-            target="_blank"
-            >令和2年分 源泉徴収税額表</a
+          「<a [href]="rate.nationalTax.url" target="_blank">{{
+            rate.nationalTax.title
+          }}</a
           >」
         </span>
       </dd>

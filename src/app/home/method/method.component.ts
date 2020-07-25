@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RateService } from 'src/app/services/rate.service';
 
 @Component({
   selector: 'app-method',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./method.component.scss'],
 })
 export class MethodComponent implements OnInit {
-  constructor() {}
+  rate$ = this.rateService.getRate();
+
+  constructor(private rateService: RateService) {}
 
   ngOnInit(): void {}
 }
