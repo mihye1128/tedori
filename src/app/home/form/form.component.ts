@@ -184,7 +184,7 @@ export class FormComponent implements OnInit {
         this.formDataPush(formData, condition);
       }
     }
-    this.conditionService.setCalc(formData);
+    this.conditionService.setCondition(formData);
   }
 
   save() {

@@ -12,7 +12,7 @@ export class ConditionService {
 
   constructor(private db: AngularFirestore) {}
 
-  setCalc(conditions: Condition[]) {
+  setCondition(conditions: Condition[]) {
     this.conditions.next(conditions);
     console.log(conditions);
   }
