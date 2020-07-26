@@ -1,0 +1,139 @@
+@import 'variables';
+@import 'mixins';
+
+.result {
+  padding-bottom: 40px;
+  background-color: $color-base;
+  @include sm {
+    padding-bottom: 80px;
+  }
+
+  &__title {
+    margin: 24px 0 8px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+.result-panel {
+  &__header {
+    padding-left: 16px;
+    padding-right: 16px;
+    &.disabled {
+      padding-right: 24px;
+    }
+    @include sm {
+      padding-left: 32px;
+      padding-right: 32px;
+      height: 60px !important;
+      &.disabled {
+        padding-right: 40px;
+      }
+    }
+  }
+  &__title,
+  &__desc {
+    font-size: 14px;
+    color: $color-font-900 !important;
+    @include sm {
+      font-size: 16px;
+    }
+  }
+  &__title {
+    width: 80px;
+    margin-right: 0;
+    @include sm {
+      width: 180px;
+    }
+  }
+  &__desc {
+    width: calc(100% - 92px);
+    margin-right: 12px;
+    @include sm {
+      width: calc(100% - 196px);
+      margin-right: 16px;
+    }
+  }
+  &__price {
+    text-align: right;
+    width: 50%;
+    max-width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    &:only-of-type {
+      width: 100%;
+    }
+    @include sm {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+  &__head {
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    &:only-of-type {
+      width: 100%;
+    }
+  }
+  &__detail {
+    margin: 0 -8px;
+    font-size: 12px;
+    padding-right: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    @include sm {
+      margin: 0;
+      font-size: 14px;
+      padding-left: 8px;
+      padding-right: 32px;
+    }
+    dt {
+      width: 80px;
+      @include sm {
+        margin-top: 8px;
+        font-size: 14px;
+        width: 140px;
+      }
+      @include md {
+        width: 180px;
+      }
+    }
+    & > div {
+      display: flex;
+      width: calc(100% - 80px);
+      @include sm {
+        margin-top: 8px;
+        width: calc(100% - 140px);
+      }
+      @include md {
+        width: calc(100% - 180px);
+      }
+    }
+    dd {
+      margin: 0 auto;
+      text-align: right;
+      width: 50%;
+      max-width: 160px;
+      &:only-of-type {
+        width: 100%;
+      }
+    }
+  }
+  .yen {
+    font-size: 0.8em;
+    @include sm {
+      margin-left: 0.25em;
+      font-size: 0.6em;
+    }
+  }
+  .pre {
+    color: $color-font-600;
+    font-size: 0.8em;
+    @include sm {
+      font-size: 0.6em;
+    }
+  }
+}
