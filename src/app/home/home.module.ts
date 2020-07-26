@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { FormComponent } from './form/form.component';
 import { MethodComponent } from './method/method.component';
 import { ResultComponent } from './result/result.component';
+import { CalcPipe } from '../calc.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ResultComponent } from './result/result.component';
     FormComponent,
     MethodComponent,
     ResultComponent,
+    CalcPipe,
   ],
   imports: [
     CommonModule,

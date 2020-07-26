@@ -34,7 +34,7 @@
               class="result-panel__price"
               *ngFor="let condition of conditions"
             >
-              <span class="pre">実装予定</span>
+              {{ condition | calc: 'total' }}<span class="yen">円</span>
             </span>
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -96,7 +96,7 @@
           <dt>基本給</dt>
           <div>
             <dd *ngFor="let condition of conditions">
-              <span class="pre">実装予定</span>
+              {{ condition | calc: 'baseSalary' }}<span class="yen">円</span>
             </dd>
           </div>
           <dt>諸手当</dt>
@@ -117,7 +117,7 @@
           <dt>交通費</dt>
           <div>
             <dd *ngFor="let condition of conditions">
-              <span class="pre">実装予定</span>
+              {{ condition | calc: 'travelCost' }}<span class="yen">円</span>
             </dd>
           </div>
         </dl>
@@ -249,21 +249,6 @@
       <mat-expansion-panel class="result-panel" disabled>
         <mat-expansion-panel-header class="result-panel__header disabled">
           <mat-panel-title class="result-panel__title">
-            支出額合計
-          </mat-panel-title>
-          <mat-panel-description class="result-panel__desc">
-            <span
-              class="result-panel__price"
-              *ngFor="let condition of conditions"
-            >
-              <span class="pre">実装予定</span>
-            </span>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
-      <mat-expansion-panel class="result-panel" disabled>
-        <mat-expansion-panel-header class="result-panel__header disabled">
-          <mat-panel-title class="result-panel__title">
             給与支給額
           </mat-panel-title>
           <mat-panel-description class="result-panel__desc">
@@ -271,7 +256,7 @@
               class="result-panel__price"
               *ngFor="let condition of conditions"
             >
-              <span class="pre">実装予定</span>
+              {{ condition | calc: 'total' }}<span class="yen">円</span>
             </span>
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -379,6 +364,21 @@
             </dd>
           </div>
         </dl>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="result-panel" disabled>
+        <mat-expansion-panel-header class="result-panel__header disabled">
+          <mat-panel-title class="result-panel__title">
+            支出額合計
+          </mat-panel-title>
+          <mat-panel-description class="result-panel__desc">
+            <span
+              class="result-panel__price"
+              *ngFor="let condition of conditions"
+            >
+              <span class="pre">実装予定</span>
+            </span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
