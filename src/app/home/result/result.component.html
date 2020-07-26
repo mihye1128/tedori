@@ -343,7 +343,8 @@
                 -
               </ng-container>
               <ng-template #compensationIns>
-                <span class="pre">実装予定</span>
+                {{ condition | calc: 'compensationIns':(rate$ | async)
+                }}<span class="yen">円</span>
               </ng-template>
             </dd>
           </div>
