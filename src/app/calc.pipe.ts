@@ -31,6 +31,8 @@ export class CalcPipe implements PipeTransform {
 
     if (rate) {
       compensationIns = (total * rate.compensationIns.rate) / 1000;
+    } else {
+      rate = null;
     }
 
     if (type === 'baseSalary') {
@@ -39,12 +41,8 @@ export class CalcPipe implements PipeTransform {
       target = travelCost;
     } else if (type === 'total') {
       target = total;
-    }
-
-    if (rate) {
-      if (type === 'compensationIns') {
-        target = compensationIns;
-      }
+    } else if (type === 'compensationIns') {
+      target = compensationIns;
     }
 
     return target.toLocaleString();
