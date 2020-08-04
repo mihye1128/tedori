@@ -330,7 +330,10 @@
                 -
               </ng-container>
               <ng-template #childrenIns>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'childrenIns':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
