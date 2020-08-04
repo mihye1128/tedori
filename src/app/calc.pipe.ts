@@ -13,10 +13,15 @@ export class CalcPipe implements PipeTransform {
     let total: number; // 総支給
 
     let compensationIns: number; // 労災保険
+
     let unemploymentInsWorker: number; // 雇用保険・労働者
     let unemploymentInsOwner: number; // 雇用保険・事業者
 
     let standardMonthlyFee: number; // 標準報酬月額
+    let healthInsRate: number; // 該当地域の健康保険料率
+    let healthIns: number; // 健康保険
+    let healthInsWorder: number; // 健康保険・労働者
+    let healthInsOwner: number; // 健康保険・事業者
     let nursingIns: number; // 介護保険
     let nursingInsWorker: number; // 介護保険・労働者
     let nursingInsOwner: number; // 介護保険・事業者
@@ -323,6 +328,16 @@ export class CalcPipe implements PipeTransform {
 
     // 社会保険（健康保険・厚生年金・介護保険・子育て拠出金）
     if (rate && condition.ins) {
+      // 健康保険
+      for (const item of rate.socialIns.healthInsRateList) {
+        if (condition.area === item.area) {
+          healthInsRate = item.rate;
+        }
+      }
+      healthIns = standardMonthlyFee * (healthInsRate / 100);
+      healthInsWorder = Math.floor(healthIns / 2);
+      healthInsOwner = Math.floor(healthIns - healthInsWorder);
+
       // 介護保険
       if (condition.age === 'middle') {
         nursingIns = standardMonthlyFee * (rate.socialIns.nursingInsRate / 100);
@@ -360,6 +375,9 @@ export class CalcPipe implements PipeTransform {
         );
       }
     } else {
+      healthIns = 0;
+      healthInsWorder = 0;
+      healthInsOwner = 0;
       nursingIns = 0;
       nursingInsWorker = 0;
       nursingInsOwner = 0;
@@ -392,6 +410,10 @@ export class CalcPipe implements PipeTransform {
       target = nursingInsWorker;
     } else if (type === 'nursingInsOwner') {
       target = nursingInsOwner;
+    } else if (type === 'healthInsWorder') {
+      target = healthInsWorder;
+    } else if (type === 'healthInsOwner') {
+      target = healthInsOwner;
     }
 
     return target.toLocaleString();

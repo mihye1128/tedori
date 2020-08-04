@@ -149,7 +149,10 @@
                 -
               </ng-container>
               <ng-template #healthIns>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'healthInsWorder':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -304,7 +307,10 @@
                 -
               </ng-container>
               <ng-template #healthInsOwner>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'healthInsOwner':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
