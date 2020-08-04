@@ -181,13 +181,16 @@
               <ng-container
                 *ngIf="
                   condition.unemploymentIns === false;
-                  else unemploymentIns
+                  else unemploymentInsWorker
                 "
               >
                 -
               </ng-container>
-              <ng-template #unemploymentIns>
-                <span class="pre">実装予定</span>
+              <ng-template #unemploymentInsWorker>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'unemploymentInsWorker':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -334,17 +337,10 @@
           <dt>労災保険料</dt>
           <div>
             <dd *ngFor="let condition of conditions">
-              <ng-container
-                *ngIf="
-                  condition.unemploymentIns === false;
-                  else compensationIns
-                "
-              >
-                -
+              <ng-container *ngIf="rate$ | async as rate">
+                {{ condition | calc: 'compensationIns':rate
+                }}<span class="yen">円</span>
               </ng-container>
-              <ng-template #compensationIns>
-                <span class="pre">実装予定</span>
-              </ng-template>
             </dd>
           </div>
           <dt>雇用保険料</dt>
@@ -359,7 +355,10 @@
                 -
               </ng-container>
               <ng-template #unemploymentInsOwner>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'unemploymentInsOwner':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
