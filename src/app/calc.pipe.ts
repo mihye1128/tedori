@@ -13,10 +13,13 @@ export class CalcPipe implements PipeTransform {
     let total: number; // 総支給
 
     let compensationIns: number; // 労災保険
-    let unemploymentInsOwner: number; // 雇用保険・事業者
     let unemploymentInsWorker: number; // 雇用保険・労働者
+    let unemploymentInsOwner: number; // 雇用保険・事業者
 
     let standardMonthlyFee: number; // 標準報酬月額
+    let pensionIns: number; // 厚生年金
+    let pensionInsWorker: number; // 厚生年金・労働者
+    let pensionInsOwner: number; // 厚生年・事業者
     let childrenIns: number; // 子供・子育て拠出金
 
     let target: number;
@@ -41,176 +44,293 @@ export class CalcPipe implements PipeTransform {
 
       // 雇用保険（事業者・労働者）
       if (condition.unemploymentIns) {
-        unemploymentInsOwner = Math.floor(
-          (total * rate.unemploymentIns.ownerBurden) / 1000
-        );
         unemploymentInsWorker = Math.floor(
           (total * rate.unemploymentIns.workerBurden) / 1000
         );
+        unemploymentInsOwner = Math.floor(
+          (total * rate.unemploymentIns.ownerBurden) / 1000
+        );
       } else {
-        unemploymentInsOwner = 0;
         unemploymentInsWorker = 0;
+        unemploymentInsOwner = 0;
       }
     } else {
       rate = null;
     }
 
     // 標準報酬月額（社会保険料の算出時に使用）
-    switch (true) {
-      case total < 63000:
-        standardMonthlyFee = 58000;
-        break;
-      case total < 73000:
-        standardMonthlyFee = 68000;
-        break;
-      case total < 83000:
-        standardMonthlyFee = 78000;
-        break;
-      case total < 93000:
-        standardMonthlyFee = 88000;
-        break;
-      case total < 101000:
-        standardMonthlyFee = 98000;
-        break;
-      case total < 107000:
-        standardMonthlyFee = 104000;
-        break;
-      case total < 114000:
-        standardMonthlyFee = 110000;
-        break;
-      case total < 122000:
-        standardMonthlyFee = 118000;
-        break;
-      case total < 130000:
-        standardMonthlyFee = 126000;
-        break;
-      case total < 138000:
-        standardMonthlyFee = 134000;
-        break;
-      case total < 146000:
-        standardMonthlyFee = 142000;
-        break;
-      case total < 155000:
-        standardMonthlyFee = 150000;
-        break;
-      case total < 165000:
-        standardMonthlyFee = 160000;
-        break;
-      case total < 175000:
-        standardMonthlyFee = 170000;
-        break;
-      case total < 185000:
-        standardMonthlyFee = 180000;
-        break;
-      case total < 195000:
-        standardMonthlyFee = 190000;
-        break;
-      case total < 210000:
-        standardMonthlyFee = 200000;
-        break;
-      case total < 230000:
-        standardMonthlyFee = 220000;
-        break;
-      case total < 250000:
-        standardMonthlyFee = 240000;
-        break;
-      case total < 270000:
-        standardMonthlyFee = 260000;
-        break;
-      case total < 290000:
-        standardMonthlyFee = 280000;
-        break;
-      case total < 310000:
-        standardMonthlyFee = 300000;
-        break;
-      case total < 330000:
-        standardMonthlyFee = 320000;
-        break;
-      case total < 350000:
-        standardMonthlyFee = 340000;
-        break;
-      case total < 370000:
-        standardMonthlyFee = 360000;
-        break;
-      case total < 395000:
-        standardMonthlyFee = 380000;
-        break;
-      case total < 425000:
-        standardMonthlyFee = 410000;
-        break;
-      case total < 455000:
-        standardMonthlyFee = 440000;
-        break;
-      case total < 485000:
-        standardMonthlyFee = 470000;
-        break;
-      case total < 515000:
-        standardMonthlyFee = 500000;
-        break;
-      case total < 545000:
-        standardMonthlyFee = 530000;
-        break;
-      case total < 575000:
-        standardMonthlyFee = 560000;
-        break;
-      case total < 605000:
-        standardMonthlyFee = 590000;
-        break;
-      case total < 635000:
-        standardMonthlyFee = 620000;
-        break;
-      case total < 665000:
-        standardMonthlyFee = 650000;
-        break;
-      case total < 695000:
-        standardMonthlyFee = 680000;
-        break;
-      case total < 730000:
-        standardMonthlyFee = 710000;
-        break;
-      case total < 770000:
-        standardMonthlyFee = 750000;
-        break;
-      case total < 810000:
-        standardMonthlyFee = 790000;
-        break;
-      case total < 855000:
-        standardMonthlyFee = 830000;
-        break;
-      case total < 905000:
-        standardMonthlyFee = 880000;
-        break;
-      case total < 955000:
-        standardMonthlyFee = 930000;
-        break;
-      case total < 1005000:
-        standardMonthlyFee = 980000;
-        break;
-      case total < 1055000:
-        standardMonthlyFee = 1030000;
-        break;
-      case total < 1115000:
-        standardMonthlyFee = 1090000;
-        break;
-      case total < 1175000:
-        standardMonthlyFee = 1150000;
-        break;
-      case total < 1235000:
-        standardMonthlyFee = 1210000;
-        break;
-      case total < 1295000:
-        standardMonthlyFee = 1270000;
-        break;
-      case total < 1355000:
-        standardMonthlyFee = 1330000;
-        break;
-      default:
-        standardMonthlyFee = 1390000;
-        break;
-    }
+    const standardMonthlyFeeTable = [
+      {
+        min: 0,
+        max: 63000,
+        standard: 58000,
+      },
+      {
+        min: 63000,
+        max: 73000,
+        standard: 68000,
+      },
+      {
+        min: 73000,
+        max: 83000,
+        standard: 78000,
+      },
+      {
+        min: 83000,
+        max: 93000,
+        standard: 88000,
+      },
+      {
+        min: 93000,
+        max: 101000,
+        standard: 98000,
+      },
+      {
+        min: 101000,
+        max: 107000,
+        standard: 104000,
+      },
+      {
+        min: 107000,
+        max: 114000,
+        standard: 110000,
+      },
+      {
+        min: 114000,
+        max: 122000,
+        standard: 118000,
+      },
+      {
+        min: 122000,
+        max: 130000,
+        standard: 126000,
+      },
+      {
+        min: 130000,
+        max: 138000,
+        standard: 134000,
+      },
+      {
+        min: 138000,
+        max: 146000,
+        standard: 142000,
+      },
+      {
+        min: 146000,
+        max: 155000,
+        standard: 150000,
+      },
+      {
+        min: 155000,
+        max: 165000,
+        standard: 160000,
+      },
+      {
+        min: 165000,
+        max: 175000,
+        standard: 170000,
+      },
+      {
+        min: 175000,
+        max: 185000,
+        standard: 180000,
+      },
+      {
+        min: 185000,
+        max: 195000,
+        standard: 190000,
+      },
+      {
+        min: 195000,
+        max: 210000,
+        standard: 200000,
+      },
+      {
+        min: 210000,
+        max: 230000,
+        standard: 220000,
+      },
+      {
+        min: 230000,
+        max: 250000,
+        standard: 240000,
+      },
+      {
+        min: 250000,
+        max: 270000,
+        standard: 260000,
+      },
+      {
+        min: 270000,
+        max: 290000,
+        standard: 280000,
+      },
+      {
+        min: 290000,
+        max: 310000,
+        standard: 300000,
+      },
+      {
+        min: 310000,
+        max: 330000,
+        standard: 320000,
+      },
+      {
+        min: 330000,
+        max: 350000,
+        standard: 340000,
+      },
+      {
+        min: 350000,
+        max: 370000,
+        standard: 360000,
+      },
+      {
+        min: 370000,
+        max: 395000,
+        standard: 380000,
+      },
+      {
+        min: 395000,
+        max: 425000,
+        standard: 410000,
+      },
+      {
+        min: 425000,
+        max: 455000,
+        standard: 440000,
+      },
+      {
+        min: 455000,
+        max: 485000,
+        standard: 470000,
+      },
+      {
+        min: 485000,
+        max: 515000,
+        standard: 500000,
+      },
+      {
+        min: 515000,
+        max: 545000,
+        standard: 530000,
+      },
+      {
+        min: 545000,
+        max: 575000,
+        standard: 560000,
+      },
+      {
+        min: 575000,
+        max: 605000,
+        standard: 590000,
+      },
+      {
+        min: 605000,
+        max: 635000,
+        standard: 620000,
+      },
+      {
+        min: 635000,
+        max: 665000,
+        standard: 650000,
+      },
+      {
+        min: 665000,
+        max: 695000,
+        standard: 680000,
+      },
+      {
+        min: 695000,
+        max: 730000,
+        standard: 710000,
+      },
+      {
+        min: 730000,
+        max: 770000,
+        standard: 750000,
+      },
+      {
+        min: 770000,
+        max: 810000,
+        standard: 790000,
+      },
+      {
+        min: 810000,
+        max: 855000,
+        standard: 830000,
+      },
+      {
+        min: 855000,
+        max: 905000,
+        standard: 880000,
+      },
+      {
+        min: 905000,
+        max: 955000,
+        standard: 930000,
+      },
+      {
+        min: 955000,
+        max: 1005000,
+        standard: 980000,
+      },
+      {
+        min: 1005000,
+        max: 1055000,
+        standard: 1030000,
+      },
+      {
+        min: 1055000,
+        max: 1115000,
+        standard: 1090000,
+      },
+      {
+        min: 1115000,
+        max: 1175000,
+        standard: 1150000,
+      },
+      {
+        min: 1175000,
+        max: 1235000,
+        standard: 1210000,
+      },
+      {
+        min: 1235000,
+        max: 1295000,
+        standard: 1270000,
+      },
+      {
+        min: 1295000,
+        max: 1355000,
+        standard: 1330000,
+      },
+      {
+        min: 1355000,
+        max: 999999999,
+        standard: 1390000,
+      },
+    ];
+
+    standardMonthlyFeeTable.forEach((grade, i) => {
+      if (total < grade.max && total >= grade.min) {
+        standardMonthlyFee = grade.standard;
+      }
+    });
 
     // 社会保険（健康保険・厚生年金・介護保険・子育て拠出金）
     if (rate && condition.ins) {
+      // 厚生年金保険
+      if (standardMonthlyFee <= 88800) {
+        pensionIns = 88800 * (rate.socialIns.pensionInsRate / 100);
+      } else if (standardMonthlyFee > 88800 && standardMonthlyFee < 620000) {
+        pensionIns = standardMonthlyFee * (rate.socialIns.pensionInsRate / 100);
+      } else {
+        pensionIns = 620000 * (rate.socialIns.pensionInsRate / 100);
+      }
+      pensionInsWorker = Math.floor(pensionIns / 2);
+      pensionInsOwner = Math.floor(pensionIns / 2);
+
       // 子ども・子育て拠出金
       if (standardMonthlyFee <= 88800) {
         childrenIns = Math.floor(
@@ -226,6 +346,8 @@ export class CalcPipe implements PipeTransform {
         );
       }
     } else {
+      pensionInsWorker = 0;
+      pensionInsOwner = 0;
       childrenIns = 0;
     }
 
@@ -238,12 +360,16 @@ export class CalcPipe implements PipeTransform {
       target = total;
     } else if (type === 'compensationIns') {
       target = compensationIns;
-    } else if (type === 'unemploymentInsOwner') {
-      target = unemploymentInsOwner;
     } else if (type === 'unemploymentInsWorker') {
       target = unemploymentInsWorker;
+    } else if (type === 'unemploymentInsOwner') {
+      target = unemploymentInsOwner;
     } else if (type === 'childrenIns') {
       target = childrenIns;
+    } else if (type === 'pensionInsWorker') {
+      target = pensionInsWorker;
+    } else if (type === 'pensionInsOwner') {
+      target = pensionInsOwner;
     }
 
     return target.toLocaleString();
