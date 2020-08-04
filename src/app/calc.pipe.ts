@@ -17,6 +17,9 @@ export class CalcPipe implements PipeTransform {
     let unemploymentInsOwner: number; // 雇用保険・事業者
 
     let standardMonthlyFee: number; // 標準報酬月額
+    let nursingIns: number; // 介護保険
+    let nursingInsWorker: number; // 介護保険・労働者
+    let nursingInsOwner: number; // 介護保険・事業者
     let pensionIns: number; // 厚生年金
     let pensionInsWorker: number; // 厚生年金・労働者
     let pensionInsOwner: number; // 厚生年・事業者
@@ -320,6 +323,11 @@ export class CalcPipe implements PipeTransform {
 
     // 社会保険（健康保険・厚生年金・介護保険・子育て拠出金）
     if (rate && condition.ins) {
+      // 介護保険
+      nursingIns = standardMonthlyFee * (rate.socialIns.nursingInsRate / 100);
+      nursingInsWorker = Math.floor(nursingIns / 2);
+      nursingInsOwner = Math.floor(nursingIns - nursingInsWorker);
+
       // 厚生年金保険
       if (standardMonthlyFee <= 88800) {
         pensionIns = 88800 * (rate.socialIns.pensionInsRate / 100);
@@ -329,7 +337,7 @@ export class CalcPipe implements PipeTransform {
         pensionIns = 620000 * (rate.socialIns.pensionInsRate / 100);
       }
       pensionInsWorker = Math.floor(pensionIns / 2);
-      pensionInsOwner = Math.floor(pensionIns / 2);
+      pensionInsOwner = Math.floor(pensionIns - pensionInsWorker);
 
       // 子ども・子育て拠出金
       if (standardMonthlyFee <= 88800) {
@@ -346,6 +354,10 @@ export class CalcPipe implements PipeTransform {
         );
       }
     } else {
+      nursingIns = 0;
+      nursingInsWorker = 0;
+      nursingInsOwner = 0;
+      pensionIns = 0;
       pensionInsWorker = 0;
       pensionInsOwner = 0;
       childrenIns = 0;
@@ -370,6 +382,10 @@ export class CalcPipe implements PipeTransform {
       target = pensionInsWorker;
     } else if (type === 'pensionInsOwner') {
       target = pensionInsOwner;
+    } else if (type === 'nursingInsWorker') {
+      target = nursingInsWorker;
+    } else if (type === 'nursingInsOwner') {
+      target = nursingInsOwner;
     }
 
     return target.toLocaleString();
