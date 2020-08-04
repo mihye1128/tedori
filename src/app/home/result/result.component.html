@@ -170,7 +170,12 @@
           <dt>介護保険料</dt>
           <div>
             <dd *ngFor="let condition of conditions">
-              <ng-container *ngIf="condition.ins === false; else nursingIns">
+              <ng-container
+                *ngIf="
+                  condition.ins === false || condition.age !== 'middle';
+                  else nursingIns
+                "
+              >
                 -
               </ng-container>
               <ng-template #nursingIns>
@@ -323,7 +328,10 @@
           <div>
             <dd *ngFor="let condition of conditions">
               <ng-container
-                *ngIf="condition.ins === false; else nursingInsOwner"
+                *ngIf="
+                  condition.ins === false || condition.age !== 'middle';
+                  else nursingInsOwner
+                "
               >
                 -
               </ng-container>

@@ -324,9 +324,15 @@ export class CalcPipe implements PipeTransform {
     // 社会保険（健康保険・厚生年金・介護保険・子育て拠出金）
     if (rate && condition.ins) {
       // 介護保険
-      nursingIns = standardMonthlyFee * (rate.socialIns.nursingInsRate / 100);
-      nursingInsWorker = Math.floor(nursingIns / 2);
-      nursingInsOwner = Math.floor(nursingIns - nursingInsWorker);
+      if (condition.age === 'middle') {
+        nursingIns = standardMonthlyFee * (rate.socialIns.nursingInsRate / 100);
+        nursingInsWorker = Math.floor(nursingIns / 2);
+        nursingInsOwner = Math.floor(nursingIns - nursingInsWorker);
+      } else {
+        nursingIns = 0;
+        nursingInsWorker = 0;
+        nursingInsOwner = 0;
+      }
 
       // 厚生年金保険
       if (standardMonthlyFee <= 88800) {
