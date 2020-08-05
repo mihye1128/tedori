@@ -136,7 +136,10 @@
               class="result-panel__price"
               *ngFor="let condition of conditions"
             >
-              <span class="pre">実装予定</span>
+              <ng-container *ngIf="rate$ | async as rate">
+                {{ condition | calc: 'deductionTotal':rate
+                }}<span class="yen">円</span>
+              </ng-container>
             </span>
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -241,7 +244,10 @@
               class="result-panel__price"
               *ngFor="let condition of conditions"
             >
-              <span class="pre">実装予定</span>
+              <ng-container *ngIf="rate$ | async as rate">
+                {{ condition | calc: 'takeHomeFee':rate
+                }}<span class="yen">円</span>
+              </ng-container>
             </span>
           </mat-panel-description>
         </mat-expansion-panel-header>
