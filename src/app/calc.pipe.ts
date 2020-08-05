@@ -30,6 +30,9 @@ export class CalcPipe implements PipeTransform {
     let pensionInsOwner: number; // 厚生年・事業者
     let childrenIns: number; // 子供・子育て拠出金
 
+    let ownerBurdenTotal: number; // 事業者負担合計
+    let ownerDisbursementTotal: number; // 事業者支出額合計
+
     let target: number;
 
     // 支給額
@@ -387,6 +390,18 @@ export class CalcPipe implements PipeTransform {
       childrenIns = 0;
     }
 
+    // 事業者負担合計
+    ownerBurdenTotal =
+      healthInsOwner +
+      nursingInsOwner +
+      pensionInsOwner +
+      childrenIns +
+      compensationIns +
+      unemploymentInsOwner;
+
+    // 事業者支出額合計
+    ownerDisbursementTotal = total + ownerBurdenTotal;
+
     // 出力する値
     if (type === 'baseSalary') {
       target = baseSalary;
@@ -414,6 +429,10 @@ export class CalcPipe implements PipeTransform {
       target = healthInsWorder;
     } else if (type === 'healthInsOwner') {
       target = healthInsOwner;
+    } else if (type === 'ownerBurdenTotal') {
+      target = ownerBurdenTotal;
+    } else if (type === 'ownerDisbursementTotal') {
+      target = ownerDisbursementTotal;
     }
 
     return target.toLocaleString();
