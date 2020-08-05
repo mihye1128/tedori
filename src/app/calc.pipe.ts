@@ -37,6 +37,9 @@ export class CalcPipe implements PipeTransform {
     let taxationIncome: number; // 課税給与所得金額
     let nationalTax: number; // 源泉所得税
 
+    let deductionTotal: number; // 控除額合計
+    let takeHomeFee: number; // 差引支給額（手取り額）
+
     let ownerBurdenTotal: number; // 事業者負担合計
     let ownerDisbursementTotal: number; // 事業者支出額合計
 
@@ -454,6 +457,19 @@ export class CalcPipe implements PipeTransform {
     }
     nationalTax = Math.round(nationalTax / 10) * 10;
 
+    // 控除額合計
+    deductionTotal =
+      healthInsWorder +
+      nursingInsWorker +
+      pensionInsWorker +
+      unemploymentInsWorker +
+      nationalTax +
+      condition.cityTax +
+      condition.otherDeduction;
+
+    // 差引支給額（手取り額）
+    takeHomeFee = total - deductionTotal;
+
     // 事業者負担合計
     ownerBurdenTotal =
       healthInsOwner +
@@ -495,6 +511,10 @@ export class CalcPipe implements PipeTransform {
       target = healthInsOwner;
     } else if (type === 'nationalTax') {
       target = nationalTax;
+    } else if (type === 'deductionTotal') {
+      target = deductionTotal;
+    } else if (type === 'takeHomeFee') {
+      target = takeHomeFee;
     } else if (type === 'ownerBurdenTotal') {
       target = ownerBurdenTotal;
     } else if (type === 'ownerDisbursementTotal') {
