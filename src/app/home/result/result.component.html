@@ -149,7 +149,10 @@
                 -
               </ng-container>
               <ng-template #healthIns>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'healthInsWorder':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -160,18 +163,29 @@
                 -
               </ng-container>
               <ng-template #pensionIns>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'pensionInsWorker':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
           <dt>介護保険料</dt>
           <div>
             <dd *ngFor="let condition of conditions">
-              <ng-container *ngIf="condition.ins === false; else nursingIns">
+              <ng-container
+                *ngIf="
+                  condition.ins === false || condition.age !== 'middle';
+                  else nursingIns
+                "
+              >
                 -
               </ng-container>
               <ng-template #nursingIns>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'nursingInsWorker':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -278,7 +292,10 @@
               class="result-panel__price"
               *ngFor="let condition of conditions"
             >
-              <span class="pre">実装予定</span>
+              <ng-container *ngIf="rate$ | async as rate">
+                {{ condition | calc: 'ownerBurdenTotal':rate
+                }}<span class="yen">円</span>
+              </ng-container>
             </span>
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -293,7 +310,10 @@
                 -
               </ng-container>
               <ng-template #healthInsOwner>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'healthInsOwner':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -306,7 +326,10 @@
                 -
               </ng-container>
               <ng-template #pensionInsOwner>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'pensionInsOwner':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -314,12 +337,18 @@
           <div>
             <dd *ngFor="let condition of conditions">
               <ng-container
-                *ngIf="condition.ins === false; else nursingInsOwner"
+                *ngIf="
+                  condition.ins === false || condition.age !== 'middle';
+                  else nursingInsOwner
+                "
               >
                 -
               </ng-container>
               <ng-template #nursingInsOwner>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'nursingInsOwner':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -330,7 +359,10 @@
                 -
               </ng-container>
               <ng-template #childrenIns>
-                <span class="pre">実装予定</span>
+                <ng-container *ngIf="rate$ | async as rate">
+                  {{ condition | calc: 'childrenIns':rate
+                  }}<span class="yen">円</span>
+                </ng-container>
               </ng-template>
             </dd>
           </div>
@@ -374,7 +406,10 @@
               class="result-panel__price"
               *ngFor="let condition of conditions"
             >
-              <span class="pre">実装予定</span>
+              <ng-container *ngIf="rate$ | async as rate">
+                {{ condition | calc: 'ownerDisbursementTotal':rate
+                }}<span class="yen">円</span>
+              </ng-container>
             </span>
           </mat-panel-description>
         </mat-expansion-panel-header>
