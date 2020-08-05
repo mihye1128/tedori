@@ -48,14 +48,14 @@ export class CalcPipe implements PipeTransform {
     // 労働保険
     if (rate) {
       // 労災保険
-      compensationIns = Math.floor((total * rate.compensationIns.rate) / 1000);
+      compensationIns = Math.round((total * rate.compensationIns.rate) / 1000);
 
       // 雇用保険（事業者・労働者）
       if (condition.unemploymentIns) {
-        unemploymentInsWorker = Math.floor(
+        unemploymentInsWorker = Math.round(
           (total * rate.unemploymentIns.workerBurden) / 1000
         );
-        unemploymentInsOwner = Math.floor(
+        unemploymentInsOwner = Math.round(
           (total * rate.unemploymentIns.ownerBurden) / 1000
         );
       } else {
@@ -335,14 +335,14 @@ export class CalcPipe implements PipeTransform {
         }
       }
       healthIns = standardMonthlyFee * (healthInsRate / 100);
-      healthInsWorder = Math.floor(healthIns / 2);
-      healthInsOwner = Math.floor(healthIns - healthInsWorder);
+      healthInsWorder = Math.round(healthIns / 2);
+      healthInsOwner = Math.round(healthIns - healthInsWorder);
 
       // 介護保険
       if (condition.age === 'middle') {
         nursingIns = standardMonthlyFee * (rate.socialIns.nursingInsRate / 100);
-        nursingInsWorker = Math.floor(nursingIns / 2);
-        nursingInsOwner = Math.floor(nursingIns - nursingInsWorker);
+        nursingInsWorker = Math.round(nursingIns / 2);
+        nursingInsOwner = Math.round(nursingIns - nursingInsWorker);
       } else {
         nursingIns = 0;
         nursingInsWorker = 0;
@@ -357,20 +357,20 @@ export class CalcPipe implements PipeTransform {
       } else {
         pensionIns = 620000 * (rate.socialIns.pensionInsRate / 100);
       }
-      pensionInsWorker = Math.floor(pensionIns / 2);
-      pensionInsOwner = Math.floor(pensionIns - pensionInsWorker);
+      pensionInsWorker = Math.round(pensionIns / 2);
+      pensionInsOwner = Math.round(pensionIns - pensionInsWorker);
 
       // 子ども・子育て拠出金
       if (standardMonthlyFee <= 88800) {
-        childrenIns = Math.floor(
+        childrenIns = Math.round(
           88800 * (rate.socialIns.childrenInsRate / 100)
         );
       } else if (standardMonthlyFee > 88800 && standardMonthlyFee < 620000) {
-        childrenIns = Math.floor(
+        childrenIns = Math.round(
           standardMonthlyFee * (rate.socialIns.childrenInsRate / 100)
         );
       } else {
-        childrenIns = Math.floor(
+        childrenIns = Math.round(
           620000 * (rate.socialIns.childrenInsRate / 100)
         );
       }
