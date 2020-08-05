@@ -30,6 +30,8 @@ export class CalcPipe implements PipeTransform {
     let pensionInsOwner: number; // 厚生年・事業者
     let childrenIns: number; // 子供・子育て拠出金
 
+    let taxTargetFee: number; // 課税対象支給額
+
     let ownerBurdenTotal: number; // 事業者負担合計
     let ownerDisbursementTotal: number; // 事業者支出額合計
 
@@ -389,6 +391,15 @@ export class CalcPipe implements PipeTransform {
       pensionInsOwner = 0;
       childrenIns = 0;
     }
+
+    // 課税対象支給額
+    taxTargetFee =
+      baseSalary +
+      allowance -
+      (healthInsWorder +
+        nursingInsWorker +
+        pensionInsWorker +
+        unemploymentInsWorker);
 
     // 事業者負担合計
     ownerBurdenTotal =
