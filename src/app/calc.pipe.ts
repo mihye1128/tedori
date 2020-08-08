@@ -443,11 +443,11 @@ export class CalcPipe implements PipeTransform {
     if (taxationIncome <= 162500) {
       nationalTax = (taxationIncome * 5.105) / 100;
     } else if (taxationIncome <= 275000) {
-      nationalTax = (taxationIncome * 10.21) / 100 - 36374;
+      nationalTax = (taxationIncome * 10.21) / 100 - 8296;
     } else if (taxationIncome <= 579166) {
-      nationalTax = (taxationIncome * 20.42) / 100 - 54113;
+      nationalTax = (taxationIncome * 20.42) / 100 - 36374;
     } else if (taxationIncome <= 750000) {
-      nationalTax = (taxationIncome * 23.483) / 100 - 130688;
+      nationalTax = (taxationIncome * 23.483) / 100 - 54113;
     } else if (taxationIncome <= 1500000) {
       nationalTax = (taxationIncome * 33.693) / 100 - 130688;
     } else if (taxationIncome <= 3333333) {
