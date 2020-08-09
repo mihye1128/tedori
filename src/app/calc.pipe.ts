@@ -2,12 +2,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Condition } from './interfaces/condition';
 import { Deductions } from './interfaces/deductions';
 import { PaymentService } from './services/payment.service';
+import { NationalTaxService } from './services/national-tax.service';
 
 @Pipe({
   name: 'calc',
 })
 export class CalcPipe implements PipeTransform {
-  constructor(private paymentServise: PaymentService) {}
+  constructor(
+    private paymentServise: PaymentService,
+    private nationalTaxService: NationalTaxService
+  ) {}
+
   transform(condition: Condition, type: string, rate?: Deductions): string {
     let compensationIns: number; // 労災保険
 
@@ -26,19 +31,6 @@ export class CalcPipe implements PipeTransform {
     let pensionInsWorker: number; // 厚生年金・労働者
     let pensionInsOwner: number; // 厚生年・事業者
     let childrenIns: number; // 子供・子育て拠出金
-
-    let taxTargetFee: number; // 課税対象支給額
-    let incomeDeduction: number; // 給与所得控除
-    let dependentExemption: number; // 配偶者控除・扶養控除
-    let basicDeduction: number; // 基礎控除
-    let taxationIncome: number; // 課税給与所得金額
-    let nationalTax: number; // 源泉所得税
-
-    let deductionTotal: number; // 控除額合計
-    let takeHomeFee: number; // 差引支給額（手取り額）
-
-    let ownerBurdenTotal: number; // 事業者負担合計
-    let ownerDisbursementTotal: number; // 事業者支出額合計
 
     let target: number;
 
@@ -391,78 +383,31 @@ export class CalcPipe implements PipeTransform {
       childrenIns = 0;
     }
 
-    // 課税対象支給額
-    taxTargetFee =
-      baseSalary +
-      allowance -
-      (healthInsWorder +
-        nursingInsWorker +
-        pensionInsWorker +
-        unemploymentInsWorker);
-
-    // 給与所得控除
-    if (taxTargetFee <= 135416) {
-      incomeDeduction = 45834;
-    } else if (taxTargetFee <= 149999) {
-      incomeDeduction = (taxTargetFee * 40) / 100 - 8333;
-    } else if (taxTargetFee <= 299999) {
-      incomeDeduction = (taxTargetFee * 30) / 100 + 6667;
-    } else if (taxTargetFee <= 549999) {
-      incomeDeduction = (taxTargetFee * 20) / 100 + 36667;
-    } else if (taxTargetFee <= 708330) {
-      incomeDeduction = (taxTargetFee * 10) / 100 + 91667;
-    } else {
-      incomeDeduction = 162500;
-    }
-    incomeDeduction = Math.ceil(incomeDeduction);
-    // 配偶者控除・扶養控除
-    dependentExemption = condition.dependents * 31667;
-    // 基礎控除
-    if (taxTargetFee <= 2162499) {
-      basicDeduction = 40000;
-    } else if (taxTargetFee <= 2204166) {
-      basicDeduction = 26667;
-    } else if (taxTargetFee <= 2245833) {
-      basicDeduction = 13334;
-    } else {
-      basicDeduction = 0;
-    }
-    // 課税給与所得金額
-    taxationIncome =
-      taxTargetFee - (incomeDeduction + dependentExemption + basicDeduction);
-    // 源泉所得税
-    if (taxationIncome <= 162500) {
-      nationalTax = (taxationIncome * 5.105) / 100;
-    } else if (taxationIncome <= 275000) {
-      nationalTax = (taxationIncome * 10.21) / 100 - 8296;
-    } else if (taxationIncome <= 579166) {
-      nationalTax = (taxationIncome * 20.42) / 100 - 36374;
-    } else if (taxationIncome <= 750000) {
-      nationalTax = (taxationIncome * 23.483) / 100 - 54113;
-    } else if (taxationIncome <= 1500000) {
-      nationalTax = (taxationIncome * 33.693) / 100 - 130688;
-    } else if (taxationIncome <= 3333333) {
-      nationalTax = (taxationIncome * 40.84) / 100 - 237893;
-    } else {
-      nationalTax = (taxationIncome * 45.945) / 100 - 408061;
-    }
-    nationalTax = Math.round(nationalTax / 10) * 10;
-
-    // 控除額合計
-    deductionTotal =
+    // 社会保険料・雇用保険料 合計
+    const insTotal: number =
       healthInsWorder +
       nursingInsWorker +
       pensionInsWorker +
-      unemploymentInsWorker +
-      nationalTax +
-      condition.cityTax +
-      condition.otherDeduction;
+      unemploymentInsWorker;
+
+    // 課税対象支給額
+    const taxTargetFee: number = baseSalary + allowance - insTotal;
+
+    // 源泉所得税
+    const nationalTax: number = this.nationalTaxService.getNationalTax(
+      taxTargetFee,
+      condition.dependents
+    );
+
+    // 控除額合計
+    const deductionTotal: number =
+      insTotal + nationalTax + condition.cityTax + condition.otherDeduction;
 
     // 差引支給額（手取り額）
-    takeHomeFee = total - deductionTotal;
+    const takeHomeFee: number = total - deductionTotal;
 
     // 事業者負担合計
-    ownerBurdenTotal =
+    const ownerBurdenTotal: number =
       healthInsOwner +
       nursingInsOwner +
       pensionInsOwner +
@@ -471,7 +416,7 @@ export class CalcPipe implements PipeTransform {
       unemploymentInsOwner;
 
     // 事業者支出額合計
-    ownerDisbursementTotal = total + ownerBurdenTotal;
+    const ownerDisbursementTotal: number = total + ownerBurdenTotal;
 
     // 出力する値
     if (type === 'baseSalary') {
