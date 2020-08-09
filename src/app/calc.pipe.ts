@@ -1,17 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Condition } from './interfaces/condition';
 import { Deductions } from './interfaces/deductions';
+import { PaymentService } from './services/payment.service';
 
 @Pipe({
   name: 'calc',
 })
 export class CalcPipe implements PipeTransform {
+  constructor(private paymentServise: PaymentService) {}
   transform(condition: Condition, type: string, rate?: Deductions): string {
-    let baseSalary: number; // 基本給
-    let allowance: number; // 諸手当
-    let travelCost: number; // 交通費
-    let total: number; // 総支給
-
     let compensationIns: number; // 労災保険
 
     let unemploymentInsWorker: number; // 雇用保険・労働者
@@ -46,17 +43,11 @@ export class CalcPipe implements PipeTransform {
     let target: number;
 
     // 支給額
-    if (condition.type === 'hourly') {
-      baseSalary =
-        condition.basePerHour * condition.hourPerDay * condition.dayPerMonth;
-      allowance = 0;
-      travelCost = condition.travelCostPerDay * condition.dayPerMonth;
-    } else {
-      baseSalary = condition.base;
-      allowance = condition.allowance;
-      travelCost = condition.travelCost;
-    }
-    total = baseSalary + allowance + travelCost;
+    const payment = this.paymentServise.getPayment(condition);
+    const baseSalary: number = payment.baseSalary; // 基本給
+    const allowance: number = payment.allowance; // 諸手当
+    const travelCost: number = payment.travelCost; // 交通費
+    const total = baseSalary + allowance + travelCost; // 総支給額
 
     // 労働保険
     if (rate) {
