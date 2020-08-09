@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Condition } from '../interfaces/condition';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Condition } from '../interfaces/condition';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ConditionService {
+export class ConditionsService {
   conditions = new Subject<Condition[]>();
   conditions$ = this.conditions.asObservable();
 
   constructor(private db: AngularFirestore) {}
 
-  setCondition(conditions: Condition[]) {
+  setConditions(conditions: Condition[]) {
     this.conditions.next(conditions);
-    console.log(conditions);
   }
 
-  saveCondition(conditions: Condition[]) {
+  saveConditions(conditions: Condition[]) {
     this.conditions.next(conditions);
     for (const condition of conditions) {
       const id = this.db.createId();
