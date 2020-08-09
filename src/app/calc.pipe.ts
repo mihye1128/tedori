@@ -3,6 +3,7 @@ import { Condition } from './interfaces/condition';
 import { Deductions } from './interfaces/deductions';
 import { PaymentService } from './services/payment.service';
 import { NationalTaxService } from './services/national-tax.service';
+import { LaborInsService } from './services/labor-ins.service';
 
 @Pipe({
   name: 'calc',
@@ -10,15 +11,11 @@ import { NationalTaxService } from './services/national-tax.service';
 export class CalcPipe implements PipeTransform {
   constructor(
     private paymentServise: PaymentService,
-    private nationalTaxService: NationalTaxService
+    private nationalTaxService: NationalTaxService,
+    private laborInsService: LaborInsService
   ) {}
 
   transform(condition: Condition, type: string, rate?: Deductions): string {
-    let compensationIns: number; // 労災保険
-
-    let unemploymentInsWorker: number; // 雇用保険・労働者
-    let unemploymentInsOwner: number; // 雇用保険・事業者
-
     let standardMonthlyFee: number; // 標準報酬月額
     let healthInsRate: number; // 該当地域の健康保険料率
     let healthIns: number; // 健康保険
@@ -32,35 +29,36 @@ export class CalcPipe implements PipeTransform {
     let pensionInsOwner: number; // 厚生年・事業者
     let childrenIns: number; // 子供・子育て拠出金
 
-    let target: number;
-
-    // 支給額
     const payment = this.paymentServise.getPayment(condition);
     const baseSalary: number = payment.baseSalary; // 基本給
     const allowance: number = payment.allowance; // 諸手当
     const travelCost: number = payment.travelCost; // 交通費
-    const total = baseSalary + allowance + travelCost; // 総支給額
+    const total: number = baseSalary + allowance + travelCost; // 総支給額
 
-    // 労働保険
+    let compensationInsRate: number;
+    let workerBurden: number;
+    let ownerBurden: number;
     if (rate) {
-      // 労災保険
-      compensationIns = Math.round((total * rate.compensationIns.rate) / 1000);
-
-      // 雇用保険（事業者・労働者）
-      if (condition.unemploymentIns) {
-        unemploymentInsWorker = Math.round(
-          (total * rate.unemploymentIns.workerBurden) / 1000
-        );
-        unemploymentInsOwner = Math.round(
-          (total * rate.unemploymentIns.ownerBurden) / 1000
-        );
-      } else {
-        unemploymentInsWorker = 0;
-        unemploymentInsOwner = 0;
-      }
+      compensationInsRate = rate.compensationIns.rate;
+      workerBurden = rate.unemploymentIns.workerBurden;
+      ownerBurden = rate.unemploymentIns.ownerBurden;
     } else {
-      rate = null;
+      compensationInsRate = 0;
+      workerBurden = 0;
+      ownerBurden = 0;
     }
+    const compensationIns = this.laborInsService.getCompensationIns(
+      total,
+      compensationInsRate
+    );
+    const unemploymentIns = this.laborInsService.getUnemploymentIns(
+      total,
+      condition.unemploymentIns,
+      workerBurden,
+      ownerBurden
+    );
+    const unemploymentInsWorker: number = unemploymentIns.unemploymentInsWorker;
+    const unemploymentInsOwner: number = unemploymentIns.unemploymentInsOwner;
 
     // 標準報酬月額（社会保険料の算出時に使用）
     const standardMonthlyFeeTable = [
@@ -417,6 +415,8 @@ export class CalcPipe implements PipeTransform {
 
     // 事業者支出額合計
     const ownerDisbursementTotal: number = total + ownerBurdenTotal;
+
+    let target: number;
 
     // 出力する値
     if (type === 'baseSalary') {
