@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ConditionService } from 'src/app/services/condition.service';
 import { Condition } from 'src/app/interfaces/condition';
 import { RateService } from 'src/app/services/rate.service';
+import { ConditionsService } from 'src/app/services/conditions.service';
 
 @Component({
   selector: 'app-result',
@@ -11,23 +11,21 @@ import { RateService } from 'src/app/services/rate.service';
 export class ResultComponent implements OnInit {
   panelOpenState = false;
 
-  conditions$ = this.conditionService.conditions$;
+  conditions$ = this.conditionsService.conditions$;
   rate$ = this.rateService.getRate();
 
   constructor(
-    private conditionService: ConditionService,
+    private conditionsService: ConditionsService,
     private rateService: RateService
   ) {}
 
   ngOnInit(): void {}
 
-  conditionTitle(condition: Condition, i: number) {
-    let title: string;
+  getConditionTitle(condition: Condition, i: number) {
     if (condition.title === '') {
-      title = '条件' + (i + 1);
+      return '条件' + (i + 1);
     } else {
-      title = condition.title;
+      return condition.title;
     }
-    return title;
   }
 }

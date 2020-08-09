@@ -13,7 +13,7 @@
                   class="result-panel__head"
                   *ngFor="let condition of conditions; index as i"
                 >
-                  {{ conditionTitle(condition, i) }}
+                  {{ getConditionTitle(condition, i) }}
                 </span>
               </ng-container>
             </mat-panel-description>
@@ -265,7 +265,7 @@
                   class="result-panel__head"
                   *ngFor="let condition of conditions; index as i"
                 >
-                  {{ conditionTitle(condition, i) }}
+                  {{ getConditionTitle(condition, i) }}
                 </span>
               </ng-container>
             </mat-panel-description>
