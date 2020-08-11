@@ -19,7 +19,7 @@ export class SocialInsService {
       }
     });
     if (insType === 'PensionIns' || insType === 'childrenIns') {
-      if (standard <= 88800) {
+      if (standard <= 88800 && standard !== 0) {
         standard = 88800;
       } else if (standard >= 620000) {
         standard = 620000;
