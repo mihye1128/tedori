@@ -132,45 +132,63 @@ export class CalcPipe implements PipeTransform {
     // 事業者支出額合計
     const ownerDisbursementTotal: number = total + ownerBurdenTotal;
 
-    let target: number;
-
     // 出力する値
-    if (type === 'baseSalary') {
-      target = baseSalary;
-    } else if (type === 'travelCost') {
-      target = travelCost;
-    } else if (type === 'total') {
-      target = total;
-    } else if (type === 'compensationIns') {
-      target = compensationIns;
-    } else if (type === 'unemploymentInsWorker') {
-      target = unemploymentInsWorker;
-    } else if (type === 'unemploymentInsOwner') {
-      target = unemploymentInsOwner;
-    } else if (type === 'childrenIns') {
-      target = childrenIns;
-    } else if (type === 'pensionInsWorker') {
-      target = pensionInsWorker;
-    } else if (type === 'pensionInsOwner') {
-      target = pensionInsOwner;
-    } else if (type === 'nursingInsWorker') {
-      target = nursingInsWorker;
-    } else if (type === 'nursingInsOwner') {
-      target = nursingInsOwner;
-    } else if (type === 'healthInsWorder') {
-      target = healthInsWorder;
-    } else if (type === 'healthInsOwner') {
-      target = healthInsOwner;
-    } else if (type === 'nationalTax') {
-      target = nationalTax;
-    } else if (type === 'deductionTotal') {
-      target = deductionTotal;
-    } else if (type === 'takeHomeFee') {
-      target = takeHomeFee;
-    } else if (type === 'ownerBurdenTotal') {
-      target = ownerBurdenTotal;
-    } else if (type === 'ownerDisbursementTotal') {
-      target = ownerDisbursementTotal;
+    let target: number;
+    switch (type) {
+      case 'baseSalary':
+        target = baseSalary;
+        break;
+      case 'travelCost':
+        target = travelCost;
+        break;
+      case 'total':
+        target = total;
+        break;
+      case 'compensationIns':
+        target = compensationIns;
+        break;
+      case 'unemploymentInsWorker':
+        target = unemploymentInsWorker;
+        break;
+      case 'unemploymentInsOwner':
+        target = unemploymentInsOwner;
+        break;
+      case 'childrenIns':
+        target = childrenIns;
+        break;
+      case 'pensionInsWorker':
+        target = pensionInsWorker;
+        break;
+      case 'pensionInsOwner':
+        target = pensionInsOwner;
+        break;
+      case 'nursingInsWorker':
+        target = nursingInsWorker;
+        break;
+      case 'nursingInsOwner':
+        target = nursingInsOwner;
+        break;
+      case 'healthInsWorder':
+        target = healthInsWorder;
+        break;
+      case 'healthInsOwner':
+        target = healthInsOwner;
+        break;
+      case 'nationalTax':
+        target = nationalTax;
+        break;
+      case 'deductionTotal':
+        target = deductionTotal;
+        break;
+      case 'takeHomeFee':
+        target = takeHomeFee;
+        break;
+      case 'ownerBurdenTotal':
+        target = ownerBurdenTotal;
+        break;
+      case 'ownerDisbursementTotal':
+        target = ownerDisbursementTotal;
+        break;
     }
 
     return target.toLocaleString();
