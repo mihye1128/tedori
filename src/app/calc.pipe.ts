@@ -5,7 +5,6 @@ import { PaymentService } from './services/payment.service';
 import { NationalTaxService } from './services/national-tax.service';
 import { LaborInsService } from './services/labor-ins.service';
 import { SocialInsService } from './services/social-ins.service';
-import { ByArea } from './interfaces/by-area';
 
 @Pipe({
   name: 'calc',
@@ -19,38 +18,21 @@ export class CalcPipe implements PipeTransform {
   ) {}
 
   transform(condition: Condition, type: string, rate?: Deductions): string {
-    // 各種保険料率
-    let healthInsRateList: ByArea[];
-    let nursingInsRate: number;
-    let pensionInsRate: number;
-    let childrenInsRate: number;
-    let compensationInsRate: number;
-    let workerBurden: number; // 雇用保険・労働者負担
-    let ownerBurden: number; // 雇用保険・事業者負担
-    if (rate) {
-      healthInsRateList = rate.socialIns.healthInsRateList;
-      nursingInsRate = rate.socialIns.nursingInsRate;
-      pensionInsRate = rate.socialIns.pensionInsRate;
-      childrenInsRate = rate.socialIns.childrenInsRate;
-      compensationInsRate = rate.compensationIns.rate;
-      workerBurden = rate.unemploymentIns.workerBurden;
-      ownerBurden = rate.unemploymentIns.ownerBurden;
-    } else {
-      healthInsRateList = [];
-      nursingInsRate = 0;
-      pensionInsRate = 0;
-      childrenInsRate = 0;
-      compensationInsRate = 0;
-      workerBurden = 0;
-      ownerBurden = 0;
-    }
-
     // 総支給額
     const payment = this.paymentServise.getPayment(condition);
     const baseSalary: number = payment.baseSalary;
     const allowance: number = payment.allowance;
     const travelCost: number = payment.travelCost;
     const total: number = baseSalary + allowance + travelCost;
+
+    // 各種保険料率
+    const healthInsRateList = rate ? rate.socialIns.healthInsRateList : [];
+    const nursingInsRate = rate ? rate.socialIns.nursingInsRate : 0;
+    const pensionInsRate = rate ? rate.socialIns.pensionInsRate : 0;
+    const childrenInsRate = rate ? rate.socialIns.childrenInsRate : 0;
+    const compensationInsRate = rate ? rate.compensationIns.rate : 0;
+    const workerBurden = rate ? rate.unemploymentIns.workerBurden : 0;
+    const ownerBurden = rate ? rate.unemploymentIns.ownerBurden : 0;
 
     // 社会保険（健康保険・厚生年金・介護保険・子育て拠出金）
     const healthIns = this.socialInsService.getHealthIns(
