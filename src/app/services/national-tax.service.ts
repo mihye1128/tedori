@@ -36,7 +36,9 @@ export class NationalTaxService {
   }
 
   getNationalTaxBase(taxationIncome: number) {
-    if (taxationIncome <= 162500) {
+    if (taxationIncome <= 0) {
+      return 0;
+    } else if (taxationIncome <= 162500) {
       return (taxationIncome * 5.105) / 100;
     } else if (taxationIncome <= 275000) {
       return (taxationIncome * 10.21) / 100 - 8296;
