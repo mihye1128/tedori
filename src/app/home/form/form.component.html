@@ -204,12 +204,16 @@
                         >
                           <mat-label>就業地</mat-label>
                           <mat-select [formControlName]="'area'">
-                            <mat-option
-                              *ngFor="let area of areas"
-                              [value]="area"
-                            >
-                              {{ area }}
-                            </mat-option>
+                            <ng-container *ngIf="rate$ | async as rate">
+                              <mat-option
+                                *ngFor="
+                                  let area of rate.socialIns.healthInsRateList
+                                "
+                                [value]="area.area"
+                              >
+                                {{ area.area }}
+                              </mat-option>
+                            </ng-container>
                           </mat-select>
                         </mat-form-field>
                       </div>
