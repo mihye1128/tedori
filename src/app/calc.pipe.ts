@@ -17,7 +17,7 @@ export class CalcPipe implements PipeTransform {
     private socialInsService: SocialInsService
   ) {}
 
-  transform(condition: Condition, type: string, rate?: Deductions): string {
+  transform(condition: Condition, key: string, rate?: Deductions): string {
     // 総支給額
     const payment = this.paymentServise.getPayment(condition);
     const baseSalary: number = payment.baseSalary;
@@ -114,65 +114,27 @@ export class CalcPipe implements PipeTransform {
     // 事業者支出額合計
     const ownerDisbursementTotal: number = total + ownerBurdenTotal;
 
-    // 出力する値
-    let target: number;
-    switch (type) {
-      case 'baseSalary':
-        target = baseSalary;
-        break;
-      case 'travelCost':
-        target = travelCost;
-        break;
-      case 'total':
-        target = total;
-        break;
-      case 'compensationIns':
-        target = compensationIns;
-        break;
-      case 'unemploymentInsWorker':
-        target = unemploymentInsWorker;
-        break;
-      case 'unemploymentInsOwner':
-        target = unemploymentInsOwner;
-        break;
-      case 'childrenIns':
-        target = childrenIns;
-        break;
-      case 'pensionInsWorker':
-        target = pensionInsWorker;
-        break;
-      case 'pensionInsOwner':
-        target = pensionInsOwner;
-        break;
-      case 'nursingInsWorker':
-        target = nursingInsWorker;
-        break;
-      case 'nursingInsOwner':
-        target = nursingInsOwner;
-        break;
-      case 'healthInsWorder':
-        target = healthInsWorder;
-        break;
-      case 'healthInsOwner':
-        target = healthInsOwner;
-        break;
-      case 'nationalTax':
-        target = nationalTax;
-        break;
-      case 'deductionTotal':
-        target = deductionTotal;
-        break;
-      case 'takeHomeFee':
-        target = takeHomeFee;
-        break;
-      case 'ownerBurdenTotal':
-        target = ownerBurdenTotal;
-        break;
-      case 'ownerDisbursementTotal':
-        target = ownerDisbursementTotal;
-        break;
-    }
+    const outputValues = {
+      baseSalary,
+      travelCost,
+      total,
+      compensationIns,
+      unemploymentInsWorker,
+      unemploymentInsOwner,
+      childrenIns,
+      pensionInsWorker,
+      pensionInsOwner,
+      nursingInsWorker,
+      nursingInsOwner,
+      healthInsWorder,
+      healthInsOwner,
+      nationalTax,
+      deductionTotal,
+      takeHomeFee,
+      ownerBurdenTotal,
+      ownerDisbursementTotal,
+    };
 
-    return target.toLocaleString();
+    return outputValues[key].toLocaleString();
   }
 }
