@@ -1,6 +1,11 @@
 export const standardMonthlyFeeTable = [
   {
     min: 0,
+    max: 1,
+    standard: 0,
+  },
+  {
+    min: 1,
     max: 63000,
     standard: 58000,
   },

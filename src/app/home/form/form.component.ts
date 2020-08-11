@@ -141,19 +141,4 @@ export class FormComponent implements OnInit {
     }
     this.conditionsService.setConditions(formData);
   }
-
-  save() {
-    const formValue = this.formGroup.value;
-    const conditions = formValue.formConditions;
-    const formData: Condition[] = [];
-
-    if (formValue.formSelect === 'single') {
-      this.formDataPush(formData, conditions[0]);
-    } else {
-      for (const condition of conditions) {
-        this.formDataPush(formData, condition);
-      }
-    }
-    this.conditionsService.saveConditions(formData);
-  }
 }

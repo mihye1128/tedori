@@ -425,4 +425,14 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
+  <div class="result__actions" *ngIf="user$ | async">
+    <button
+      mat-raised-button
+      color="accent"
+      class="result__btn"
+      (click)="saveConditions(conditions)"
+    >
+      条件を保存する
+    </button>
+  </div>
 </section>

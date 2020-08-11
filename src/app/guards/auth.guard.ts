@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate, CanLoad {
       map((user) => !!user),
       tap((isLoggedIn) => {
         if (!isLoggedIn) {
-          this.router.navigateByUrl('/about');
+          this.router.navigateByUrl('/');
         }
       })
     );
@@ -45,7 +45,7 @@ export class AuthGuard implements CanActivate, CanLoad {
       take(1),
       tap((isLoggedIn) => {
         if (!isLoggedIn) {
-          this.router.navigateByUrl('/about');
+          this.router.navigateByUrl('/');
         }
       })
     );

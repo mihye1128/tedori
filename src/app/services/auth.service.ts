@@ -28,7 +28,7 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithPopup(provider).then(() => {
-      this.router.navigateByUrl('/mypage');
+      this.router.navigateByUrl('/');
     });
   }
   logout() {
@@ -36,7 +36,7 @@ export class AuthService {
       this.snackBar.open('ログアウトしました。', null, {
         duration: 2000,
       });
-      this.router.navigateByUrl('/about');
+      this.router.navigateByUrl('/');
     });
   }
 }
