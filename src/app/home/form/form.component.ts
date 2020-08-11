@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Condition } from 'src/app/interfaces/condition';
 import { AuthService } from 'src/app/services/auth.service';
-import { ConditionService } from 'src/app/services/condition.service';
+import { ConditionsService } from 'src/app/services/conditions.service';
 
 @Component({
   selector: 'app-form',
@@ -77,7 +77,7 @@ export class FormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private conditionService: ConditionService
+    private conditionsService: ConditionsService
   ) {
     this.formGroup = this.fb.group({
       formConditions: this.fb.array([]),
@@ -184,7 +184,7 @@ export class FormComponent implements OnInit {
         this.formDataPush(formData, condition);
       }
     }
-    this.conditionService.setCondition(formData);
+    this.conditionsService.setConditions(formData);
   }
 
   save() {
@@ -199,6 +199,6 @@ export class FormComponent implements OnInit {
         this.formDataPush(formData, condition);
       }
     }
-    this.conditionService.saveCondition(formData);
+    this.conditionsService.saveConditions(formData);
   }
 }
