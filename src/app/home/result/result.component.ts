@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
 import { RateService } from 'src/app/services/rate.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-result',
@@ -13,10 +14,12 @@ export class ResultComponent implements OnInit {
 
   conditions$ = this.conditionsService.conditions$;
   rate$ = this.rateService.getRate();
+  user$ = this.authService.afUser$;
 
   constructor(
     private conditionsService: ConditionsService,
-    private rateService: RateService
+    private rateService: RateService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -27,5 +30,9 @@ export class ResultComponent implements OnInit {
     } else {
       return condition.title;
     }
+  }
+
+  saveConditions(conditions: Condition[]) {
+    this.conditionsService.saveConditions(conditions);
   }
 }
