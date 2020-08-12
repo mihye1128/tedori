@@ -30,7 +30,7 @@ export class MypageComponent implements OnInit {
       userId: null,
     },
     {
-      title: 'B社 パート',
+      title: '',
       type: 'hourly',
       base: 0,
       allowance: 0,

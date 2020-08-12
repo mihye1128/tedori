@@ -1,7 +1,10 @@
 <mat-card class="condition-card">
   <mat-card-header class="condition-card__header">
     <p class="condition-card__title">
-      {{ condition.title }}
+      <ng-container *ngIf="condition.title === ''; else title">
+        <span class="pre">（ 条件名 設定なし ）</span>
+      </ng-container>
+      <ng-template #title>{{ condition.title }}</ng-template>
     </p>
     <div class="condition-card__actions">
       <button mat-icon-button aria-label="この条件を編集する">
