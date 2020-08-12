@@ -28,9 +28,21 @@
       }
       &:not(:nth-of-type(-n + 2)) {
         margin-top: 20px;
+      }
+      &:not(:nth-of-type(2n + 1)) {
+        margin-left: 20px;
+      }
+    }
+    @include md {
+      width: calc(100% / 3 - 40px / 3);
+      &:nth-of-type(-n + 3) {
+        margin-top: 0;
+      }
+      &:not(:nth-of-type(-n + 3)) {
+        margin-top: 20px;
         margin-left: 0;
       }
-      &:nth-of-type(even) {
+      &:not(:nth-of-type(3n + 1)) {
         margin-left: 20px;
       }
     }

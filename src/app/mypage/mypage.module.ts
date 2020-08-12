@@ -12,7 +12,7 @@ import { ConditionComponent } from './condition/condition.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { WorkerComponent } from '../mypage/worker/worker.component';
 import { DataComponent } from './data/data.component';
-import { OwnerComponent } from './owner/owner.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { OwnerComponent } from './owner/owner.component';
     ConditionComponent,
     WorkerComponent,
     DataComponent,
-    OwnerComponent,
+    ResultComponent,
   ],
   imports: [
     CommonModule,
