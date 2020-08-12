@@ -1,0 +1,75 @@
+<dl class="result__data">
+  <dt class="result__dt">総支給額<span>（詳細表示）</span></dt>
+  <dd class="result__dd">
+    {{ condition | calc: 'total' }}<span class="yen">円</span>
+  </dd>
+  <div class="result__detail">
+    <dl class="result-detail__data">
+      <dt class="result-detail__dt">基本給</dt>
+      <dd class="result-detail__dd">
+        {{ condition | calc: 'baseSalary' }}<span class="yen">円</span>
+      </dd>
+      <ng-container *ngIf="condition.type === 'monthly'">
+        <dt class="result-detail__dt">諸手当</dt>
+        <dd class="result-detail__dd">
+          {{ condition.allowance | number }}<span class="yen">円</span>
+        </dd>
+      </ng-container>
+      <dt class="result-detail__dt">交通費</dt>
+      <dd class="result-detail__dd">
+        {{ condition | calc: 'travelCost' }}<span class="yen">円</span>
+      </dd>
+    </dl>
+  </div>
+  <ng-container *ngIf="rate$ | async as rate">
+    <dt class="result__dt">控除額合計<span>（詳細表示）</span></dt>
+    <dd class="result__dd">
+      {{ condition | calc: 'deductionTotal':rate }}<span class="yen">円</span>
+    </dd>
+    <div class="result__detail">
+      <dl class="result-detail__data">
+        <ng-container *ngIf="condition.ins">
+          <dt class="result-detail__dt">健康保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'healthInsWorder':rate
+            }}<span class="yen">円</span>
+          </dd>
+          <dt class="result-detail__dt">厚生年金保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'pensionInsWorker':rate
+            }}<span class="yen">円</span>
+          </dd>
+          <ng-container *ngIf="condition.age === 'middle'"></ng-container>
+          <dt class="result-detail__dt">介護保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'nursingInsWorker':rate
+            }}<span class="yen">円</span>
+          </dd>
+        </ng-container>
+        <ng-container *ngIf="condition.unemploymentIns">
+          <dt class="result-detail__dt">雇用保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'unemploymentInsWorker':rate
+            }}<span class="yen">円</span>
+          </dd>
+        </ng-container>
+        <dt class="result-detail__dt">源泉所得税</dt>
+        <dd class="result-detail__dd">
+          {{ condition | calc: 'nationalTax' }}<span class="yen">円</span>
+        </dd>
+        <dt class="result-detail__dt">住民税</dt>
+        <dd class="result-detail__dd">
+          {{ condition.cityTax | number }}<span class="yen">円</span>
+        </dd>
+        <dt class="result-detail__dt">その他控除</dt>
+        <dd class="result-detail__dd">
+          {{ condition.otherDeduction | number }}<span class="yen">円</span>
+        </dd>
+      </dl>
+    </div>
+    <dt class="result__dt">差引支給額</dt>
+    <dd class="result__dd">
+      {{ condition | calc: 'takeHomeFee':rate }}<span class="yen">円</span>
+    </dd>
+  </ng-container>
+</dl>

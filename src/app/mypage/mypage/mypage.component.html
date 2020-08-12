@@ -1,1 +1,11 @@
-<p>mypage works!</p>
+<section class="mypage">
+  <div class="container">
+    <div class="mypage__list">
+      <app-condition
+        *ngFor="let condition of conditions"
+        [condition]="condition"
+        class="mypage__item"
+      ></app-condition>
+    </div>
+  </div>
+</section>

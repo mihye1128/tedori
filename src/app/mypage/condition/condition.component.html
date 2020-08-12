@@ -1,0 +1,42 @@
+<mat-card class="condition-card">
+  <mat-card-header class="condition-card__header">
+    <p class="condition-card__title">
+      {{ condition.title }}
+    </p>
+    <div class="condition-card__actions">
+      <button mat-icon-button aria-label="この条件を編集する">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" aria-label="この条件を削除する">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="condition-card__content">
+    <ul class="condition-tags__list">
+      <li class="condition-tags__item" [class]="condition.type">
+        {{ getType(condition.type) }}
+      </li>
+      <li class="condition-tags__item" [class.active]="condition.ins">
+        {{ getIns(condition.ins) }}
+      </li>
+      <li
+        class="condition-tags__item"
+        [class.active]="condition.unemploymentIns"
+      >
+        {{ getUnemploymentIns(condition.unemploymentIns) }}
+      </li>
+    </ul>
+    <mat-tab-group class="condition-tab">
+      <mat-tab label="条件" class="condition-tab__label">
+        <app-data [condition]="condition"></app-data>
+      </mat-tab>
+      <mat-tab label="手取り支給額" class="condition-tab__label">
+        <app-worker [condition]="condition"></app-worker>
+      </mat-tab>
+      <mat-tab label="事業者負担額" class="condition-tab__label">
+        <app-owner></app-owner>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
