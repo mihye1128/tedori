@@ -7,15 +7,21 @@
       <ng-template #title>{{ condition.title }}</ng-template>
     </p>
     <div class="condition-card__actions">
-      <button mat-icon-button aria-label="編集・削除はこちらから">
+      <button
+        mat-icon-button
+        aria-label="編集・削除はこちらから"
+        [matMenuTriggerFor]="menu"
+      >
         <mat-icon>more_vert</mat-icon>
       </button>
-      <!-- <button mat-icon-button aria-label="この条件を編集する">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" aria-label="この条件を削除する">
-        <mat-icon>delete</mat-icon>
-      </button> -->
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item aria-label="この条件を編集する">
+          <mat-icon>edit</mat-icon>編集
+        </button>
+        <button mat-menu-item aria-label="この条件を削除する">
+          <mat-icon>delete</mat-icon>削除
+        </button>
+      </mat-menu>
     </div>
   </mat-card-header>
   <mat-card-content class="condition-card__content">
