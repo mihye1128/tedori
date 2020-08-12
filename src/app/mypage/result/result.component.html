@@ -1,1 +1,149 @@
-<p>result works!</p>
+<p class="result__title">労働者支給額</p>
+<dl class="result__data">
+  <dt class="result__dt">
+    総支給額<span class="btn-detail" (click)="opendTotal = !opendTotal">{{
+      changedText(opendTotal)
+    }}</span>
+  </dt>
+  <dd class="result__dd">
+    {{ condition | calc: 'total' }}<span class="yen">円</span>
+  </dd>
+  <div class="result__detail" [class.open]="opendTotal">
+    <dl class="result-detail__data">
+      <dt class="result-detail__dt">基本給</dt>
+      <dd class="result-detail__dd">
+        {{ condition | calc: 'baseSalary' }}<span class="yen">円</span>
+      </dd>
+      <ng-container *ngIf="condition.type === 'monthly'">
+        <dt class="result-detail__dt">諸手当</dt>
+        <dd class="result-detail__dd">
+          {{ condition.allowance | number }}<span class="yen">円</span>
+        </dd>
+      </ng-container>
+      <dt class="result-detail__dt">交通費</dt>
+      <dd class="result-detail__dd">
+        {{ condition | calc: 'travelCost' }}<span class="yen">円</span>
+      </dd>
+    </dl>
+  </div>
+  <ng-container *ngIf="rate$ | async as rate">
+    <dt class="result__dt">
+      控除額<span
+        class="btn-detail"
+        (click)="opendDeduction = !opendDeduction"
+        >{{ changedText(opendDeduction) }}</span
+      >
+    </dt>
+    <dd class="result__dd">
+      {{ condition | calc: 'deductionTotal':rate }}<span class="yen">円</span>
+    </dd>
+    <div class="result__detail" [class.open]="opendDeduction">
+      <dl class="result-detail__data">
+        <ng-container *ngIf="condition.ins">
+          <dt class="result-detail__dt">健康保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'healthInsWorder':rate
+            }}<span class="yen">円</span>
+          </dd>
+          <dt class="result-detail__dt">厚生年金保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'pensionInsWorker':rate
+            }}<span class="yen">円</span>
+          </dd>
+          <ng-container *ngIf="condition.age === 'middle'">
+            <dt class="result-detail__dt">介護保険料</dt>
+            <dd class="result-detail__dd">
+              {{ condition | calc: 'nursingInsWorker':rate
+              }}<span class="yen">円</span>
+            </dd>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="condition.unemploymentIns">
+          <dt class="result-detail__dt">雇用保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'unemploymentInsWorker':rate
+            }}<span class="yen">円</span>
+          </dd>
+        </ng-container>
+        <dt class="result-detail__dt">源泉所得税</dt>
+        <dd class="result-detail__dd">
+          {{ condition | calc: 'nationalTax' }}<span class="yen">円</span>
+        </dd>
+        <dt class="result-detail__dt">住民税</dt>
+        <dd class="result-detail__dd">
+          {{ condition.cityTax | number }}<span class="yen">円</span>
+        </dd>
+        <dt class="result-detail__dt">その他控除</dt>
+        <dd class="result-detail__dd">
+          {{ condition.otherDeduction | number }}<span class="yen">円</span>
+        </dd>
+      </dl>
+    </div>
+    <dt class="result__dt">差引支給額<small>（手取り額）</small></dt>
+    <dd class="result__dd">
+      {{ condition | calc: 'takeHomeFee':rate }}<span class="yen">円</span>
+    </dd>
+  </ng-container>
+</dl>
+<p class="result__title">事業者支出額</p>
+<dl class="result__data">
+  <dt class="result__dt">総支給額</dt>
+  <dd class="result__dd">
+    {{ condition | calc: 'total' }}<span class="yen">円</span>
+  </dd>
+  <ng-container *ngIf="rate$ | async as rate">
+    <dt class="result__dt">
+      事業者負担<span class="btn-detail" (click)="opendOwner = !opendOwner">{{
+        changedText(opendOwner)
+      }}</span>
+    </dt>
+    <dd class="result__dd">
+      {{ condition | calc: 'ownerBurdenTotal':rate }}<span class="yen">円</span>
+    </dd>
+    <div class="result__detail" [class.open]="opendOwner">
+      <dl class="result-detail__data">
+        <ng-container *ngIf="condition.ins">
+          <dt class="result-detail__dt">健康保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'healthInsOwner':rate
+            }}<span class="yen">円</span>
+          </dd>
+          <dt class="result-detail__dt">厚生年金保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'pensionInsOwner':rate
+            }}<span class="yen">円</span>
+          </dd>
+          <ng-container *ngIf="condition.age === 'middle'">
+            <dt class="result-detail__dt">介護保険料</dt>
+            <dd class="result-detail__dd">
+              {{ condition | calc: 'nursingInsOwner':rate
+              }}<span class="yen">円</span>
+            </dd>
+          </ng-container>
+          <dt class="result-detail__dt">子ども・子育て拠出金</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'childrenIns':rate
+            }}<span class="yen">円</span>
+          </dd>
+        </ng-container>
+        <dt class="result-detail__dt">労災保険料</dt>
+        <dd class="result-detail__dd">
+          {{ condition | calc: 'compensationIns':rate
+          }}<span class="yen">円</span>
+        </dd>
+        <ng-container *ngIf="condition.unemploymentIns">
+          <dt class="result-detail__dt">雇用保険料</dt>
+          <dd class="result-detail__dd">
+            {{ condition | calc: 'unemploymentInsOwner':rate
+            }}<span class="yen">円</span>
+          </dd>
+        </ng-container>
+      </dl>
+    </div>
+    <dt class="result__dt">支出合計</dt>
+    <dd class="result__dd">
+      {{ condition | calc: 'ownerDisbursementTotal':rate
+      }}<span class="yen">円</span>
+    </dd>
+  </ng-container>
+</dl>
