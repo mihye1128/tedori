@@ -15,7 +15,7 @@ export interface Condition {
   dependents: number;
   cityTax: number;
   otherDeduction: number;
-  userId: string;
+  userId?: string;
   id?: string;
   craetedAt?: string;
 }
