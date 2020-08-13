@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Condition } from '../interfaces/condition';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { map } from 'rxjs/operators';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,11 @@ export class ConditionsService {
     Promise.all(
       conditions.map((condition) => {
         const id = this.db.createId();
-        return this.db.doc(`conditions/${id}`).set(condition);
+        return this.db.doc(`conditions/${id}`).set({
+          id,
+          ...condition,
+          craetedAt: firestore.Timestamp.now(),
+        });
       })
     ).then(() => {
       this.snackBar.open('マイページに保存しました。', '確認する', {
@@ -38,5 +42,9 @@ export class ConditionsService {
         ref.where('userId', '==', uid)
       )
       .valueChanges();
+  }
+
+  deleteCondition(id: string): Promise<void> {
+    return this.db.collection('conditions').doc(id).delete();
   }
 }

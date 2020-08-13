@@ -73,6 +73,7 @@ export class ConditionComponent implements OnInit {
       restoreFocus: false,
       data: {
         title: condition.title,
+        id: condition.id,
       },
     });
   }

@@ -24,27 +24,5 @@ export class MypageComponent implements OnInit {
     private conditionsService: ConditionsService
   ) {}
 
-  // conditions: Condition[] = [
-  //   {
-  //     title: 'A社 正社員',
-  //     type: 'monthly',
-  //     base: 320000,
-  //     allowance: 20000,
-  //     travelCost: 6000,
-  //     basePerHour: 0,
-  //     travelCostPerDay: 0,
-  //     hourPerDay: 0,
-  //     dayPerMonth: 0,
-  //     ins: true,
-  //     unemploymentIns: true,
-  //     area: '広島県',
-  //     age: 'young',
-  //     dependents: 1,
-  //     cityTax: 20000,
-  //     otherDeduction: 0,
-  //     userId: null,
-  //   },
-  // ];
-
   ngOnInit(): void {}
 }
