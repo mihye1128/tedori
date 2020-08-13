@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
 import { RateService } from 'src/app/services/rate.service';
+import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
   selector: 'app-result',
@@ -15,6 +16,7 @@ export class ResultComponent implements OnInit {
   rate$ = this.rateService.getRate();
 
   @Input() condition: Condition;
+  @Input() rate: Deductions;
 
   constructor(private rateService: RateService) {}
 

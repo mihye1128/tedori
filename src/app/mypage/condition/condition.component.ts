@@ -3,6 +3,7 @@ import { Condition } from 'src/app/interfaces/condition';
 import { RateService } from 'src/app/services/rate.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
+import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
   selector: 'app-condition',
@@ -13,6 +14,7 @@ export class ConditionComponent implements OnInit {
   rate$ = this.rateService.getRate();
 
   @Input() condition: Condition;
+  @Input() rate: Deductions;
 
   constructor(private dialog: MatDialog, private rateService: RateService) {}
 

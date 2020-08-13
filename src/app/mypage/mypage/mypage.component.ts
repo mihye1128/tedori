@@ -11,9 +11,7 @@ import { Deductions } from 'src/app/interfaces/deductions';
 export class MypageComponent implements OnInit {
   rate$ = this.rateService.rate$;
 
-  constructor(private rateService: RateService) {
-    this.rate$.subscribe((rate) => console.log(rate));
-  }
+  constructor(private rateService: RateService) {}
 
   conditions: Condition[] = [
     {

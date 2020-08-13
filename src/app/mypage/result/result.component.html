@@ -26,7 +26,7 @@
       </dd>
     </dl>
   </div>
-  <ng-container *ngIf="rate$ | async as rate">
+  <ng-container>
     <dt class="result__dt">
       控除額<span
         class="btn-detail"
@@ -91,7 +91,7 @@
   <dd class="result__dd">
     {{ condition | calc: 'total' }}<span class="yen">円</span>
   </dd>
-  <ng-container *ngIf="rate$ | async as rate">
+  <ng-container>
     <dt class="result__dt">
       事業者負担<span class="btn-detail" (click)="opendOwner = !opendOwner">{{
         changedText(opendOwner)

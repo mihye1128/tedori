@@ -1,9 +1,10 @@
 <section class="mypage">
   <div class="container">
-    <div class="mypage__list">
+    <div class="mypage__list" *ngIf="rate$ | async as rate">
       <app-condition
         *ngFor="let condition of conditions"
         [condition]="condition"
+        [rate]="rate"
         class="mypage__item"
       ></app-condition>
     </div>
