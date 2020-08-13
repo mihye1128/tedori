@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RateService } from 'src/app/services/rate.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
   selector: 'app-method',
@@ -7,9 +7,9 @@ import { RateService } from 'src/app/services/rate.service';
   styleUrls: ['./method.component.scss'],
 })
 export class MethodComponent implements OnInit {
-  rate$ = this.rateService.getRate();
+  @Input() rate: Deductions;
 
-  constructor(private rateService: RateService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }
