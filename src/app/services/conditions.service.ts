@@ -43,4 +43,8 @@ export class ConditionsService {
       )
       .valueChanges();
   }
+
+  deleteCondition(id: string): Promise<void> {
+    return this.db.collection('conditions').doc(id).delete();
+  }
 }
