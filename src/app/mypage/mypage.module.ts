@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MypageRoutingModule } from './mypage-routing.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { SharedModule } from '../shared/shared.module';
 import { MypageComponent } from './mypage/mypage.component';
@@ -28,6 +29,7 @@ import { ResultComponent } from './result/result.component';
     MatDividerModule,
     MatTabsModule,
     MatMenuModule,
+    MatDialogModule,
     SharedModule,
     PipesModule,
   ],

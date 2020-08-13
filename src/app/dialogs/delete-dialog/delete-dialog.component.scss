@@ -1,0 +1,12 @@
+.dialog {
+  &__title {
+    font-size: 18px;
+  }
+  &__actions {
+    button {
+      &:not(:first-of-type) {
+        margin-left: 8px;
+      }
+    }
+  }
+}

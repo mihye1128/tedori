@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
 import { RateService } from 'src/app/services/rate.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-condition',
@@ -12,7 +14,7 @@ export class ConditionComponent implements OnInit {
 
   @Input() condition: Condition;
 
-  constructor(private rateService: RateService) {}
+  constructor(private dialog: MatDialog, private rateService: RateService) {}
 
   ngOnInit(): void {}
 
@@ -36,5 +38,17 @@ export class ConditionComponent implements OnInit {
     } else {
       return '雇用保険なし';
     }
+  }
+
+  openUpdateDialog(condition: Condition) {}
+  openDeleteDialog(condition: Condition) {
+    this.dialog.open(DeleteDialogComponent, {
+      width: '400px',
+      autoFocus: false,
+      restoreFocus: false,
+      data: {
+        title: condition.title,
+      },
+    });
   }
 }
