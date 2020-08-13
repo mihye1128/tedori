@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
+import { RateService } from 'src/app/services/rate.service';
+import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
   selector: 'app-mypage',
@@ -7,7 +9,11 @@ import { Condition } from 'src/app/interfaces/condition';
   styleUrls: ['./mypage.component.scss'],
 })
 export class MypageComponent implements OnInit {
-  constructor() {}
+  rate$ = this.rateService.rate$;
+
+  constructor(private rateService: RateService) {
+    this.rate$.subscribe((rate) => console.log(rate));
+  }
 
   conditions: Condition[] = [
     {
