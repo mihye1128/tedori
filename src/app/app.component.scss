@@ -5,6 +5,11 @@
   right: 0;
   z-index: 1000;
 }
+.l-wrap {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100%;
+}
 .l-main {
   padding-top: 48px;
 }
