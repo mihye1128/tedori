@@ -4,6 +4,7 @@ import { RateService } from 'src/app/services/rate.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { Deductions } from 'src/app/interfaces/deductions';
+import { EditDialogComponent } from 'src/app/dialogs/edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-condition',
@@ -11,12 +12,10 @@ import { Deductions } from 'src/app/interfaces/deductions';
   styleUrls: ['./condition.component.scss'],
 })
 export class ConditionComponent implements OnInit {
-  rate$ = this.rateService.getRate();
-
   @Input() condition: Condition;
   @Input() rate: Deductions;
 
-  constructor(private dialog: MatDialog, private rateService: RateService) {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -42,7 +41,31 @@ export class ConditionComponent implements OnInit {
     }
   }
 
-  openUpdateDialog(condition: Condition) {}
+  openUpdateDialog(condition: Condition) {
+    this.dialog.open(EditDialogComponent, {
+      width: '560px',
+      autoFocus: false,
+      restoreFocus: false,
+      data: {
+        title: condition.title,
+        type: condition.type,
+        base: condition.base,
+        allowance: condition.allowance,
+        travelCost: condition.travelCost,
+        basePerHour: condition.basePerHour,
+        travelCostPerDay: condition.travelCostPerDay,
+        hourPerDay: condition.hourPerDay,
+        dayPerMonth: condition.dayPerMonth,
+        ins: condition.ins,
+        unemploymentIns: condition.unemploymentIns,
+        area: condition.area,
+        age: condition.age,
+        dependents: condition.dependents,
+        cityTax: condition.cityTax,
+        otherDeduction: condition.otherDeduction,
+      },
+    });
+  }
   openDeleteDialog(condition: Condition) {
     this.dialog.open(DeleteDialogComponent, {
       width: '400px',

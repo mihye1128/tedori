@@ -13,12 +13,10 @@ export class ResultComponent implements OnInit {
   opendDeduction = false;
   opendOwner = false;
 
-  rate$ = this.rateService.getRate();
-
   @Input() condition: Condition;
   @Input() rate: Deductions;
 
-  constructor(private rateService: RateService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
