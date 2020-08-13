@@ -1,0 +1,59 @@
+<mat-card class="condition-card">
+  <mat-card-header class="condition-card__header">
+    <p class="condition-card__title">
+      <ng-container *ngIf="condition.title === ''; else title">
+        <span class="pre">（ 条件名 設定なし ）</span>
+      </ng-container>
+      <ng-template #title>{{ condition.title }}</ng-template>
+    </p>
+    <div class="condition-card__actions">
+      <button
+        mat-icon-button
+        aria-label="編集・削除はこちらから"
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          aria-label="この条件を編集する"
+          (click)="openUpdateDialog(condition)"
+        >
+          <mat-icon>edit</mat-icon>編集
+        </button>
+        <button
+          mat-menu-item
+          aria-label="この条件を削除する"
+          (click)="openDeleteDialog(condition)"
+        >
+          <mat-icon>delete</mat-icon>削除
+        </button>
+      </mat-menu>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="condition-card__content">
+    <ul class="condition-tags__list">
+      <li class="condition-tags__item" [class]="condition.type">
+        {{ getType(condition.type) }}
+      </li>
+      <li class="condition-tags__item" [class.active]="condition.ins">
+        {{ getIns(condition.ins) }}
+      </li>
+      <li
+        class="condition-tags__item"
+        [class.active]="condition.unemploymentIns"
+      >
+        {{ getUnemploymentIns(condition.unemploymentIns) }}
+      </li>
+    </ul>
+    <mat-tab-group class="condition-tab">
+      <mat-tab label="条件" class="condition-tab__label">
+        <app-data [condition]="condition"></app-data>
+      </mat-tab>
+      <mat-tab label="試算結果" class="condition-tab__label">
+        <app-result [condition]="condition" [rate]="rate"></app-result>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

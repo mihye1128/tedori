@@ -19,16 +19,15 @@ export class ConditionsService {
 
   saveConditions(conditions: Condition[]) {
     this.conditions.next(conditions);
-    for (const condition of conditions) {
-      const id = this.db.createId();
-      this.db
-        .doc(`conditions/${id}`)
-        .set(condition)
-        .then(() => {
-          this.snackBar.open('マイページに保存しました。', '確認する', {
-            duration: 2000,
-          });
-        });
-    }
+    Promise.all(
+      conditions.map((condition) => {
+        const id = this.db.createId();
+        return this.db.doc(`conditions/${id}`).set(condition);
+      })
+    ).then(() => {
+      this.snackBar.open('マイページに保存しました。', '確認する', {
+        duration: 2000,
+      });
+    });
   }
 }

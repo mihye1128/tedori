@@ -16,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { FormComponent } from './form/form.component';
 import { MethodComponent } from './method/method.component';
 import { ResultComponent } from './result/result.component';
-import { CalcPipe } from '../calc.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import { CalcPipe } from '../calc.pipe';
     FormComponent,
     MethodComponent,
     ResultComponent,
-    CalcPipe,
   ],
   imports: [
     CommonModule,
@@ -40,6 +39,7 @@ import { CalcPipe } from '../calc.pipe';
     MatSelectModule,
     MatDividerModule,
     SharedModule,
+    PipesModule,
   ],
 })
 export class HomeModule {}

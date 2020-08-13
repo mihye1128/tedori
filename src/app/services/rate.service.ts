@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RateService {
+  rate$: Observable<Deductions> = this.getRate();
+
   constructor(private db: AngularFirestore) {}
 
   getRate(): Observable<Deductions> {

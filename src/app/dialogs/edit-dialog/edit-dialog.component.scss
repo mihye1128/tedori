@@ -1,0 +1,83 @@
+@import 'variables';
+@import 'mixins';
+
+.dialog {
+  &__title {
+    font-size: 18px;
+    margin: 0;
+  }
+  &__actions {
+    button {
+      &:first-of-type {
+        color: #fff;
+      }
+      &:not(:first-of-type) {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+.form {
+  padding-bottom: 16px;
+  .unit {
+    opacity: 0.64;
+    font-size: 0.8em;
+  }
+  &__title {
+    width: 100%;
+    margin: 0;
+    padding: 12px 0;
+    font-weight: normal;
+  }
+  &__field {
+    width: 100%;
+  }
+  &__detail {
+    @include sm {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  &__income,
+  &__deduction {
+    @include sm {
+      width: calc(50% - 8px);
+    }
+  }
+  &__deduction {
+    margin-top: 16px;
+    @include sm {
+      margin-top: 0;
+      margin-left: 16px;
+    }
+  }
+  &__item {
+    width: 100%;
+    .condition-radio + &:not(.condition-radio) {
+      margin-top: 32px;
+    }
+  }
+}
+.form-type {
+  margin-bottom: 2px;
+  &__btn {
+    margin-bottom: 8px;
+    & + & {
+      margin-left: 16px;
+    }
+  }
+}
+.form-radio {
+  display: flex;
+  align-items: center;
+  margin: 0 0 16px 0;
+  &__title {
+    margin: 0 16px 0 0;
+  }
+  &__btn {
+    & + & {
+      margin-left: 8px;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<dl class="condition-data">
+  <ng-container *ngIf="condition.type === 'monthly'">
+    <dt class="condition-data__dt">基本給</dt>
+    <dd class="condition-data__dd">
+      {{ condition.base | number }}<span class="yen">円</span>
+    </dd>
+    <dt class="condition-data__dt">諸手当</dt>
+    <dd class="condition-data__dd">
+      {{ condition.allowance | number }}<span class="yen">円</span>
+    </dd>
+    <dt class="condition-data__dt">交通費</dt>
+    <dd class="condition-data__dd">
+      {{ condition.travelCost | number }}<span class="yen">円</span>
+    </dd>
+  </ng-container>
+  <ng-container *ngIf="condition.type === 'hourly'">
+    <dt class="condition-data__dt">時給</dt>
+    <dd class="condition-data__dd">
+      {{ condition.basePerHour | number }}<span class="yen">円</span>
+    </dd>
+    <dt class="condition-data__dt">交通費<small>（1日あたり）</small></dt>
+    <dd class="condition-data__dd">
+      {{ condition.travelCostPerDay | number }}<span class="yen">円</span>
+    </dd>
+    <dt class="condition-data__dt">就業時間<small>（1日あたり）</small></dt>
+    <dd class="condition-data__dd">
+      {{ condition.hourPerDay }}<span class="unit">時間</span>
+    </dd>
+    <dt class="condition-data__dt">就業日数<small>（1ヶ月あたり）</small></dt>
+    <dd class="condition-data__dd">
+      {{ condition.dayPerMonth }}<span class="unit">日</span>
+    </dd>
+  </ng-container>
+  <ng-container *ngIf="condition.ins">
+    <dt class="condition-data__dt">就業地</dt>
+    <dd class="condition-data__dd">
+      {{ condition.area }}
+    </dd>
+    <dt class="condition-data__dt">年齢</dt>
+    <dd class="condition-data__dd">
+      {{ getAge(condition.age) }}
+    </dd>
+  </ng-container>
+  <dt class="condition-data__dt">扶養家族</dt>
+  <dd class="condition-data__dd">
+    {{ condition.dependents }}<span class="unit">人</span>
+  </dd>
+  <dt class="condition-data__dt">住民税</dt>
+  <dd class="condition-data__dd">
+    {{ condition.cityTax | number }}<span class="yen">円</span>
+  </dd>
+  <dt class="condition-data__dt">その他控除</dt>
+  <dd class="condition-data__dd">
+    {{ condition.otherDeduction | number }}<span class="yen">円</span>
+  </dd>
+</dl>
