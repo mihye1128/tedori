@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Condition } from '../interfaces/condition';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,13 @@ export class ConditionsService {
         duration: 2000,
       });
     });
+  }
+
+  getConditions(uid: string) {
+    return this.db
+      .collection<Condition>(`conditions`, (ref) =>
+        ref.where('userId', '==', uid)
+      )
+      .valueChanges();
   }
 }
