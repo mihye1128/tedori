@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RateService } from 'src/app/services/rate.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  rate$ = this.rateService.rate$;
+
+  constructor(private rateService: RateService) {}
 
   ngOnInit(): void {}
 }

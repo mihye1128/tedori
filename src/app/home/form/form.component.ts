@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,7 @@ import {
 import { Condition } from 'src/app/interfaces/condition';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
-import { RateService } from 'src/app/services/rate.service';
+import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
   user$ = this.authService.afUser$;
   uid: string;
 
-  rate$ = this.rateService.getRate();
+  @Input() rate: Deductions;
 
   public formGroup: FormGroup;
   public formConditions = ['first', 'second'];
@@ -31,8 +31,7 @@ export class FormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private conditionsService: ConditionsService,
-    private rateService: RateService
+    private conditionsService: ConditionsService
   ) {
     this.formGroup = this.fb.group({
       formConditions: this.fb.array([]),

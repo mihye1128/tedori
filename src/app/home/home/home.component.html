@@ -1,3 +1,5 @@
-<app-form></app-form>
-<app-result></app-result>
-<app-method></app-method>
+<ng-container *ngIf="rate$ | async as rate">
+  <app-form [rate]="rate"></app-form>
+  <app-result [rate]="rate"></app-result>
+  <app-method [rate]="rate"></app-method>
+</ng-container>

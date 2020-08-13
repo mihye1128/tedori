@@ -44,6 +44,10 @@ export class ConditionsService {
       .valueChanges();
   }
 
+  updateCondition(condition: Condition, id: string): Promise<void> {
+    return this.db.doc(`conditions/${id}`).set(condition, { merge: true });
+  }
+
   deleteCondition(id: string): Promise<void> {
     return this.db.collection('conditions').doc(id).delete();
   }

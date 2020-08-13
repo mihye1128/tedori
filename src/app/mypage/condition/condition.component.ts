@@ -63,6 +63,7 @@ export class ConditionComponent implements OnInit {
         dependents: condition.dependents,
         cityTax: condition.cityTax,
         otherDeduction: condition.otherDeduction,
+        id: condition.id,
       },
     });
   }

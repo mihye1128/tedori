@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
 import { RateService } from 'src/app/services/rate.service';
 import { Condition } from 'src/app/interfaces/condition';
+import { ConditionsService } from 'src/app/services/conditions.service';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -36,7 +37,8 @@ export class EditDialogComponent implements OnInit {
     public data: Condition,
     private dialogRef: MatDialogRef<EditDialogComponent>,
     private fb: FormBuilder,
-    private rateService: RateService
+    private rateService: RateService,
+    private conditionsService: ConditionsService
   ) {}
 
   ngOnInit(): void {}
@@ -50,7 +52,30 @@ export class EditDialogComponent implements OnInit {
   }
 
   updateCondition() {
-    this.dialogRef.close();
+    const formData = this.form.value;
+    const editedCondition = {
+      title: formData.title,
+      type: formData.type,
+      base: +formData.base,
+      allowance: +formData.allowance,
+      travelCost: +formData.travelCost,
+      basePerHour: +formData.basePerHour,
+      travelCostPerDay: +formData.travelCostPerDay,
+      hourPerDay: +formData.hourPerDay,
+      dayPerMonth: +formData.dayPerMonth,
+      ins: formData.ins,
+      unemploymentIns: formData.unemploymentIns,
+      area: formData.area,
+      age: formData.age,
+      dependents: formData.dependents,
+      cityTax: +formData.cityTax,
+      otherDeduction: +formData.otherDeduction,
+    };
+    this.conditionsService
+      .updateCondition(editedCondition, this.data.id)
+      .then(() => {
+        this.dialogRef.close();
+      });
   }
 
   closeDialog() {
