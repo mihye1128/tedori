@@ -28,8 +28,8 @@ export class DeleteDialogComponent implements OnInit {
     }
   }
 
-  deleteCondition(id: string) {
-    this.conditionsService.deleteCondition(id).then(() => {
+  deleteCondition() {
+    this.conditionsService.deleteCondition(this.data.id).then(() => {
       this.dialogRef.close();
     });
   }
