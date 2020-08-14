@@ -1,7 +1,7 @@
 <section class="mypage">
   <div class="container" *ngIf="rate$ | async as rate">
     <div class="serch">
-      <app-form [rate]="rate"></app-form>
+      <app-search [rate]="rate"></app-search>
     </div>
     <app-conditions [rate]="rate"></app-conditions>
   </div>

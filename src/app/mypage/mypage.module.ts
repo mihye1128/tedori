@@ -22,6 +22,7 @@ import { ConditionDataComponent } from './condition-data/condition-data.componen
 import { ConditionResultComponent } from './condition-result/condition-result.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { FormComponent } from './form/form.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FormComponent } from './form/form.component';
     ConditionResultComponent,
     FormComponent,
     ConditionsComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,

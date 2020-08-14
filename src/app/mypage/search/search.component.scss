@@ -1,0 +1,45 @@
+@import 'variables';
+@import 'mixins';
+
+.form {
+  &__type-title {
+    width: 100%;
+    max-width: 300px;
+  }
+  &__data {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &__dt {
+    width: 60px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &__dd {
+    width: calc(100% - 60px);
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &__field {
+    width: 90px;
+  }
+  &__actions {
+    button {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+.form-type {
+  &__btn {
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    &:not(:last-of-type) {
+      margin-right: 21px;
+    }
+  }
+}
