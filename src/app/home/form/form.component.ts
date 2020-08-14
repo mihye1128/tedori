@@ -105,16 +105,27 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   formDataPush(data: Condition[], condition: Condition) {
+    const base = condition.type === 'monthly' ? +condition.base : 0;
+    const allowance = condition.type === 'monthly' ? +condition.allowance : 0;
+    const travelCost = condition.type === 'monthly' ? +condition.travelCost : 0;
+
+    const basePerHour =
+      condition.type === 'hourly' ? +condition.basePerHour : 0;
+    const travelCostPerDay =
+      condition.type === 'hourly' ? +condition.travelCostPerDay : 0;
+    const hourPerDay = condition.type === 'hourly' ? +condition.hourPerDay : 0;
+    const dayPerMonth =
+      condition.type === 'hourly' ? +condition.dayPerMonth : 0;
     data.push({
       title: condition.title,
       type: condition.type,
-      base: +condition.base,
-      allowance: +condition.allowance,
-      travelCost: +condition.travelCost,
-      basePerHour: +condition.basePerHour,
-      travelCostPerDay: +condition.travelCostPerDay,
-      hourPerDay: +condition.hourPerDay,
-      dayPerMonth: +condition.dayPerMonth,
+      base,
+      allowance,
+      travelCost,
+      basePerHour,
+      travelCostPerDay,
+      hourPerDay,
+      dayPerMonth,
       ins: condition.ins,
       unemploymentIns: condition.unemploymentIns,
       area: condition.area,

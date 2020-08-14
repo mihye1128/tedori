@@ -53,16 +53,26 @@ export class EditDialogComponent implements OnInit {
 
   updateCondition() {
     const formData = this.form.value;
+    const base = formData.type === 'monthly' ? +formData.base : 0;
+    const allowance = formData.type === 'monthly' ? +formData.allowance : 0;
+    const travelCost = formData.type === 'monthly' ? +formData.travelCost : 0;
+
+    const basePerHour = formData.type === 'hourly' ? +formData.basePerHour : 0;
+    const travelCostPerDay =
+      formData.type === 'hourly' ? +formData.travelCostPerDay : 0;
+    const hourPerDay = formData.type === 'hourly' ? +formData.hourPerDay : 0;
+    const dayPerMonth = formData.type === 'hourly' ? +formData.dayPerMonth : 0;
+
     const editedCondition = {
       title: formData.title,
       type: formData.type,
-      base: +formData.base,
-      allowance: +formData.allowance,
-      travelCost: +formData.travelCost,
-      basePerHour: +formData.basePerHour,
-      travelCostPerDay: +formData.travelCostPerDay,
-      hourPerDay: +formData.hourPerDay,
-      dayPerMonth: +formData.dayPerMonth,
+      base,
+      allowance,
+      travelCost,
+      basePerHour,
+      travelCostPerDay,
+      hourPerDay,
+      dayPerMonth,
       ins: formData.ins,
       unemploymentIns: formData.unemploymentIns,
       area: formData.area,
