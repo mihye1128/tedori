@@ -17,7 +17,9 @@
   }
 
   &__list {
+    margin-top: 24px;
     @include sm {
+      margin-top: 40px;
       display: flex;
       flex-wrap: wrap;
     }

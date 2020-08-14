@@ -1,6 +1,9 @@
 <section class="mypage">
-  <div class="container">
-    <div class="mypage__list" *ngIf="rate$ | async as rate">
+  <div class="container" *ngIf="rate$ | async as rate">
+    <div class="serch">
+      <app-form [rate]="rate"></app-form>
+    </div>
+    <div class="mypage__list">
       <ng-container *ngIf="conditions$ | async as conditions">
         <ng-container *ngIf="conditions.length; else default">
           <app-condition
