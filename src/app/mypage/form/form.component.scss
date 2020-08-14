@@ -28,12 +28,8 @@
   }
   &__actions {
     button {
-      &:first-of-type {
-        color: #fff;
-      }
-      &:not(:first-of-type) {
-        margin-left: 8px;
-      }
+      font-size: 14px;
+      font-weight: 400;
     }
   }
 }
