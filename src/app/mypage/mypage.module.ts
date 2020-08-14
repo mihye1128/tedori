@@ -20,9 +20,8 @@ import { ConditionsComponent } from './conditions/conditions.component';
 import { ConditionComponent } from './condition/condition.component';
 import { ConditionDataComponent } from './condition-data/condition-data.component';
 import { ConditionResultComponent } from './condition-result/condition-result.component';
-import { PipesModule } from '../pipes/pipes.module';
-import { FormComponent } from './form/form.component';
 import { SearchComponent } from './search/search.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { SearchComponent } from './search/search.component';
     ConditionComponent,
     ConditionDataComponent,
     ConditionResultComponent,
-    FormComponent,
     ConditionsComponent,
     SearchComponent,
   ],
