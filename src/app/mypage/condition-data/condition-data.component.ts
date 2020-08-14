@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
 
 @Component({
-  selector: 'app-data',
-  templateUrl: './data.component.html',
-  styleUrls: ['./data.component.scss'],
+  selector: 'app-condition-data',
+  templateUrl: './condition-data.component.html',
+  styleUrls: ['./condition-data.component.scss'],
 })
-export class DataComponent implements OnInit {
+export class ConditionDataComponent implements OnInit {
   @Input() condition: Condition;
 
   constructor() {}

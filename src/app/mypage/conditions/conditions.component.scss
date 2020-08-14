@@ -1,0 +1,54 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+  display: grid;
+  min-height: 100%;
+  grid-template-rows: 1fr;
+}
+
+.conditions {
+  &__list {
+    margin-top: 24px;
+    @include sm {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  &__item {
+    display: block;
+    &:not(:first-of-type) {
+      margin-top: 20px;
+    }
+    @include sm {
+      width: calc(50% - 10px);
+      &:nth-of-type(-n + 2) {
+        margin-top: 0;
+      }
+      &:not(:nth-of-type(-n + 2)) {
+        margin-top: 20px;
+      }
+      &:not(:nth-of-type(2n + 1)) {
+        margin-left: 20px;
+      }
+    }
+    @include md {
+      width: calc(100% / 3 - 40px / 3);
+      &:nth-of-type(-n + 3) {
+        margin-top: 0;
+      }
+      &:not(:nth-of-type(-n + 3)) {
+        margin-top: 20px;
+        margin-left: 0;
+      }
+      &:not(:nth-of-type(3n + 1)) {
+        margin-left: 20px;
+      }
+    }
+  }
+  &__none {
+    width: 100%;
+    text-align: center;
+  }
+}

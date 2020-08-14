@@ -16,19 +16,21 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { MypageComponent } from './mypage/mypage.component';
+import { ConditionsComponent } from './conditions/conditions.component';
 import { ConditionComponent } from './condition/condition.component';
+import { ConditionDataComponent } from './condition-data/condition-data.component';
+import { ConditionResultComponent } from './condition-result/condition-result.component';
 import { PipesModule } from '../pipes/pipes.module';
-import { DataComponent } from './data/data.component';
-import { ResultComponent } from './result/result.component';
 import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
     MypageComponent,
     ConditionComponent,
-    DataComponent,
-    ResultComponent,
+    ConditionDataComponent,
+    ConditionResultComponent,
     FormComponent,
+    ConditionsComponent,
   ],
   imports: [
     CommonModule,
