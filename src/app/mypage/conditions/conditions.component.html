@@ -6,8 +6,8 @@
       [rate]="rate"
       class="conditions__item"
     ></app-condition>
-    <ng-template #default>
-      <p class="conditions__none">該当する条件はありません。</p>
-    </ng-template>
+    <ng-container *ngIf="conditions.length === 0">
+      <p class="conditions__none">保存された条件はありません。</p>
+    </ng-container>
   </ng-container>
 </div>
