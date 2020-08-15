@@ -23,8 +23,8 @@ ul {
   }
 
   &__img {
-    width: calc(100% - 72px);
-    max-width: 480px;
+    width: 100%;
+    max-width: 340px;
     margin: 0 auto;
     border-radius: 4px;
     box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
@@ -43,7 +43,7 @@ ul {
 }
 
 .points-contents {
-  max-width: 480px;
+  max-width: 340px;
   margin: 32px auto 0;
   @include md {
     margin: 0;
