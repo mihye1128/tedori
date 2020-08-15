@@ -1,0 +1,20 @@
+<div class="points">
+  <div class="container">
+    <div class="points__inner">
+      <div class="points__img">
+        <img src="/assets/images/points_owner.png" alt="" />
+      </div>
+      <ul class="points-contents">
+        <li class="points-contents__item" *ngFor="let point of points">
+          <div class="points-contents__icon">
+            <mat-icon>{{ point.icon }}</mat-icon>
+          </div>
+          <dl class="points-contents__data">
+            <dt class="points-contents__dt">{{ point.title }}</dt>
+            <dd class="points-contents__dd">{{ point.text }}</dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
