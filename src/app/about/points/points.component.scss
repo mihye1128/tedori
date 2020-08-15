@@ -1,0 +1,87 @@
+@import 'variables';
+@import 'mixins';
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.points {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  @include md {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  &__inner {
+    @include md {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    @include md {
+      width: 50%;
+      max-width: 50%;
+      margin: 0;
+    }
+    img {
+      display: block;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+    }
+  }
+}
+
+.points-contents {
+  max-width: 340px;
+  margin: 32px auto 0;
+  @include md {
+    margin: 0;
+    width: 50%;
+    max-width: 50%;
+    padding-left: 40px;
+  }
+  &__item {
+    display: flex;
+    &:not(:first-of-type) {
+      margin-top: 20px;
+    }
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $bg-grad;
+    color: #fff;
+    font-size: 18px;
+  }
+  &__data {
+    margin: 0;
+    width: calc(100% - 50px);
+    padding-left: 16px;
+  }
+  &__dt {
+    @include md {
+      font-size: 18px;
+    }
+  }
+  &__dd {
+    margin: 4px 0 0;
+    color: $color-font-700;
+    font-size: 14px;
+  }
+}

@@ -2,58 +2,47 @@
 @import 'mixins';
 
 .use {
+  background-color: $color-base;
   padding-top: 80px;
   padding-bottom: 80px;
   @include md {
     padding-top: 80px;
-    padding-bottom: 120px;
+    padding-bottom: 80px;
   }
   &__list {
     margin: 0 auto;
-    max-width: 360px;
+    max-width: 340px;
     padding: 0;
     list-style: none;
     @include md {
+      display: flex;
       max-width: 100%;
     }
   }
   &__item {
+    background-color: #fff;
+    padding: 32px 24px;
+    border-radius: 8px;
     &:not(:first-of-type) {
-      margin-top: 48px;
+      margin-top: 16px;
     }
     @include md {
-      display: flex;
-      align-items: center;
+      width: calc((100% - 40px) / 3);
       &:not(:first-of-type) {
-        margin-top: 40px;
-      }
-      &:nth-of-type(even) {
-        flex-direction: row-reverse;
+        margin-top: 0;
+        margin-left: 20px;
       }
     }
   }
   &__img {
     display: block;
     margin: 0 auto;
-    width: 100%;
+    width: 75%;
     height: auto;
     max-width: 240px;
-    @include md {
-      width: 50%;
-      max-width: 400px;
-    }
   }
   &__data {
-    margin: 0;
-    @include md {
-      width: 50%;
-      .use__item:nth-of-type(odd) & {
-        padding-left: 24px;
-      }
-      .use__item:nth-of-type(even) & {
-        padding-right: 24px;
-      }
-    }
+    margin: 20px 0 0;
   }
   &__target {
     margin: 0;
@@ -68,28 +57,16 @@
     .use__item:nth-of-type(3) & {
       color: #fbc02d;
     }
-    @include md {
-      text-align: left;
-      font-size: 16px;
-    }
   }
   &__catch {
     margin: 0;
     font-size: 16px;
     text-align: center;
-    @include md {
-      margin-top: 4px;
-      font-size: 24px;
-      text-align: left;
-    }
   }
   &__text {
     margin: 20px 0 0;
+    color: $color-font-800;
     font-size: 14px;
     text-align: justify;
-    @include md {
-      margin-top: 32px;
-      font-size: 16px;
-    }
   }
 }
