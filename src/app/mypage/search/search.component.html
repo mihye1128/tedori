@@ -1,20 +1,21 @@
-<mat-expansion-panel class="form">
+<mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
       絞り込み設定
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <form [formGroup]="form">
+  <form [formGroup]="form" class="form">
     <dl class="form__data">
       <dt class="form__dt">条件名</dt>
       <dd class="form__dd">
-        <mat-form-field class="form__type-title">
+        <mat-form-field class="form__title">
           <mat-label>条件名で探す</mat-label>
           <input
             type="text"
             matInput
             autocomplete="off"
             formControlName="title"
+            [value]="form.value.title"
           />
         </mat-form-field>
       </dd>
@@ -22,24 +23,25 @@
     <dl class="form__data">
       <dt class="form__dt">基本給</dt>
       <dd class="form__dd">
-        <mat-radio-group
-          aria-label=""
-          class="form-type__group"
-          formControlName="type"
+        <mat-checkbox
+          class="form__radio-btn"
+          name="monthly"
+          formControlName="typeMonthly"
+          [value]="form.value.typeMonthly"
+          #typeMonthly
+          >月給</mat-checkbox
         >
-          <mat-radio-button class="form-type__btn" value="monthly" #typeMonthly
-            >月給</mat-radio-button
-          >
-          <mat-radio-button class="form-type__btn" value="hourly" #typeHourly
-            >時給</mat-radio-button
-          >
-          <mat-radio-button class="form-type__btn" value="all" #all
-            >両方</mat-radio-button
-          >
-        </mat-radio-group>
+        <mat-checkbox
+          class="form__radio-btn"
+          name="hourly"
+          formControlName="typeHourly"
+          [value]="form.value.typeHourly"
+          #typeHourly
+          >時給</mat-checkbox
+        >
       </dd>
     </dl>
-    <ng-container *ngIf="all.checked || typeMonthly.checked">
+    <ng-container *ngIf="typeMonthly.checked">
       <dl class="form__data">
         <dt class="form__dt">月給</dt>
         <dd class="form__dd">
@@ -50,6 +52,7 @@
               matInput
               autocomplete="off"
               formControlName="baseLower"
+              class="price"
             />
           </mat-form-field>
           〜
@@ -60,6 +63,7 @@
               matInput
               autocomplete="off"
               formControlName="baseUpper"
+              class="price"
             />
           </mat-form-field>
           <span class="yen">円</span>
@@ -75,6 +79,7 @@
               matInput
               autocomplete="off"
               formControlName="allowanceLower"
+              class="price"
             />
           </mat-form-field>
           〜
@@ -85,13 +90,14 @@
               matInput
               autocomplete="off"
               formControlName="allowanceUpper"
+              class="price"
             />
           </mat-form-field>
           <span class="yen">円</span>
         </dd>
       </dl>
     </ng-container>
-    <ng-container *ngIf="all.checked || typeHourly.checked">
+    <ng-container *ngIf="typeHourly.checked">
       <dl class="form__data">
         <dt class="form__dt">時給</dt>
         <dd class="form__dd">
@@ -102,6 +108,7 @@
               matInput
               autocomplete="off"
               formControlName="basePerHourLower"
+              class="price"
             />
           </mat-form-field>
           〜
@@ -112,6 +119,7 @@
               matInput
               autocomplete="off"
               formControlName="basePerHourUpper"
+              class="price"
             />
           </mat-form-field>
           <span class="yen">円</span>
@@ -119,7 +127,9 @@
       </dl>
     </ng-container>
     <div class="form__actions">
-      <button mat-stroked-button>検索条件クリア</button>
+      <button mat-stroked-button (click)="cancelSearch()">
+        検索条件クリア
+      </button>
     </div>
   </form>
 </mat-expansion-panel>

@@ -2,7 +2,8 @@
 @import 'mixins';
 
 .form {
-  &__type-title {
+  padding-top: 16px;
+  &__title {
     width: 100%;
     max-width: 300px;
   }
@@ -11,6 +12,9 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    &:not(:first-of-type) {
+      margin-top: 8px;
+    }
   }
   &__dt {
     width: 60px;
@@ -22,24 +26,28 @@
     margin: 0;
     font-size: 14px;
     font-weight: 400;
+    .price {
+      box-sizing: border-box;
+      text-align: right;
+      padding-right: 0.5em;
+    }
   }
   &__field {
     width: 90px;
   }
-  &__actions {
-    button {
-      font-size: 14px;
-      font-weight: 400;
-    }
-  }
-}
-.form-type {
-  &__btn {
-    margin-bottom: 20px;
+  &__radio-btn {
     font-size: 14px;
     font-weight: 400;
     &:not(:last-of-type) {
       margin-right: 21px;
+    }
+  }
+  &__actions {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    button {
+      font-size: 14px;
+      font-weight: 400;
     }
   }
 }
