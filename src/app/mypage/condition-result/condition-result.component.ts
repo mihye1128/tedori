@@ -3,11 +3,11 @@ import { Condition } from 'src/app/interfaces/condition';
 import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
-  selector: 'app-result',
-  templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss'],
+  selector: 'app-condition-result',
+  templateUrl: './condition-result.component.html',
+  styleUrls: ['./condition-result.component.scss'],
 })
-export class ResultComponent implements OnInit {
+export class ConditionResultComponent implements OnInit {
   opendTotal = false;
   opendDeduction = false;
   opendOwner = false;

@@ -1,19 +1,8 @@
 <section class="mypage">
-  <div class="container">
-    <div class="mypage__list" *ngIf="rate$ | async as rate">
-      <ng-container *ngIf="conditions$ | async as conditions">
-        <ng-container *ngIf="conditions.length; else default">
-          <app-condition
-            *ngFor="let condition of conditions"
-            [condition]="condition"
-            [rate]="rate"
-            class="mypage__item"
-          ></app-condition>
-        </ng-container>
-        <ng-template #default>
-          <p class="mypage__none">保存された条件はありません。</p>
-        </ng-template>
-      </ng-container>
+  <div class="container" *ngIf="rate$ | async as rate">
+    <div class="serch">
+      <app-search [rate]="rate"></app-search>
     </div>
+    <app-conditions [rate]="rate"></app-conditions>
   </div>
 </section>

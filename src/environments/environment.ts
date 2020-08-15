@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  algolia: {
+    appId: 'QDL1DGZC90',
+    searchKey: 'fbe4726f7ae465b20fa632eccc47af05',
+  },
   firebase: {
     apiKey: 'AIzaSyCrOmX1JjarQ29OrT4DpqxFNB7Nl0BlbjY',
     authDomain: 'tedori-beta.firebaseapp.com',

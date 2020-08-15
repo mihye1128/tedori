@@ -49,10 +49,13 @@
     </ul>
     <mat-tab-group class="condition-tab">
       <mat-tab label="条件" class="condition-tab__label">
-        <app-data [condition]="condition"></app-data>
+        <app-condition-data [condition]="condition"></app-condition-data>
       </mat-tab>
       <mat-tab label="試算結果" class="condition-tab__label">
-        <app-result [condition]="condition" [rate]="rate"></app-result>
+        <app-condition-result
+          [condition]="condition"
+          [rate]="rate"
+        ></app-condition-result>
       </mat-tab>
     </mat-tab-group>
   </mat-card-content>
