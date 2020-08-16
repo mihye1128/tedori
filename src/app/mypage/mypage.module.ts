@@ -17,20 +17,20 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { MypageComponent } from './mypage/mypage.component';
-import { ConditionsComponent } from './conditions/conditions.component';
 import { ConditionComponent } from './condition/condition.component';
 import { ConditionDataComponent } from './condition-data/condition-data.component';
 import { ConditionResultComponent } from './condition-result/condition-result.component';
 import { SearchComponent } from './search/search.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { ConditionListComponent } from './condition-list/condition-list.component';
 
 @NgModule({
   declarations: [
     MypageComponent,
     ConditionComponent,
+    ConditionListComponent,
     ConditionDataComponent,
     ConditionResultComponent,
-    ConditionsComponent,
     SearchComponent,
   ],
   imports: [

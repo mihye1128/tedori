@@ -8,11 +8,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
-  selector: 'app-conditions',
-  templateUrl: './conditions.component.html',
-  styleUrls: ['./conditions.component.scss'],
+  selector: 'app-condition-list',
+  templateUrl: './condition-list.component.html',
+  styleUrls: ['./condition-list.component.scss'],
 })
-export class ConditionsComponent implements OnInit {
+export class ConditionListComponent implements OnInit {
   @Input() rate: Deductions;
 
   index = this.searchService.index.condition;
