@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CalcPipe } from '../calc.pipe';
+import { CalcPipe } from './calc.pipe';
 
 @NgModule({
   declarations: [CalcPipe],
