@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -58,6 +59,7 @@ import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component
     MatInputModule,
     MatRadioModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   entryComponents: [DeleteDialogComponent, EditDialogComponent],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],

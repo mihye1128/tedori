@@ -4,15 +4,13 @@
 .dialog {
   &__title {
     font-size: 18px;
+    font-weight: 400;
     margin: 0;
   }
   &__actions {
     button {
       &:first-of-type {
         color: #fff;
-      }
-      &:not(:first-of-type) {
-        margin-left: 8px;
       }
     }
   }

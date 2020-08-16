@@ -87,8 +87,4 @@ export class EditDialogComponent implements OnInit {
         this.dialogRef.close();
       });
   }
-
-  closeDialog() {
-    this.dialogRef.close();
-  }
 }
