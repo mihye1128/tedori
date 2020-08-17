@@ -1,7 +1,7 @@
 <div class="conditions__list">
   <ng-container *ngIf="conditions$ | async as conditions">
     <app-condition
-      *ngFor="let condition of conditions"
+      *ngFor="let condition of result?.hits"
       [condition]="condition"
       [rate]="rate"
       class="conditions__item"

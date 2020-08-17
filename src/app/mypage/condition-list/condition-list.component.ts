@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Condition } from 'src/app/interfaces/condition';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
+import { take, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-condition-list',
@@ -15,18 +16,23 @@ import { SearchService } from 'src/app/services/search.service';
 export class ConditionListComponent implements OnInit {
   @Input() rate: Deductions;
 
-  index = this.searchService.index.condition;
-
+  private index = this.searchService.index.condition;
+  loading: boolean;
   result: {
     nbHits: number;
     hits: any[];
-  };
+  }; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
+  conditionsList: Condition[];
+  query: string;
+
+  private isInit = true;
+  createdAtFilter: string;
+  categoriFilter: string[];
+  sort: string;
 
   conditions$: Observable<Condition[]> = this.conditionsService.getConditions(
     this.authService.uid
   );
-
-  conditions: Condition[];
 
   constructor(
     private authService: AuthService,
@@ -34,12 +40,25 @@ export class ConditionListComponent implements OnInit {
     private searchService: SearchService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.route.queryParamMap.subscribe((map) => {
+      this.conditionsList = [];
+      this.index = this.searchService.index[map.get('sort') || 'conditions'];
+      this.query = map.get('title') || '';
+      console.log(this.query);
+      this.search();
+    });
+  }
 
-  ngOnInit(): void {
-    // this.route.queryParamMap.subscribe((map) => {
-    //   const searchQuery: string = map.get('title');
-    //   this.index.search(searchQuery).then(result => this.result = result);
-    // });
+  ngOnInit(): void {}
+
+  search() {
+    this.loading = true;
+    this.index.search(this.query).then((result) => {
+      this.result = result;
+      const items = result.hits as any[]; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
+      this.conditionsList.push(...items);
+      this.loading = false;
+    });
   }
 }
