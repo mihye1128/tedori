@@ -66,8 +66,13 @@ export class SearchComponent implements OnInit {
     if (value.title !== '') {
       params.title = value.title;
     }
-    params.typeMonthly = value.typeMonthly;
-    params.typeHourly = value.typeHourly;
+
+    if (value.typeMonthly && !value.typeHourly) {
+      params.type = 'monthly';
+    } else if (value.typeHourly && !value.typeMonthly) {
+      params.type = 'hourly';
+    }
+
     if (value.typeMonthly) {
       if (value.baseLower) {
         params.baseLower = +value.baseLower;
@@ -96,13 +101,6 @@ export class SearchComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: params,
-    });
-  }
-
-  private search(query: string) {
-    this.index.search(query).then((result) => {
-      // 検索結果を格納
-      this.result = result;
     });
   }
 }
