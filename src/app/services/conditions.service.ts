@@ -62,16 +62,25 @@ export class ConditionsService {
         this.snackBar.open('条件を更新しました。', null, {
           duration: 2000,
         });
+      })
+      .catch(() => {
+        this.snackBar.open('更新できませんでした。', null, {
+          duration: 2000,
+        });
       });
   }
 
   deleteCondition(id: string): Promise<void> {
     return this.db
-      .collection('conditions')
-      .doc(id)
+      .doc(`conditions/${id}`)
       .delete()
       .then(() => {
         this.snackBar.open('条件を削除しました。', null, {
+          duration: 2000,
+        });
+      })
+      .catch(() => {
+        this.snackBar.open('削除できませんでした。', null, {
           duration: 2000,
         });
       });
