@@ -39,7 +39,7 @@ export class ConditionListComponent implements OnInit {
   ) {
     this.route.queryParamMap.subscribe((params) => {
       this.conditionsList = [];
-      this.index = this.searchService.index['condition'];
+      this.index = this.searchService.index.condition;
       this.queryTitle = params.get('title') || '';
       this.typeFilter = params.get('type') || '';
       this.search();
