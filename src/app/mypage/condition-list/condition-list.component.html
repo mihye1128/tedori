@@ -1,13 +1,13 @@
 <div class="conditions__list">
-  <ng-container *ngIf="conditions$ | async as conditions">
+  <ng-container *ngIf="result?.hits.length; else none">
     <app-condition
       *ngFor="let condition of result?.hits"
       [condition]="condition"
       [rate]="rate"
       class="conditions__item"
     ></app-condition>
-    <ng-container *ngIf="conditions.length === 0">
-      <p class="conditions__none">保存された条件はありません。</p>
-    </ng-container>
+    <ng-template #none>
+      <p class="conditions__none">該当する条件はありません。</p>
+    </ng-template>
   </ng-container>
 </div>
