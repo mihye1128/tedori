@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Condition } from './interfaces/condition';
-import { Deductions } from './interfaces/deductions';
-import { PaymentService } from './services/payment.service';
-import { NationalTaxService } from './services/national-tax.service';
-import { LaborInsService } from './services/labor-ins.service';
-import { SocialInsService } from './services/social-ins.service';
+import { PaymentService } from '../services/payment.service';
+import { NationalTaxService } from '../services/national-tax.service';
+import { LaborInsService } from '../services/labor-ins.service';
+import { SocialInsService } from '../services/social-ins.service';
+import { Condition } from '../interfaces/condition';
+import { Deductions } from '../interfaces/deductions';
 
 @Pipe({
   name: 'calc',
@@ -17,7 +17,7 @@ export class CalcPipe implements PipeTransform {
     private socialInsService: SocialInsService
   ) {}
 
-  transform(condition: Condition, key: string, rate?: Deductions): string {
+  transform(condition: Condition, key: string, rate?: Deductions): unknown {
     // 総支給額
     const payment = this.paymentServise.getPayment(condition);
     const baseSalary: number = payment.baseSalary;

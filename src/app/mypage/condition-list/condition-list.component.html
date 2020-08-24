@@ -1,0 +1,13 @@
+<div class="conditions__list">
+  <ng-container *ngIf="result?.hits.length; else none">
+    <app-condition
+      *ngFor="let condition of result?.hits"
+      [condition]="condition"
+      [rate]="rate"
+      class="conditions__item"
+    ></app-condition>
+  </ng-container>
+  <ng-template #none>
+    <p class="conditions__none">該当する条件はありません。</p>
+  </ng-template>
+</div>

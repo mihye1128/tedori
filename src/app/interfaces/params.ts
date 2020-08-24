@@ -2,8 +2,7 @@ export interface Params {
   title?: string;
   baseLower?: number;
   baseUpper?: number;
-  typeMonthly?: boolean;
-  typeHourly?: boolean;
+  type?: string;
   allowanceLower?: number;
   allowanceUpper?: number;
   basePerHourLower?: number;
