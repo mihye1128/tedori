@@ -10,12 +10,10 @@ import { Deductions } from 'src/app/interfaces/deductions';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit {
-  panelOpenState = false;
+  @Input() rate: Deductions;
 
   conditions$ = this.conditionsService.conditions$;
   user$ = this.authService.afUser$;
-
-  @Input() rate: Deductions;
 
   constructor(
     private conditionsService: ConditionsService,
@@ -23,14 +21,6 @@ export class ResultComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-
-  getConditionTitle(condition: Condition, i: number) {
-    if (condition.title === '') {
-      return '条件' + (i + 1);
-    } else {
-      return condition.title;
-    }
-  }
 
   saveConditions(conditions: Condition[]) {
     this.conditionsService.saveConditions(conditions);

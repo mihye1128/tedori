@@ -17,6 +17,7 @@ import { FormComponent } from './form/form.component';
 import { MethodComponent } from './method/method.component';
 import { ResultComponent } from './result/result.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { ResultTableHeaderComponent } from './result-table-header/result-table-header.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PipesModule } from '../pipes/pipes.module';
     FormComponent,
     MethodComponent,
     ResultComponent,
+    ResultTableHeaderComponent,
   ],
   imports: [
     CommonModule,
