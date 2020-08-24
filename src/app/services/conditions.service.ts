@@ -36,9 +36,7 @@ export class ConditionsService {
       })
     ).then(() => {
       this.snackBar
-        .open('マイページに保存しました。', '確認する', {
-          duration: 2000,
-        })
+        .open('マイページに保存しました。', '確認する')
         .onAction()
         .subscribe(() => {
           this.router.navigateByUrl('/mypage');
@@ -59,14 +57,10 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .set(condition, { merge: true })
       .then(() => {
-        this.snackBar.open('条件を更新しました。', null, {
-          duration: 2000,
-        });
+        this.snackBar.open('条件を更新しました。');
       })
       .catch(() => {
-        this.snackBar.open('更新できませんでした。', null, {
-          duration: 2000,
-        });
+        this.snackBar.open('更新できませんでした。');
       });
   }
 
@@ -75,14 +69,10 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .delete()
       .then(() => {
-        this.snackBar.open('条件を削除しました。', null, {
-          duration: 2000,
-        });
+        this.snackBar.open('条件を削除しました。');
       })
       .catch(() => {
-        this.snackBar.open('削除できませんでした。', null, {
-          duration: 2000,
-        });
+        this.snackBar.open('削除できませんでした。');
       });
   }
 }
