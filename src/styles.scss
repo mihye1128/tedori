@@ -14,6 +14,16 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+
+  &[target='_blank'] {
+    &::after {
+      font-family: 'Material Icons';
+      content: '\e895';
+      display: inline-block;
+      text-decoration: none;
+      margin-left: 0.25em;
+    }
+  }
 }
 
 .container {
