@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConditionDataComponent } from './condition-data.component';
+import { ConditionCardDataComponent } from './condition-card-data.component';
 
-describe('ConditionDataComponent', () => {
-  let component: ConditionDataComponent;
-  let fixture: ComponentFixture<ConditionDataComponent>;
+describe('ConditionCardDataComponent', () => {
+  let component: ConditionCardDataComponent;
+  let fixture: ComponentFixture<ConditionCardDataComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ConditionDataComponent],
+      declarations: [ConditionCardDataComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConditionDataComponent);
+    fixture = TestBed.createComponent(ConditionCardDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

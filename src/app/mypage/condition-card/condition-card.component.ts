@@ -1,17 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
-import { RateService } from 'src/app/services/rate.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { Deductions } from 'src/app/interfaces/deductions';
+import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from 'src/app/dialogs/edit-dialog/edit-dialog.component';
+import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
-  selector: 'app-condition',
-  templateUrl: './condition.component.html',
-  styleUrls: ['./condition.component.scss'],
+  selector: 'app-condition-card',
+  templateUrl: './condition-card.component.html',
+  styleUrls: ['./condition-card.component.scss'],
 })
-export class ConditionComponent implements OnInit {
+export class ConditionCardComponent implements OnInit {
   @Input() condition: Condition;
   @Input() rate: Deductions;
 

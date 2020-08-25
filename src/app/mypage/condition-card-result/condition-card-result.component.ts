@@ -3,17 +3,17 @@ import { Condition } from 'src/app/interfaces/condition';
 import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
-  selector: 'app-condition-result',
-  templateUrl: './condition-result.component.html',
-  styleUrls: ['./condition-result.component.scss'],
+  selector: 'app-condition-card-result',
+  templateUrl: './condition-card-result.component.html',
+  styleUrls: ['./condition-card-result.component.scss'],
 })
-export class ConditionResultComponent implements OnInit {
+export class ConditionCardResultComponent implements OnInit {
+  @Input() condition: Condition;
+  @Input() rate: Deductions;
+
   opendTotal = false;
   opendDeduction = false;
   opendOwner = false;
-
-  @Input() condition: Condition;
-  @Input() rate: Deductions;
 
   constructor() {}
 

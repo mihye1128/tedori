@@ -17,21 +17,21 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { MypageComponent } from './mypage/mypage.component';
-import { ConditionComponent } from './condition/condition.component';
-import { ConditionDataComponent } from './condition-data/condition-data.component';
-import { ConditionResultComponent } from './condition-result/condition-result.component';
 import { SearchComponent } from './search/search.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { ConditionListComponent } from './condition-list/condition-list.component';
+import { ConditionCardComponent } from './condition-card/condition-card.component';
+import { ConditionCardDataComponent } from './condition-card-data/condition-card-data.component';
+import { ConditionCardResultComponent } from './condition-card-result/condition-card-result.component';
 
 @NgModule({
   declarations: [
     MypageComponent,
-    ConditionComponent,
     ConditionListComponent,
-    ConditionDataComponent,
-    ConditionResultComponent,
     SearchComponent,
+    ConditionCardComponent,
+    ConditionCardDataComponent,
+    ConditionCardResultComponent,
   ],
   imports: [
     CommonModule,
