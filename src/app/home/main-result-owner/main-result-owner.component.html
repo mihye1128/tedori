@@ -1,0 +1,124 @@
+<h3 class="main-sub-title">事業者支出額</h3>
+<mat-accordion>
+  <app-main-result-table-header
+    [conditions]="conditions"
+  ></app-main-result-table-header>
+  <mat-expansion-panel class="result-panel" disabled>
+    <mat-expansion-panel-header class="result-panel__header disabled">
+      <mat-panel-title class="result-panel__title">
+        給与支給額
+      </mat-panel-title>
+      <mat-panel-description class="result-panel__desc">
+        <span class="result-panel__price" *ngFor="let condition of conditions">
+          {{ condition | calc: 'total' }}<span class="yen">円</span>
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="result-panel">
+    <mat-expansion-panel-header class="result-panel__header">
+      <mat-panel-title class="result-panel__title">
+        事業者負担
+      </mat-panel-title>
+      <mat-panel-description class="result-panel__desc">
+        <span class="result-panel__price" *ngFor="let condition of conditions">
+          {{ condition | calc: 'ownerBurdenTotal':rate
+          }}<span class="yen">円</span>
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <dl class="result-panel__detail">
+      <dt>健康保険料</dt>
+      <div>
+        <dd *ngFor="let condition of conditions">
+          <ng-container *ngIf="condition.ins === false; else healthInsOwner">
+            -
+          </ng-container>
+          <ng-template #healthInsOwner>
+            {{ condition | calc: 'healthInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </div>
+      <dt>厚生年金保険料</dt>
+      <div>
+        <dd *ngFor="let condition of conditions">
+          <ng-container *ngIf="condition.ins === false; else pensionInsOwner">
+            -
+          </ng-container>
+          <ng-template #pensionInsOwner>
+            {{ condition | calc: 'pensionInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </div>
+      <dt>介護保険料</dt>
+      <div>
+        <dd *ngFor="let condition of conditions">
+          <ng-container
+            *ngIf="
+              condition.ins === false || condition.age !== 'middle';
+              else nursingInsOwner
+            "
+          >
+            -
+          </ng-container>
+          <ng-template #nursingInsOwner>
+            {{ condition | calc: 'nursingInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </div>
+      <dt>子ども・子育て拠出金</dt>
+      <div>
+        <dd *ngFor="let condition of conditions">
+          <ng-container *ngIf="condition.ins === false; else childrenIns">
+            -
+          </ng-container>
+          <ng-template #childrenIns>
+            {{ condition | calc: 'childrenIns':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </div>
+      <dt>労災保険料</dt>
+      <div>
+        <dd *ngFor="let condition of conditions">
+          {{ condition | calc: 'compensationIns':rate
+          }}<span class="yen">円</span>
+        </dd>
+      </div>
+      <dt>雇用保険料</dt>
+      <div>
+        <dd *ngFor="let condition of conditions">
+          <ng-container
+            *ngIf="
+              condition.unemploymentIns === false;
+              else unemploymentInsOwner
+            "
+          >
+            -
+          </ng-container>
+          <ng-template #unemploymentInsOwner>
+            {{ condition | calc: 'unemploymentInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </div>
+    </dl>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="result-panel" disabled>
+    <mat-expansion-panel-header class="result-panel__header disabled">
+      <mat-panel-title class="result-panel__title">
+        支出額合計
+      </mat-panel-title>
+      <mat-panel-description class="result-panel__desc">
+        <span class="result-panel__price" *ngFor="let condition of conditions">
+          {{ condition | calc: 'ownerDisbursementTotal':rate
+          }}<span class="yen">円</span>
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>

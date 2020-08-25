@@ -1,15 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Condition } from 'src/app/interfaces/condition';
+import { Deductions } from 'src/app/interfaces/deductions';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { Condition } from 'src/app/interfaces/condition';
 
 @Component({
-  selector: 'app-result',
-  templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss'],
+  selector: 'app-main-result',
+  templateUrl: './main-result.component.html',
+  styleUrls: ['./main-result.component.scss'],
 })
-export class ResultComponent implements OnInit {
+export class MainResultComponent implements OnInit {
   @Input() rate: Deductions;
 
   conditions$ = this.conditionsService.conditions$;

@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
 
 @Component({
-  selector: 'app-result-table-header',
-  templateUrl: './result-table-header.component.html',
-  styleUrls: ['./result-table-header.component.scss'],
+  selector: 'app-main-result-table-header',
+  templateUrl: './main-result-table-header.component.html',
+  styleUrls: ['./main-result-table-header.component.scss'],
 })
-export class ResultTableHeaderComponent implements OnInit {
+export class MainResultTableHeaderComponent implements OnInit {
   @Input() conditions: Condition[];
 
   constructor() {}

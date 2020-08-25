@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResultTableHeaderComponent } from './result-table-header.component';
+import { MainResultWorkerComponent } from './main-result-worker.component';
 
-describe('ResultTableHeaderComponent', () => {
-  let component: ResultTableHeaderComponent;
-  let fixture: ComponentFixture<ResultTableHeaderComponent>;
+describe('MainResultWorkerComponent', () => {
+  let component: MainResultWorkerComponent;
+  let fixture: ComponentFixture<MainResultWorkerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ResultTableHeaderComponent],
+      declarations: [MainResultWorkerComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResultTableHeaderComponent);
+    fixture = TestBed.createComponent(MainResultWorkerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

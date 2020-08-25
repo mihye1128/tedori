@@ -2,14 +2,6 @@
 @import 'mixins';
 
 .form {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: $color-base;
-  @include sm {
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
   &__card {
     padding: 0 24px;
     margin-top: 40px;
@@ -87,6 +79,7 @@
     }
   }
 }
+
 .condition-type {
   margin-bottom: 2px;
   &__btn {
@@ -96,6 +89,7 @@
     }
   }
 }
+
 .condition-radio {
   display: flex;
   align-items: center;

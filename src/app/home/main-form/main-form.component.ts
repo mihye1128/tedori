@@ -1,22 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-  FormArray,
-} from '@angular/forms';
-import { Condition } from 'src/app/interfaces/condition';
+import { Deductions } from 'src/app/interfaces/deductions';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { Condition } from 'src/app/interfaces/condition';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
+  selector: 'app-main-form',
+  templateUrl: './main-form.component.html',
+  styleUrls: ['./main-form.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class MainFormComponent implements OnInit {
   @Input() rate: Deductions;
 
   user$ = this.authService.afUser$;
