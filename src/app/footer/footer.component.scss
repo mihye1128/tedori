@@ -36,6 +36,9 @@
     a {
       display: inline-block;
       transition: opacity 0.4s;
+      &::after {
+        content: none;
+      }
       &:hover {
         opacity: 0.64;
       }
