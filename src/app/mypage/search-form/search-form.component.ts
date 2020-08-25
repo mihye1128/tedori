@@ -1,17 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Deductions } from 'src/app/interfaces/deductions';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { SearchService } from 'src/app/services/search.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-search-form',
+  templateUrl: './search-form.component.html',
+  styleUrls: ['./search-form.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchFormComponent implements OnInit {
   index = this.searchService.index.condition;
-  @Input() rate: Deductions;
 
   result: {
     nbHits: number;
