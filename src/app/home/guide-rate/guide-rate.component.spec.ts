@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MethodComponent } from './method.component';
+import { GuideRateComponent } from './guide-rate.component';
 
-describe('MethodComponent', () => {
-  let component: MethodComponent;
-  let fixture: ComponentFixture<MethodComponent>;
+describe('GuideRateComponent', () => {
+  let component: GuideRateComponent;
+  let fixture: ComponentFixture<GuideRateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MethodComponent],
+      declarations: [GuideRateComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MethodComponent);
+    fixture = TestBed.createComponent(GuideRateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

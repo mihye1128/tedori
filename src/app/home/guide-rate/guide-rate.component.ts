@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Deductions } from 'src/app/interfaces/deductions';
 
 @Component({
-  selector: 'app-method',
-  templateUrl: './method.component.html',
-  styleUrls: ['./method.component.scss'],
+  selector: 'app-guide-rate',
+  templateUrl: './guide-rate.component.html',
+  styleUrls: ['./guide-rate.component.scss'],
 })
-export class MethodComponent implements OnInit {
+export class GuideRateComponent implements OnInit {
   @Input() rate: Deductions;
 
   constructor() {}

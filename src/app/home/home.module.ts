@@ -14,17 +14,19 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { FormComponent } from './form/form.component';
-import { MethodComponent } from './method/method.component';
 import { ResultComponent } from './result/result.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { ResultTableHeaderComponent } from './result-table-header/result-table-header.component';
+import { GuideRateComponent } from './guide-rate/guide-rate.component';
+import { GuideMethodComponent } from './guide-method/guide-method.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     FormComponent,
-    MethodComponent,
     ResultComponent,
+    GuideRateComponent,
+    GuideMethodComponent,
     ResultTableHeaderComponent,
   ],
   imports: [
