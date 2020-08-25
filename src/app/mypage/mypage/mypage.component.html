@@ -1,9 +1,6 @@
 <section class="mypage">
   <div class="container">
     <app-search-form></app-search-form>
-    <app-condition-list
-      *ngIf="rate$ | async as rate"
-      [rate]="rate"
-    ></app-condition-list>
+    <router-outlet></router-outlet>
   </div>
 </section>
