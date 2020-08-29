@@ -1,0 +1,97 @@
+@import 'variables';
+@import 'mixins';
+
+.rate {
+  &__table {
+    color: $color-font-700;
+    width: 100%;
+    margin-top: 32px;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    @include sm {
+      font-size: 14px;
+      margin-top: 40px;
+    }
+    th,
+    td {
+      border: 1px solid $color-font-400;
+      font-weight: normal;
+      @include sm {
+        br {
+          display: none;
+        }
+      }
+    }
+    th {
+      padding: 12px 8px;
+      @include sm {
+        padding: 15px 10px;
+      }
+    }
+    td {
+      padding: 10px 10px;
+      text-align: right;
+      font-size: 18px;
+      @include sm {
+        font-size: 24px;
+      }
+      a {
+        font-size: 12px;
+        text-decoration: underline;
+        transition: opacity 0.4s;
+        &:hover {
+          opacity: 0.6;
+        }
+        @include sm {
+          font-size: 16px;
+        }
+      }
+      small {
+        font-size: 10px;
+        display: block;
+        text-align: left;
+        @include sm {
+          font-size: 12px;
+        }
+      }
+      .unit {
+        font-size: 12px;
+        margin-left: 2px;
+        @include sm {
+          font-size: 16px;
+        }
+      }
+    }
+    thead {
+      th {
+        background-color: $color-base;
+      }
+    }
+    tbody {
+      th {
+        text-align: left;
+      }
+    }
+  }
+  &__annotation {
+    margin-top: 12px;
+    margin-bottom: 40px;
+    color: $color-font-700;
+    font-size: 10px;
+    @include sm {
+      margin-top: 12px;
+      margin-bottom: 80px;
+      font-size: 12px;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 2em;
+      text-indent: -2em;
+      &:not(:first-of-type) {
+        margin-top: 4px;
+      }
+    }
+  }
+}

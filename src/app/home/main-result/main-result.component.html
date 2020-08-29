@@ -1,0 +1,21 @@
+<div class="result" *ngIf="conditions$ | async as conditions">
+  <h2 class="main-title">試算結果</h2>
+  <app-main-result-worker
+    [rate]="rate"
+    [conditions]="conditions"
+  ></app-main-result-worker>
+  <app-main-result-owner
+    [rate]="rate"
+    [conditions]="conditions"
+  ></app-main-result-owner>
+  <div class="result__actions" *ngIf="user$ | async">
+    <button
+      mat-raised-button
+      color="accent"
+      class="result__btn"
+      (click)="saveConditions(conditions)"
+    >
+      条件を保存する
+    </button>
+  </div>
+</div>

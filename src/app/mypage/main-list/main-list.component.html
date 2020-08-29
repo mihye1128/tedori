@@ -1,0 +1,13 @@
+<div class="condition-list">
+  <ng-container *ngIf="conditions$ | async as conditions; else none">
+    <app-condition-card
+      *ngFor="let condition of conditions"
+      [condition]="condition"
+      [rate]="rate"
+      class="condition-list__item"
+    ></app-condition-card>
+  </ng-container>
+  <ng-template #none>
+    <p class="condition-list__none">保存された条件はありません。</p>
+  </ng-template>
+</div>

@@ -1,0 +1,64 @@
+<h2 class="main-title">各種控除の試算方法</h2>
+<dl class="method__data">
+  <dt>社会保険料</dt>
+  <dd>
+    全国健康保険協会（協会けんぽ）の保険料率を基に算出します。
+    <span>
+      社会保険料の算出に関する詳細は、全国健康保険協会HPの下記のページをご参照ください。
+    </span>
+    <span>
+      「<a [href]="rate.socialIns.url" target="_blank">{{
+        rate.socialIns.title
+      }}</a
+      >」
+    </span>
+  </dd>
+  <dt>労災保険料</dt>
+  <dd>
+    事業の種類により、労災保険料率は異なります。<br />
+    こちらの試算ツールでは、「その他の各種事業」の保険料率を基に算出します。
+    <span>
+      労災保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
+    </span>
+    <span>
+      「<a [href]="rate.compensationIns.url" target="_blank">{{
+        rate.compensationIns.title
+      }}</a
+      >」
+    </span>
+  </dd>
+  <dt>雇用保険料</dt>
+  <dd>
+    事業の種類により、雇用保険料率は異なります。<br />
+    こちらの試算ツールでは、「一般の事業」の保険料率を基に算出します。
+    <span>
+      雇用保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
+    </span>
+    <span>
+      「<a [href]="rate.unemploymentIns.url" target="_blank">{{
+        rate.unemploymentIns.title
+      }}</a
+      >」
+    </span>
+  </dd>
+  <dt>源泉所得税</dt>
+  <dd>
+    源泉所得税の計算は、電算機計算の特例に基づいて算出しています。<br />
+    税額表により求めた税額との差額が生じることがありますが、実際の税額は年末調整で精算されます。
+    <span>
+      源泉所得税額の算出に関する詳細は、国税庁HPの下記のページをご参照ください。
+    </span>
+    <span>
+      「<a [href]="rate.nationalTax.url" target="_blank">{{
+        rate.nationalTax.title
+      }}</a
+      >」
+    </span>
+  </dd>
+  <dt>住民税</dt>
+  <dd>
+    住民税は、前年度の所得に基づいて算出されます。<br />
+    納付方法に、「普通徴収」と「特別徴収」があります。「普通徴収」では、年税額を6月から翌年5月までの12回に分割し、給与支払者が月々の給料から差し引いて納付します。<br />
+    「普通徴収」の場合は、条件設定に該当月の徴収税額を入力してください。
+  </dd>
+</dl>

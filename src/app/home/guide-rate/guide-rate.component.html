@@ -1,0 +1,76 @@
+<h2 class="main-title">各種保険料率 早見表</h2>
+<table class="rate__table">
+  <thead>
+    <tr>
+      <th>種別</th>
+      <th>料率</th>
+      <th>労働者<br />負担割合</th>
+      <th>事業者<br />負担割合</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>健康保険</th>
+      <td>
+        <small>標準報酬月額の</small>
+        <a [href]="rate.socialIns.healthInsRateListUrl" target="_blank"
+          >各都道府県の<br />料率</a
+        >
+      </td>
+      <td>50<span class="unit">%</span></td>
+      <td>50<span class="unit">%</span></td>
+    </tr>
+    <tr>
+      <th>厚生年金保険</th>
+      <td>
+        <small>標準報酬月額の</small>
+        {{ rate.socialIns.pensionInsRate }}<span class="unit">%</span>
+      </td>
+      <td>50<span class="unit">%</span></td>
+      <td>50<span class="unit">%</span></td>
+    </tr>
+    <tr>
+      <th>介護保険<sup>※1</sup></th>
+      <td>
+        <small>標準報酬月額の</small>
+        {{ rate.socialIns.nursingInsRate }}<span class="unit">%</span>
+      </td>
+      <td>50<span class="unit">%</span></td>
+      <td>50<span class="unit">%</span></td>
+    </tr>
+    <tr>
+      <th>子ども・子育て<br />拠出金</th>
+      <td>
+        <small>標準報酬月額の</small>
+        {{ rate.socialIns.childrenInsRate }}<span class="unit">%</span>
+      </td>
+      <td>-</td>
+      <td>100<span class="unit">%</span></td>
+    </tr>
+    <tr>
+      <th>労災保険<sup>※2</sup></th>
+      <td>
+        <small>総支給額の</small>
+        {{ rate.compensationIns.rate }}/1000
+      </td>
+      <td>-</td>
+      <td>100<span class="unit">%</span></td>
+    </tr>
+    <tr>
+      <th>雇用保険<sup>※3</sup></th>
+      <td>
+        <small>総支給額の</small>
+        {{ rate.unemploymentIns.rate }}/1000
+      </td>
+      <td>{{ rate.unemploymentIns.workerBurden }}/9</td>
+      <td>{{ rate.unemploymentIns.ownerBurden }}/9</td>
+    </tr>
+  </tbody>
+</table>
+<div class="rate__annotation">
+  <p>
+    ※1 介護保険の被保険者（介護保険料支払対象者）は、40歳から64歳までの方です。
+  </p>
+  <p>※2 「その他の各種事業」の保険料率です。</p>
+  <p>※3 「一般の事業」の保険料率です。</p>
+</div>

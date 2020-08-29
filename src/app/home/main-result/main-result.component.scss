@@ -1,0 +1,17 @@
+@import 'variables';
+@import 'mixins';
+
+.result {
+  padding-top: 40px;
+  @include sm {
+    padding-top: 80px;
+  }
+
+  &__actions {
+    margin-top: 40px;
+    text-align: center;
+  }
+  &__btn {
+    color: #fff;
+  }
+}
