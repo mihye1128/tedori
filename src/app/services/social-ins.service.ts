@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ByArea } from '../interfaces/by-area';
-import { standardMonthlyFeeTable } from './standardMonthlyFeeTable';
 import { FeeTable } from '../interfaces/fee-table';
+import { standardMonthlyFeeTable } from '../models/standard-monthly-fee-table';
 
 @Injectable({
   providedIn: 'root',
