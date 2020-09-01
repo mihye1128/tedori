@@ -49,11 +49,12 @@
   }
   &__end {
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 10px;
     @include sm {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-size: 12px;
     }
   }
   &__nav {
@@ -84,7 +85,7 @@
     }
   }
   &__copy {
-    margin: 0.5em 0 0;
+    margin: 1em 0 0;
     font-family: $font-logo;
     opacity: 0.64;
     @include sm {
