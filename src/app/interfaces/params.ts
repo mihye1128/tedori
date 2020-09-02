@@ -1,8 +1,8 @@
 export interface Params {
   title?: string;
+  type?: string;
   baseLower?: number;
   baseUpper?: number;
-  type?: string;
   allowanceLower?: number;
   allowanceUpper?: number;
   basePerHourLower?: number;

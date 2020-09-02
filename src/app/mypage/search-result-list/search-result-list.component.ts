@@ -13,15 +13,22 @@ import { Deductions } from 'src/app/interfaces/deductions';
 export class SearchResultListComponent implements OnInit {
   @Input() rate: Deductions;
 
+  conditionsList: Condition[];
+  queryTitle: string;
+  typeFilter: string;
+  baseLower: number;
+  baseUpper: number;
+  allowanceLower: number;
+  allowanceUpper: number;
+  basePerHourLower: number;
+  basePerHourUpper: number;
+
   private index = this.searchService.index.condition;
   loading: boolean;
   result: {
     nbHits: number;
     hits: any[];
   }; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
-  conditionsList: Condition[];
-  queryTitle: string;
-  typeFilter: string;
 
   constructor(
     private authService: AuthService,
@@ -36,6 +43,12 @@ export class SearchResultListComponent implements OnInit {
       this.index = this.searchService.index.condition;
       this.queryTitle = params.get('title') || '';
       this.typeFilter = params.get('type') || '';
+      this.baseLower = +params.get('baseLower');
+      this.baseUpper = +params.get('baseUpper');
+      this.allowanceLower = +params.get('allowanceLower');
+      this.allowanceUpper = +params.get('allowanceUpper');
+      this.basePerHourLower = +params.get('basePerHourLower');
+      this.basePerHourUpper = +params.get('basePerHourUpper');
       this.search();
     });
   }
@@ -47,6 +60,7 @@ export class SearchResultListComponent implements OnInit {
         facetFilters: [
           `userId: ${this.authService.uid}`,
           `type: ${this.typeFilter}`,
+          `base >= ${this.baseLower}`,
         ],
       })
       .then((result) => {
