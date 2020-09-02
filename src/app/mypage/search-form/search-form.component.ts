@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { SearchService } from 'src/app/services/search.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -10,17 +8,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
-  index = this.searchService.index.condition;
-
-  result: {
-    nbHits: number;
-    hits: any[];
-  };
-
   form = this.fb.group({
     title: ['', [Validators.maxLength(20)]],
-    typeMonthly: [true, []],
-    typeHourly: [true, []],
+    typeMonthly: [false, []],
+    typeHourly: [false, []],
     baseLower: [null, [Validators.maxLength(8)]],
     baseUpper: [null, [Validators.maxLength(8)]],
     allowanceLower: [null, [Validators.maxLength(8)]],
@@ -31,73 +22,55 @@ export class SearchFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private searchService: SearchService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    this.setFilter();
+  ngOnInit(): void {}
 
-    this.form.valueChanges.subscribe((value) => {
-      this.updateURL(value);
-    });
-  }
-
-  cancelSearch() {
+  cancelSearchConditions() {
     this.form.reset();
+    this.router.navigateByUrl('/mypage');
   }
 
-  private setFilter() {
-    const data = {};
-    const queryParams = this.route.snapshot.queryParams;
-
-    Object.keys(queryParams).forEach((key) => {
-      data[key] = queryParams[key].split(',');
-    });
-
-    this.form.patchValue(data);
-  }
-
-  private updateURL(value) {
+  serchConditions() {
+    const formValue = this.form.value;
     const params: Params = {};
 
-    if (value.title !== '') {
-      params.title = value.title;
+    if (formValue.title !== '') {
+      params.title = formValue.title;
     }
 
-    if (value.typeMonthly && !value.typeHourly) {
+    if (formValue.typeMonthly && !formValue.typeHourly) {
       params.type = 'monthly';
-    } else if (value.typeHourly && !value.typeMonthly) {
+    } else if (formValue.typeHourly && !formValue.typeMonthly) {
       params.type = 'hourly';
     }
 
-    if (value.typeMonthly) {
-      if (value.baseLower) {
-        params.baseLower = +value.baseLower;
+    if (formValue.typeMonthly) {
+      if (formValue.baseLower) {
+        params.baseLower = +formValue.baseLower;
       }
-      if (value.baseUpper) {
-        params.baseUpper = +value.baseUpper;
+      if (formValue.baseUpper) {
+        params.baseUpper = +formValue.baseUpper;
       }
-      if (value.allowanceLower) {
-        params.allowanceLower = +value.allowanceLower;
+      if (formValue.allowanceLower) {
+        params.allowanceLower = +formValue.allowanceLower;
       }
-      if (value.allowanceUpper) {
-        params.allowanceUpper = +value.allowanceUpper;
+      if (formValue.allowanceUpper) {
+        params.allowanceUpper = +formValue.allowanceUpper;
       }
     }
-    if (value.typeHourly) {
-      if (value.basePerHourLower) {
-        params.basePerHourLower = +value.basePerHourLower;
+    if (formValue.typeHourly) {
+      if (formValue.basePerHourLower) {
+        params.basePerHourLower = +formValue.basePerHourLower;
       }
-      if (value.basePerHourUpper) {
-        params.basePerHourUpper = +value.basePerHourUpper;
+      if (formValue.basePerHourUpper) {
+        params.basePerHourUpper = +formValue.basePerHourUpper;
       }
     }
 
-    console.log(params);
-
-    this.router.navigate([], {
+    this.router.navigate(['/mypage/search'], {
       relativeTo: this.route,
       queryParams: params,
     });

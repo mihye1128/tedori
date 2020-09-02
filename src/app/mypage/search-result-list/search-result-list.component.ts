@@ -28,7 +28,9 @@ export class SearchResultListComponent implements OnInit {
     private searchService: SearchService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.conditionsList = [];
       this.index = this.searchService.index.condition;
@@ -37,8 +39,6 @@ export class SearchResultListComponent implements OnInit {
       this.search();
     });
   }
-
-  ngOnInit(): void {}
 
   search() {
     this.loading = true;
