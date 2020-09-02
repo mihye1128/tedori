@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Deductions } from 'src/app/interfaces/deductions';
+import { RateService } from 'src/app/services/rate.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search-result-list',
@@ -11,7 +13,7 @@ import { Deductions } from 'src/app/interfaces/deductions';
   styleUrls: ['./search-result-list.component.scss'],
 })
 export class SearchResultListComponent implements OnInit {
-  @Input() rate: Deductions;
+  rate$: Observable<Deductions> = this.rateService.rate$;
 
   conditionsList: Condition[];
   queryTitle: string;
@@ -31,6 +33,7 @@ export class SearchResultListComponent implements OnInit {
   }; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
 
   constructor(
+    private rateService: RateService,
     private authService: AuthService,
     private searchService: SearchService,
     private router: Router,
