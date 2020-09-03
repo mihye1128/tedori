@@ -1,12 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { ActivatedRoute } from '@angular/router';
 import { RateService } from 'src/app/services/rate.service';
-import { Observable } from 'rxjs';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-search-result-list',
@@ -14,8 +11,6 @@ import { stringify } from 'querystring';
   styleUrls: ['./search-result-list.component.scss'],
 })
 export class SearchResultListComponent implements OnInit {
-  rate$: Observable<Deductions> = this.rateService.rate$;
-
   conditionsList: Condition[];
   queryTitle: string;
   typeFilter: string;
@@ -26,19 +21,18 @@ export class SearchResultListComponent implements OnInit {
   basePerHourLower: number;
   basePerHourUpper: number;
   baseRange: string;
+  isLoading: boolean;
 
   private index = this.searchService.index.condition;
-  loading: boolean;
   result: {
     nbHits: number;
     hits: any[];
   }; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
 
   constructor(
-    private rateService: RateService,
+    public rateService: RateService,
     private authService: AuthService,
     private searchService: SearchService,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -89,7 +83,7 @@ export class SearchResultListComponent implements OnInit {
   }
 
   search() {
-    this.loading = true;
+    this.isLoading = true;
     this.index
       .search(this.queryTitle, {
         facetFilters: [
@@ -102,7 +96,7 @@ export class SearchResultListComponent implements OnInit {
         this.result = result;
         const items = result.hits as any[]; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
         this.conditionsList.push(...items);
-        this.loading = false;
+        this.isLoading = false;
       });
   }
 }
