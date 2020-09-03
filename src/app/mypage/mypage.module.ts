@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
@@ -49,6 +50,7 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
     MatRadioModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     FormsModule,
     SharedModule,

@@ -1,5 +1,5 @@
 <div class="condition-list" *ngIf="rateService.rate$ | async as rate">
-  <ng-container *ngIf="isLoading; else loading">
+  <ng-container *ngIf="!isLoading; else loading">
     <ng-container *ngIf="result?.hits.length; else none">
       <app-condition-card
         *ngFor="let condition of result?.hits"
@@ -13,8 +13,8 @@
     </ng-template>
   </ng-container>
   <ng-template #loading>
-    <p class="condition-list__none" style="background-color: red;">
-      ローディング
-    </p>
+    <div class="loading">
+      <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
+    </div>
   </ng-template>
 </div>
