@@ -1,6 +1,6 @@
 <div class="condition-list" *ngIf="rateService.rate$ | async as rate">
   <ng-container *ngIf="!isLoading; else loading">
-    <ng-container *ngIf="result?.hits.length; else none">
+    <ng-container *ngIf="result?.hits.length; else blank">
       <app-condition-card
         *ngFor="let condition of result?.hits"
         [condition]="condition"
@@ -8,7 +8,7 @@
         class="condition-list__item"
       ></app-condition-card>
     </ng-container>
-    <ng-template #none>
+    <ng-template #blank>
       <p class="condition-list__none">該当する条件はありません。</p>
     </ng-template>
   </ng-container>
