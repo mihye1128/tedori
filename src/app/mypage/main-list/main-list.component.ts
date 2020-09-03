@@ -27,7 +27,9 @@ export class MainListComponent implements OnInit {
     public rateService: RateService,
     private authService: AuthService,
     private conditionsService: ConditionsService
-  ) {}
+  ) {
+    this.loadingService.toggleLoading(true);
+  }
 
   ngOnInit(): void {}
 }
