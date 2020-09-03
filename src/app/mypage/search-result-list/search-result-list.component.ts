@@ -24,6 +24,7 @@ export class SearchResultListComponent implements OnInit {
   allowanceUpper: number;
   basePerHourLower: number;
   basePerHourUpper: number;
+  baseRange: string;
 
   private index = this.searchService.index.condition;
   loading: boolean;
@@ -56,6 +57,19 @@ export class SearchResultListComponent implements OnInit {
     });
   }
 
+  setRange() {
+    if (this.baseLower && this.baseUpper) {
+      return `base: ${this.baseLower} TO ${this.baseUpper}`;
+    } else if (this.baseLower) {
+      return `base >= ${this.baseLower}`;
+    } else if (this.baseLower) {
+      return `base =< ${this.baseUpper}`;
+    } else {
+      return;
+    }
+    // https://www.algolia.com/doc/api-reference/api-parameters/numericFilters/
+  }
+
   search() {
     this.loading = true;
     this.index
@@ -63,8 +77,8 @@ export class SearchResultListComponent implements OnInit {
         facetFilters: [
           `userId: ${this.authService.uid}`,
           `type: ${this.typeFilter}`,
-          `base >= ${this.baseLower}`,
         ],
+        numericFilters: [this.setRange()],
       })
       .then((result) => {
         this.result = result;
