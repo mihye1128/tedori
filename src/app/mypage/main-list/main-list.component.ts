@@ -4,8 +4,7 @@ import { Condition } from 'src/app/interfaces/condition';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { RateService } from 'src/app/services/rate.service';
-import { take, tap } from 'rxjs/operators';
-import { LoadingService } from 'src/app/services/loading.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-list',
@@ -13,22 +12,17 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./main-list.component.scss'],
 })
 export class MainListComponent implements OnInit {
-  loading$ = this.loadingService.loading$;
+  loading: boolean;
   conditions$: Observable<Condition[]> = this.conditionsService
     .getConditions(this.authService.uid)
-    .pipe(
-      tap(() => {
-        this.loadingService.toggleLoading(false);
-      })
-    );
+    .pipe(tap(() => (this.loading = false)));
 
   constructor(
-    private loadingService: LoadingService,
     public rateService: RateService,
     private authService: AuthService,
     private conditionsService: ConditionsService
   ) {
-    this.loadingService.toggleLoading(true);
+    this.loading = true;
   }
 
   ngOnInit(): void {}
