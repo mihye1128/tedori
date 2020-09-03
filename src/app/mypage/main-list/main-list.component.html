@@ -1,5 +1,5 @@
 <div class="condition-list" *ngIf="rateService.rate$ | async as rate">
-  <ng-container *ngIf="conditions$ | async as conditions; else loading">
+  <ng-container *ngIf="conditions$ | async as conditions; else none">
     <app-condition-card
       *ngFor="let condition of conditions"
       [condition]="condition"
@@ -10,9 +10,9 @@
   <ng-template #none>
     <p class="condition-list__none">保存された条件はありません。</p>
   </ng-template>
-  <ng-template #loading>
+  <ng-container *ngIf="loading$ | async">
     <div class="loading">
       <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
     </div>
-  </ng-template>
+  </ng-container>
 </div>
