@@ -8,9 +8,9 @@
     ></app-condition-card>
   </ng-container>
   <ng-template #blank>
-    <ng-container *ngIf="!loading">
-      <p class="condition-list__none">保存された条件はありません。</p>
-    </ng-container>
+    <p class="condition-list__none" *ngIf="!loading">
+      保存された条件はありません。
+    </p>
   </ng-template>
   <ng-container *ngIf="loading">
     <div class="loading">
