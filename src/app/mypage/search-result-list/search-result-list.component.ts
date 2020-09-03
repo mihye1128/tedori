@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Deductions } from 'src/app/interfaces/deductions';
 import { RateService } from 'src/app/services/rate.service';
 import { Observable } from 'rxjs';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-search-result-list',
@@ -57,17 +58,34 @@ export class SearchResultListComponent implements OnInit {
     });
   }
 
-  setRange() {
-    if (this.baseLower && this.baseUpper) {
-      return `base: ${this.baseLower} TO ${this.baseUpper}`;
-    } else if (this.baseLower) {
-      return `base >= ${this.baseLower}`;
-    } else if (this.baseLower) {
-      return `base =< ${this.baseUpper}`;
-    } else {
-      return;
+  pushRange(rangeList: string[], key: string, lower?: number, upper?: number) {
+    if (lower && upper) {
+      rangeList.push(`${key}: ${lower} TO ${upper}`);
+    } else if (lower) {
+      rangeList.push(`${key} >= ${lower}`);
+    } else if (upper) {
+      rangeList.push(`${key} <= ${upper}`);
     }
-    // https://www.algolia.com/doc/api-reference/api-parameters/numericFilters/
+  }
+
+  setRange() {
+    const rangeList: string[] = [];
+
+    this.pushRange(rangeList, 'base', this.baseLower, this.baseUpper);
+    this.pushRange(
+      rangeList,
+      'allowance',
+      this.allowanceLower,
+      this.allowanceUpper
+    );
+    this.pushRange(
+      rangeList,
+      'basePerHour',
+      this.basePerHourLower,
+      this.basePerHourUpper
+    );
+
+    return rangeList;
   }
 
   search() {
@@ -78,7 +96,7 @@ export class SearchResultListComponent implements OnInit {
           `userId: ${this.authService.uid}`,
           `type: ${this.typeFilter}`,
         ],
-        numericFilters: [this.setRange()],
+        numericFilters: this.setRange(),
       })
       .then((result) => {
         this.result = result;
