@@ -57,6 +57,9 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .set(condition, { merge: true })
       .then(() => {
+        if (this.router.url.match(/search/)) {
+          this.router.navigateByUrl('/mypage');
+        }
         this.snackBar.open('条件を更新しました。');
       })
       .catch(() => {
@@ -69,6 +72,9 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .delete()
       .then(() => {
+        if (this.router.url.match(/search/)) {
+          this.router.navigateByUrl('/mypage');
+        }
         this.snackBar.open('条件を削除しました。');
       })
       .catch(() => {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ConditionsService } from 'src/app/services/conditions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-dialog',
