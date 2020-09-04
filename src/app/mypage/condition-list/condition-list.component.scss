@@ -1,8 +1,0 @@
-@import 'variables';
-@import 'mixins';
-
-:host {
-  display: grid;
-  min-height: 100%;
-  grid-template-rows: 1fr;
-}

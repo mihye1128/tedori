@@ -13,12 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { MypageComponent } from './mypage/mypage.component';
 import { PipesModule } from '../pipes/pipes.module';
-import { ConditionListComponent } from './condition-list/condition-list.component';
 import { ConditionCardComponent } from './condition-card/condition-card.component';
 import { ConditionCardDataComponent } from './condition-card-data/condition-card-data.component';
 import { ConditionCardResultComponent } from './condition-card-result/condition-card-result.component';
@@ -29,7 +29,6 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
 @NgModule({
   declarations: [
     MypageComponent,
-    ConditionListComponent,
     ConditionCardComponent,
     ConditionCardDataComponent,
     ConditionCardResultComponent,
@@ -51,6 +50,7 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
     MatRadioModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     FormsModule,
     SharedModule,

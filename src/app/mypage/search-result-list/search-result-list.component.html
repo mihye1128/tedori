@@ -1,13 +1,20 @@
-<div class="condition-list">
-  <ng-container *ngIf="result?.hits.length; else none">
-    <app-condition-card
-      *ngFor="let condition of result?.hits"
-      [condition]="condition"
-      [rate]="rate"
-      class="condition-list__item"
-    ></app-condition-card>
+<div class="condition-list" *ngIf="rateService.rate$ | async as rate">
+  <ng-container *ngIf="!loading; else load">
+    <div class="condition-list__list" *ngIf="result?.hits.length; else blank">
+      <app-condition-card
+        *ngFor="let condition of result?.hits"
+        [condition]="condition"
+        [rate]="rate"
+        class="condition-list__item"
+      ></app-condition-card>
+    </div>
+    <ng-template #blank>
+      <p class="condition-list__none">該当する条件はありません。</p>
+    </ng-template>
   </ng-container>
-  <ng-template #none>
-    <p class="condition-list__none">該当する条件はありません。</p>
+  <ng-template #load>
+    <div class="loading">
+      <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
+    </div>
   </ng-template>
 </div>

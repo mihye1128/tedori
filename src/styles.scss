@@ -68,6 +68,13 @@ a {
   font-weight: 400;
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .intl {
   padding-top: 20px;
   padding-bottom: 40px;
@@ -263,11 +270,14 @@ a {
   margin-top: 24px;
   @include sm {
     margin-top: 40px;
+  }
+  &__list {
     display: flex;
     flex-wrap: wrap;
   }
   &__item {
     display: block;
+    width: 100%;
     &:not(:first-of-type) {
       margin-top: 20px;
     }
@@ -298,7 +308,6 @@ a {
     }
   }
   &__none {
-    width: 100%;
     text-align: center;
   }
 }

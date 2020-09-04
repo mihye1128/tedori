@@ -1,13 +1,21 @@
-<div class="condition-list">
-  <ng-container *ngIf="conditions$ | async as conditions; else none">
+<div class="condition-list" *ngIf="rateService.rate$ | async as rate">
+  <div
+    class="condition-list__list"
+    *ngIf="conditions$ | async as conditions; else blank"
+  >
     <app-condition-card
       *ngFor="let condition of conditions"
       [condition]="condition"
       [rate]="rate"
       class="condition-list__item"
     ></app-condition-card>
-  </ng-container>
-  <ng-template #none>
-    <p class="condition-list__none">保存された条件はありません。</p>
+  </div>
+  <ng-template #blank>
+    <p class="condition-list__none" *ngIf="!loading">
+      保存された条件はありません。
+    </p>
   </ng-template>
+  <div *ngIf="loading" class="loading">
+    <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
+  </div>
 </div>
