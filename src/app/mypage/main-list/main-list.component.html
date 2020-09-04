@@ -15,9 +15,7 @@
       保存された条件はありません。
     </p>
   </ng-template>
-  <ng-container *ngIf="loading">
-    <div class="loading">
-      <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
-    </div>
-  </ng-container>
+  <div *ngIf="loading" class="loading">
+    <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
+  </div>
 </div>
