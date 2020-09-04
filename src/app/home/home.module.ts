@@ -21,6 +21,7 @@ import { GuideRateComponent } from './guide-rate/guide-rate.component';
 import { GuideMethodComponent } from './guide-method/guide-method.component';
 import { MainResultWorkerComponent } from './main-result-worker/main-result-worker.component';
 import { MainResultOwnerComponent } from './main-result-owner/main-result-owner.component';
+import { HeadComponent } from './head/head.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MainResultOwnerComponent } from './main-result-owner/main-result-owner.
     MainResultOwnerComponent,
     GuideRateComponent,
     GuideMethodComponent,
+    HeadComponent,
   ],
   imports: [
     CommonModule,

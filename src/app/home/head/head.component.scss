@@ -1,0 +1,111 @@
+@import 'variables';
+@import 'mixins';
+
+.head {
+  padding-top: 40px;
+  padding-bottom: 60px;
+  background-color: #fff3e0;
+  background-image: $bg-grad-hero;
+  text-align: center;
+  @include md {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: left;
+  }
+  &__main {
+    position: relative;
+    @include md {
+      padding-right: 30%;
+    }
+  }
+  &__title {
+    margin: 0;
+    font-size: 40px;
+    font-family: $font-logo;
+    font-weight: 700;
+    line-height: 1;
+    em {
+      font-style: normal;
+      text-transform: uppercase;
+      color: $color-logo;
+    }
+    .beta {
+      color: $color-main;
+      font-size: 32px;
+    }
+  }
+  &__main-text {
+    margin: 24px 0 0;
+    font-size: 16px;
+    @include md {
+      margin: 30px 0 0;
+      font-size: 20px;
+    }
+  }
+  &__sub-text {
+    display: inline-block;
+    margin: 16px auto 0;
+    font-size: 12px;
+    text-align: left;
+    @include md {
+      display: block;
+      margin: 14px 0 0;
+      font-size: 14px;
+    }
+  }
+  &__images {
+    position: relative;
+    margin: 0 auto;
+    max-width: 260px;
+    @include md {
+      position: absolute;
+      right: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 50%;
+      width: 40%;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  &__actions {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+    li {
+      &:not(:first-of-type) {
+        margin-top: 8px;
+      }
+    }
+    @include md {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      li {
+        margin-top: 8px;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+    }
+  }
+  &__home,
+  &__login {
+    border-radius: 36px;
+    padding: 0.25em 2em;
+    width: 100%;
+    max-width: 360px;
+    font-size: 16px;
+    color: #fff;
+    @include md {
+      width: auto;
+      max-width: inherit;
+    }
+  }
+  &__home {
+    background-color: $color-main;
+  }
+  &__login {
+    background-color: $color-google;
+  }
+}
