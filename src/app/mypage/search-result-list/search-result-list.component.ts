@@ -21,7 +21,7 @@ export class SearchResultListComponent implements OnInit {
   basePerHourLower: number;
   basePerHourUpper: number;
   baseRange: string;
-  isLoading: boolean;
+  loading: boolean;
 
   private index = this.searchService.index.condition;
   result: {
@@ -83,7 +83,7 @@ export class SearchResultListComponent implements OnInit {
   }
 
   search() {
-    this.isLoading = true;
+    this.loading = true;
     this.index
       .search(this.queryTitle, {
         facetFilters: [
@@ -96,7 +96,7 @@ export class SearchResultListComponent implements OnInit {
         this.result = result;
         const items = result.hits as any[]; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
         this.conditionsList.push(...items);
-        this.isLoading = false;
+        this.loading = false;
       });
   }
 }
