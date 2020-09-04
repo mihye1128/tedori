@@ -14,15 +14,16 @@
       </div>
       <ul class="head__actions">
         <li>
-          <button
+          <a
             mat-flat-button
             color="primary"
             class="head__home"
-            (click)="scroll()"
             aria-label="計算する"
+            routerLink="/"
+            fragment="main"
           >
             計算する
-          </button>
+          </a>
         </li>
         <li>
           <ng-template #default>
