@@ -30,7 +30,7 @@
             <div class="condition__detail">
               <div class="condition__income">
                 <div class="condition__item">
-                  <mat-form-field class="condition__title-field">
+                  <mat-form-field class="condition__field">
                     <mat-label>条件名</mat-label>
                     <input
                       type="text"
@@ -80,7 +80,7 @@
                       <mat-label>基本給</mat-label>
                       <input
                         placeholder="320000"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         [maxlength]="maxLength.base"
@@ -115,7 +115,7 @@
                       <mat-label>諸手当（課税分）</mat-label>
                       <input
                         placeholder="40000"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         [maxlength]="maxLength.allowance"
@@ -150,7 +150,7 @@
                       <mat-label>交通費（非課税）</mat-label>
                       <input
                         placeholder="15000"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         [maxlength]="maxLength.travelCost"
@@ -187,7 +187,7 @@
                       <mat-label>時給</mat-label>
                       <input
                         placeholder="1400"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         [maxlength]="maxLength.basePerHour"
@@ -222,7 +222,7 @@
                       <mat-label>1日あたりの交通費</mat-label>
                       <input
                         placeholder="400"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         [maxlength]="maxLength.travelCostPerDay"
@@ -259,7 +259,7 @@
                       <mat-label>1日あたりの就業時間</mat-label>
                       <input
                         placeholder="5"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         [maxlength]="maxLength.hourPerDay"
@@ -294,7 +294,7 @@
                       <mat-label>1ヶ月あたりの就業日数</mat-label>
                       <input
                         placeholder="15"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         [maxlength]="maxLength.dayPerMonth"
@@ -410,7 +410,7 @@
                     <mat-label>住民税</mat-label>
                     <input
                       placeholder="20000"
-                      type="text"
+                      type="number"
                       matInput
                       autocomplete="off"
                       [maxlength]="maxLength.cityTax"
@@ -444,7 +444,7 @@
                   <mat-form-field class="condition__field">
                     <mat-label>その他控除</mat-label>
                     <input
-                      type="text"
+                      type="number"
                       matInput
                       autocomplete="off"
                       [maxlength]="maxLength.otherDeduction"
