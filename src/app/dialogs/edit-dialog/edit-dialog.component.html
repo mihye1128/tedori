@@ -47,6 +47,7 @@
                 type="text"
                 matInput
                 autocomplete="off"
+                [maxlength]="maxLength.base"
                 formControlName="base"
                 #base
               />
@@ -70,6 +71,7 @@
                 type="text"
                 matInput
                 autocomplete="off"
+                [maxlength]="maxLength.allowance"
                 formControlName="allowance"
                 #allowance
               />
@@ -94,6 +96,7 @@
                 type="text"
                 matInput
                 autocomplete="off"
+                [maxlength]="maxLength.travelCost"
                 formControlName="travelCost"
                 #travelCost
               />
@@ -120,6 +123,7 @@
                 type="text"
                 matInput
                 autocomplete="off"
+                [maxlength]="maxLength.basePerHour"
                 formControlName="basePerHour"
                 #basePerHour
               />
@@ -144,6 +148,7 @@
                 type="text"
                 matInput
                 autocomplete="off"
+                [maxlength]="maxLength.travelCostPerDay"
                 formControlName="travelCostPerDay"
                 #travelCostPerDay
               />
@@ -170,6 +175,7 @@
                 type="text"
                 matInput
                 autocomplete="off"
+                [maxlength]="maxLength.hourPerDay"
                 formControlName="hourPerDay"
                 #hourPerDay
               />
@@ -194,6 +200,7 @@
                 type="text"
                 matInput
                 autocomplete="off"
+                [maxlength]="maxLength.dayPerMonth"
                 formControlName="dayPerMonth"
                 #dayPerMonth
               />
@@ -287,6 +294,7 @@
               type="text"
               matInput
               autocomplete="off"
+              [maxlength]="maxLength.cityTax"
               formControlName="cityTax"
               #cityTax
             />
@@ -309,6 +317,7 @@
               type="text"
               matInput
               autocomplete="off"
+              [maxlength]="maxLength.otherDeduction"
               formControlName="otherDeduction"
               #otherDeduction
             />
