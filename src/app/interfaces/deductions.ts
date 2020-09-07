@@ -1,11 +1,29 @@
-import { NationalTax } from './national-tax';
-import { SocialIns } from './social-ins';
-import { UnemploymentIns } from './unemployment-ins';
-import { CompensationIns } from './compensation-ins';
+import { ByArea } from './by-area';
 
 export interface Deductions {
-  socialIns: SocialIns;
-  compensationIns: CompensationIns;
-  unemploymentIns: UnemploymentIns;
-  nationalTax: NationalTax;
+  socialIns: {
+    title: string;
+    url: string;
+    healthInsRateListUrl: string;
+    healthInsRateList: ByArea[];
+    nursingInsRate: number;
+    pensionInsRate: number;
+    childrenInsRate: number;
+  };
+  compensationIns: {
+    title: string;
+    url: string;
+    rate: number;
+  };
+  unemploymentIns: {
+    title: string;
+    url: string;
+    rate: number;
+    workerBurden: number;
+    ownerBurden: number;
+  };
+  nationalTax: {
+    title: string;
+    url: string;
+  };
 }
