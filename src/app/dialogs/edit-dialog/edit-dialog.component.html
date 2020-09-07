@@ -332,7 +332,7 @@
 <div mat-dialog-actions class="dialog__actions">
   <button
     mat-flat-button
-    [disabled]="form.invalid || form.pristine"
+    [disabled]="form.invalid || form.pristine || processing"
     color="primary"
     (click)="updateCondition()"
   >
