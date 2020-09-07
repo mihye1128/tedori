@@ -15,7 +15,7 @@ export class ConditionsService {
   conditions = new Subject<Condition[]>();
   conditions$ = this.conditions.asObservable();
   maxLength = {
-    title: 20,
+    title: 12,
     base: 8,
     allowance: 8,
     travelCost: 6,

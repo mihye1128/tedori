@@ -1,12 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Deductions } from 'src/app/interfaces/deductions';
-import {
-  FormGroup,
-  FormBuilder,
-  FormArray,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { Condition } from 'src/app/interfaces/condition';

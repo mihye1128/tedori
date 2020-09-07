@@ -41,7 +41,10 @@
                 >{{ conditionTitle.value.length }} /
                 {{ maxLength.title }}</mat-hint
               >
-              <mat-error *ngIf="conditionTitle.value.length > maxLength.title"
+              <mat-error
+                *ngIf="
+                  formConditions.controls[i].get('title').hasError('maxlength')
+                "
                 >最大{{ maxLength.title }}文字です</mat-error
               >
             </mat-form-field>
@@ -85,7 +88,12 @@
                         >{{ base.value.length }} /
                         {{ maxLength.base }}</mat-hint
                       >
-                      <mat-error *ngIf="base.value.length > maxLength.base"
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('base')
+                            .hasError('maxlength')
+                        "
                         >最大{{ maxLength.base }}文字です</mat-error
                       >
                     </mat-form-field>
@@ -108,7 +116,11 @@
                         {{ maxLength.allowance }}</mat-hint
                       >
                       <mat-error
-                        *ngIf="allowance.value.length > maxLength.allowance"
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('allowance')
+                            .hasError('maxlength')
+                        "
                         >最大{{ maxLength.allowance }}文字です</mat-error
                       >
                     </mat-form-field>
@@ -131,7 +143,11 @@
                         {{ maxLength.travelCost }}</mat-hint
                       >
                       <mat-error
-                        *ngIf="travelCost.value.length > maxLength.travelCost"
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('travelCost')
+                            .hasError('maxlength')
+                        "
                         >最大{{ maxLength.travelCost }}文字です</mat-error
                       >
                     </mat-form-field>
@@ -156,7 +172,11 @@
                         {{ maxLength.basePerHour }}</mat-hint
                       >
                       <mat-error
-                        *ngIf="basePerHour.value.length > maxLength.basePerHour"
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('basePerHour')
+                            .hasError('maxlength')
+                        "
                         >最大{{ maxLength.basePerHour }}文字です</mat-error
                       >
                     </mat-form-field>
@@ -180,8 +200,9 @@
                       >
                       <mat-error
                         *ngIf="
-                          travelCostPerDay.value.length >
-                          maxLength.travelCostPerDay
+                          formConditions.controls[i]
+                            .get('travelCostPerDay')
+                            .hasError('maxlength')
                         "
                         >最大{{ maxLength.travelCostPerDay }}文字です</mat-error
                       >
@@ -197,18 +218,20 @@
                         autocomplete="off"
                         [maxlength]="maxLength.hourPerDay"
                         formControlName="hourPerDay"
+                        #hourPerDay
                       />
                       <span class="unit" matSuffix>時間</span>
                       <mat-hint align="end"
-                        >{{ travelCostPerDay.value.length }} /
-                        {{ maxLength.travelCostPerDay }}</mat-hint
+                        >{{ hourPerDay.value.length }} /
+                        {{ maxLength.hourPerDay }}</mat-hint
                       >
                       <mat-error
                         *ngIf="
-                          travelCostPerDay.value.length >
-                          maxLength.travelCostPerDay
+                          formConditions.controls[i]
+                            .get('hourPerDay')
+                            .hasError('maxlength')
                         "
-                        >最大{{ maxLength.travelCostPerDay }}文字です</mat-error
+                        >最大{{ maxLength.hourPerDay }}文字です</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -230,7 +253,11 @@
                         {{ maxLength.dayPerMonth }}</mat-hint
                       >
                       <mat-error
-                        *ngIf="dayPerMonth.value.length > maxLength.dayPerMonth"
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('dayPerMonth')
+                            .hasError('maxlength')
+                        "
                         >最大{{ maxLength.dayPerMonth }}文字です</mat-error
                       >
                     </mat-form-field>
@@ -333,7 +360,12 @@
                       >{{ cityTax.value.length }} /
                       {{ maxLength.cityTax }}</mat-hint
                     >
-                    <mat-error *ngIf="cityTax.value.length > maxLength.cityTax"
+                    <mat-error
+                      *ngIf="
+                        formConditions.controls[i]
+                          .get('cityTax')
+                          .hasError('maxlength')
+                      "
                       >最大{{ maxLength.cityTax }}文字です</mat-error
                     >
                   </mat-form-field>
@@ -356,7 +388,9 @@
                     >
                     <mat-error
                       *ngIf="
-                        otherDeduction.value.length > maxLength.otherDeduction
+                        formConditions.controls[i]
+                          .get('otherDeduction')
+                          .hasError('maxlength')
                       "
                       >最大{{ maxLength.otherDeduction }}文字です</mat-error
                     >
