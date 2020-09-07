@@ -45,7 +45,7 @@
   }
   &__title {
     margin: 0 0 16px;
-    padding: 12px 8px;
+    padding: 12px 16px;
     font-weight: normal;
     background-color: $color-base;
   }
@@ -74,6 +74,9 @@
   }
   &__item {
     width: 100%;
+    &:not(:first-of-type) {
+      margin-top: 8px;
+    }
     .condition-radio + &:not(.condition-radio) {
       margin-top: 32px;
     }

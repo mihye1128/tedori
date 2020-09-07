@@ -25,31 +25,35 @@
           <mat-divider></mat-divider>
           <div class="condition">
             <h3 class="condition__title" *ngIf="multi.checked">
-              条件 {{ i + 1 }}
+              {{ i + 1 }} 件目
             </h3>
-            <mat-form-field class="condition__field">
-              <mat-label>条件名</mat-label>
-              <input
-                type="text"
-                matInput
-                autocomplete="off"
-                formControlName="title"
-                [maxlength]="maxLength.title"
-                #conditionTitle
-              />
-              <mat-hint align="end"
-                >{{ conditionTitle.value.length }} /
-                {{ maxLength.title }}</mat-hint
-              >
-              <mat-error
-                *ngIf="
-                  formConditions.controls[i].get('title').hasError('maxlength')
-                "
-                >最大{{ maxLength.title }}文字です</mat-error
-              >
-            </mat-form-field>
             <div class="condition__detail">
               <div class="condition__income">
+                <div class="condition__item">
+                  <mat-form-field class="condition__field">
+                    <mat-label>条件名</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      autocomplete="off"
+                      formControlName="title"
+                      [maxlength]="maxLength.title"
+                      #conditionTitle
+                    />
+                    <mat-hint align="end"
+                      >{{ conditionTitle.value.length }} /
+                      {{ maxLength.title }}</mat-hint
+                    >
+                    <mat-error
+                      *ngIf="
+                        formConditions.controls[i]
+                          .get('title')
+                          .hasError('maxlength')
+                      "
+                      >最大{{ maxLength.title }}文字です</mat-error
+                    >
+                  </mat-form-field>
+                </div>
                 <div class="condition__item">
                   <mat-radio-group
                     aria-label=""
@@ -102,7 +106,7 @@
                             .get('base')
                             .hasError('pattern')
                         "
-                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                        >半角数字で金額を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -137,7 +141,7 @@
                             .get('allowance')
                             .hasError('pattern')
                         "
-                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                        >半角数字で金額を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -172,7 +176,7 @@
                             .get('travelCost')
                             .hasError('pattern')
                         "
-                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                        >半角数字で金額を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -209,7 +213,7 @@
                             .get('basePerHour')
                             .hasError('pattern')
                         "
-                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                        >半角数字で金額を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -244,7 +248,7 @@
                             .get('travelCostPerDay')
                             .hasError('pattern')
                         "
-                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                        >半角数字で金額を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -430,7 +434,7 @@
                           .get('cityTax')
                           .hasError('pattern')
                       "
-                      >半角数字・カンマなしで金額を入力してください。</mat-error
+                      >半角数字で金額を入力してください。</mat-error
                     >
                   </mat-form-field>
                 </div>
@@ -464,7 +468,7 @@
                           .get('otherDeduction')
                           .hasError('pattern')
                       "
-                      >半角数字・カンマなしで金額を入力してください。</mat-error
+                      >半角数字で金額を入力してください。</mat-error
                     >
                   </mat-form-field>
                 </div>
