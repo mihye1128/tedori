@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +14,80 @@ import { Router } from '@angular/router';
 export class ConditionsService {
   conditions = new Subject<Condition[]>();
   conditions$ = this.conditions.asObservable();
+  maxLength = {
+    title: 20,
+    base: 8,
+    allowance: 8,
+    travelCost: 6,
+    basePerHour: 6,
+    travelCostPerDay: 5,
+    hourPerDay: 2,
+    dayPerMonth: 2,
+    cityTax: 8,
+    otherDeduction: 8,
+  };
+
+  conditionGroup = this.fb.group({
+    title: ['', [Validators.maxLength(this.maxLength.title)]],
+    type: ['monthly', [Validators.pattern(/monthly|hourly/)]],
+    base: ['', [Validators.maxLength(this.maxLength.base)]],
+    allowance: ['', [Validators.maxLength(this.maxLength.allowance)]],
+    travelCost: ['', [Validators.maxLength(this.maxLength.travelCost)]],
+    basePerHour: ['', [Validators.maxLength(this.maxLength.basePerHour)]],
+    travelCostPerDay: [
+      '',
+      [Validators.maxLength(this.maxLength.travelCostPerDay)],
+    ],
+    hourPerDay: ['', [Validators.maxLength(this.maxLength.hourPerDay)]],
+    dayPerMonth: ['', [Validators.maxLength(this.maxLength.dayPerMonth)]],
+    ins: [true, []],
+    unemploymentIns: [true, []],
+    area: ['東京都', []],
+    age: ['young', [Validators.pattern(/young|middle|elderly/)]],
+    dependents: [0, []],
+    cityTax: ['', [Validators.maxLength(this.maxLength.cityTax)]],
+    otherDeduction: ['', [Validators.maxLength(this.maxLength.otherDeduction)]],
+  });
 
   constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
     private db: AngularFirestore,
     private snackBar: MatSnackBar,
     private router: Router
   ) {}
+
+  transferData(condition: Condition): Condition {
+    const base = condition.type === 'monthly' ? +condition.base : 0;
+    const allowance = condition.type === 'monthly' ? +condition.allowance : 0;
+    const travelCost = condition.type === 'monthly' ? +condition.travelCost : 0;
+    const basePerHour =
+      condition.type === 'hourly' ? +condition.basePerHour : 0;
+    const travelCostPerDay =
+      condition.type === 'hourly' ? +condition.travelCostPerDay : 0;
+    const hourPerDay = condition.type === 'hourly' ? +condition.hourPerDay : 0;
+    const dayPerMonth =
+      condition.type === 'hourly' ? +condition.dayPerMonth : 0;
+    return {
+      title: condition.title,
+      type: condition.type,
+      base,
+      allowance,
+      travelCost,
+      basePerHour,
+      travelCostPerDay,
+      hourPerDay,
+      dayPerMonth,
+      ins: condition.ins,
+      unemploymentIns: condition.unemploymentIns,
+      area: condition.area,
+      age: condition.age,
+      dependents: condition.dependents,
+      cityTax: +condition.cityTax,
+      otherDeduction: +condition.otherDeduction,
+      userId: this.authService.uid,
+    };
+  }
 
   setConditions(conditions: Condition[]) {
     this.conditions.next(conditions);
