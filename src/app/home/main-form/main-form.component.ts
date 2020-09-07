@@ -17,6 +17,7 @@ export class MainFormComponent implements OnInit {
   formGroup: FormGroup;
   areaList: string[] = areaList;
   dependentsCounts = this.conditionsService.dependentsCounts;
+  processing = false;
 
   private conditionsCount = 2;
 
@@ -53,6 +54,7 @@ export class MainFormComponent implements OnInit {
   }
 
   submit() {
+    this.processing = true;
     const formValue = this.formGroup.value;
     const conditions = formValue.formConditions;
     let formData: Condition[];
@@ -63,5 +65,6 @@ export class MainFormComponent implements OnInit {
       formData = conditions.map((condition) => this.transferData(condition));
     }
     this.conditionsService.setConditions(formData);
+    this.processing = false;
   }
 }

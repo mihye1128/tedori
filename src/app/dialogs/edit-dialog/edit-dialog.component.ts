@@ -16,6 +16,7 @@ export class EditDialogComponent implements OnInit {
   areaList: string[] = areaList;
   dependents = this.conditionsService.dependentsCounts;
   maxLength = this.conditionsService.maxLength;
+  processing = false;
 
   form = this.fb.group({
     title: [this.data.title, [Validators.maxLength(this.maxLength.title)]],
@@ -110,12 +111,13 @@ export class EditDialogComponent implements OnInit {
   }
 
   updateCondition() {
+    this.processing = true;
     const formData = this.form.value;
-
     const editedCondition = this.conditionsService.transferData(formData);
     this.conditionsService
       .updateCondition(editedCondition, this.data.id)
       .then(() => {
+        this.processing = false;
         this.dialogRef.close();
       });
   }
