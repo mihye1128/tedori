@@ -33,12 +33,6 @@
     width: 100%;
     input[type='number'] {
       text-align: right;
-      -moz-appearance: textfield;
-    }
-    input[type='number']::-webkit-outer-spin-button,
-    input[type='number']::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
     }
   }
   &__detail {
