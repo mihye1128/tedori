@@ -16,7 +16,7 @@ export class MainFormComponent implements OnInit {
   uid: string;
   formGroup: FormGroup;
   areaList: string[] = areaList;
-  dependentsCounts = [...Array(7)].map((_, i) => i + 1);
+  dependentsCounts = this.conditionsService.dependentsCounts;
 
   private conditionsCount = 2;
 

@@ -14,6 +14,8 @@ import { AuthService } from './auth.service';
 export class ConditionsService {
   conditions = new Subject<Condition[]>();
   conditions$ = this.conditions.asObservable();
+
+  dependentsCounts = [...Array(7)].map((_, i) => i + 1);
   maxLength = {
     title: 12,
     base: 8,
