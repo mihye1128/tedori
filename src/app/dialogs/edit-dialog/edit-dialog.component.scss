@@ -19,6 +19,7 @@
 .form {
   padding-bottom: 16px;
   .unit {
+    margin-left: 0.5em;
     opacity: 0.64;
     font-size: 0.8em;
   }
@@ -30,6 +31,9 @@
   }
   &__field {
     width: 100%;
+    input[type='text'] {
+      text-align: right;
+    }
   }
   &__detail {
     @include sm {
@@ -52,6 +56,9 @@
   }
   &__item {
     width: 100%;
+    &:not(:first-of-type) {
+      margin-top: 8px;
+    }
     .condition-radio + &:not(.condition-radio) {
       margin-top: 32px;
     }
