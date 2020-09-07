@@ -40,6 +40,7 @@
   max-width: 600px;
   margin: 0 auto;
   .unit {
+    margin-left: 0.5em;
     opacity: 0.64;
     font-size: 0.8em;
   }
@@ -49,8 +50,14 @@
     font-weight: normal;
     background-color: $color-base;
   }
+  &__title-field {
+    width: 100%;
+  }
   &__field {
     width: 100%;
+    input[type='text'] {
+      text-align: right;
+    }
   }
   &__detail {
     @include sm {
