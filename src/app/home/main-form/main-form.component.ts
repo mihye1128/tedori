@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Deductions } from 'src/app/interfaces/deductions';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { Condition } from 'src/app/interfaces/condition';
+import { areaList } from 'src/app/models/area-list';
 
 @Component({
   selector: 'app-main-form',
@@ -11,12 +12,11 @@ import { Condition } from 'src/app/interfaces/condition';
   styleUrls: ['./main-form.component.scss'],
 })
 export class MainFormComponent implements OnInit {
-  @Input() rate: Deductions;
-
   user$ = this.authService.afUser$;
   maxLength = this.conditionsService.maxLength;
   uid: string;
   formGroup: FormGroup;
+  areaList: string[] = areaList;
   dependentsCounts = [...Array(7)].map((_, i) => i + 1);
 
   private conditionsCount = 2;
