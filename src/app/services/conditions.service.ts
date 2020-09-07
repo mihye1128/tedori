@@ -60,7 +60,10 @@ export class ConditionsService {
     ],
     travelCostPerDay: [
       '',
-      [Validators.maxLength(this.maxLength.travelCostPerDay)],
+      [
+        Validators.maxLength(this.maxLength.travelCostPerDay),
+        Validators.pattern(/^[0-9]*$/),
+      ],
     ],
     hourPerDay: [
       '',
