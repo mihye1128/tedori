@@ -30,23 +30,71 @@ export class ConditionsService {
   conditionGroup = this.fb.group({
     title: ['', [Validators.maxLength(this.maxLength.title)]],
     type: ['monthly', [Validators.pattern(/monthly|hourly/)]],
-    base: ['', [Validators.maxLength(this.maxLength.base)]],
-    allowance: ['', [Validators.maxLength(this.maxLength.allowance)]],
-    travelCost: ['', [Validators.maxLength(this.maxLength.travelCost)]],
-    basePerHour: ['', [Validators.maxLength(this.maxLength.basePerHour)]],
+    base: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.base),
+        Validators.pattern(/^[0-9]*$/),
+      ],
+    ],
+    allowance: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.allowance),
+        Validators.pattern(/^[0-9]*$/),
+      ],
+    ],
+    travelCost: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.travelCost),
+        Validators.pattern(/^[0-9]*$/),
+      ],
+    ],
+    basePerHour: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.basePerHour),
+        Validators.pattern(/^[0-9]*$/),
+      ],
+    ],
     travelCostPerDay: [
       '',
       [Validators.maxLength(this.maxLength.travelCostPerDay)],
     ],
-    hourPerDay: ['', [Validators.maxLength(this.maxLength.hourPerDay)]],
-    dayPerMonth: ['', [Validators.maxLength(this.maxLength.dayPerMonth)]],
+    hourPerDay: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.hourPerDay),
+        Validators.pattern(/^[0-9]+(\.[0-9]+)?$/),
+      ],
+    ],
+    dayPerMonth: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.dayPerMonth),
+        Validators.pattern(/^[0-9]*$/),
+      ],
+    ],
     ins: [true, []],
     unemploymentIns: [true, []],
     area: ['東京都', []],
     age: ['young', [Validators.pattern(/young|middle|elderly/)]],
     dependents: [0, []],
-    cityTax: ['', [Validators.maxLength(this.maxLength.cityTax)]],
-    otherDeduction: ['', [Validators.maxLength(this.maxLength.otherDeduction)]],
+    cityTax: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.cityTax),
+        Validators.pattern(/^[0-9]*$/),
+      ],
+    ],
+    otherDeduction: [
+      '',
+      [
+        Validators.maxLength(this.maxLength.otherDeduction),
+        Validators.pattern(/^[0-9]*$/),
+      ],
+    ],
   });
 
   constructor(

@@ -96,6 +96,14 @@
                         "
                         >最大{{ maxLength.base }}文字です</mat-error
                       >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('base')
+                            .hasError('pattern')
+                        "
+                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -123,6 +131,14 @@
                         "
                         >最大{{ maxLength.allowance }}文字です</mat-error
                       >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('allowance')
+                            .hasError('pattern')
+                        "
+                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -149,6 +165,14 @@
                             .hasError('maxlength')
                         "
                         >最大{{ maxLength.travelCost }}文字です</mat-error
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('travelCost')
+                            .hasError('pattern')
+                        "
+                        >半角数字・カンマなしで金額を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -179,6 +203,14 @@
                         "
                         >最大{{ maxLength.basePerHour }}文字です</mat-error
                       >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('basePerHour')
+                            .hasError('pattern')
+                        "
+                        >半角数字・カンマなしで金額を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -205,6 +237,14 @@
                             .hasError('maxlength')
                         "
                         >最大{{ maxLength.travelCostPerDay }}文字です</mat-error
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('travelCostPerDay')
+                            .hasError('pattern')
+                        "
+                        >半角数字・カンマなしで金額を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -233,6 +273,14 @@
                         "
                         >最大{{ maxLength.hourPerDay }}文字です</mat-error
                       >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('hourPerDay')
+                            .hasError('pattern')
+                        "
+                        >半角数字で時間を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -259,6 +307,14 @@
                             .hasError('maxlength')
                         "
                         >最大{{ maxLength.dayPerMonth }}文字です</mat-error
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('dayPerMonth')
+                            .hasError('pattern')
+                        "
+                        >半角数字で日数を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -368,6 +424,14 @@
                       "
                       >最大{{ maxLength.cityTax }}文字です</mat-error
                     >
+                    <mat-error
+                      *ngIf="
+                        formConditions.controls[i]
+                          .get('cityTax')
+                          .hasError('pattern')
+                      "
+                      >半角数字・カンマなしで金額を入力してください。</mat-error
+                    >
                   </mat-form-field>
                 </div>
                 <div class="condition__item">
@@ -393,6 +457,14 @@
                           .hasError('maxlength')
                       "
                       >最大{{ maxLength.otherDeduction }}文字です</mat-error
+                    >
+                    <mat-error
+                      *ngIf="
+                        formConditions.controls[i]
+                          .get('otherDeduction')
+                          .hasError('pattern')
+                      "
+                      >半角数字・カンマなしで金額を入力してください。</mat-error
                     >
                   </mat-form-field>
                 </div>
