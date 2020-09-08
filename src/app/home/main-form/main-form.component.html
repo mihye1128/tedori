@@ -37,12 +37,12 @@
                       matInput
                       autocomplete="off"
                       formControlName="title"
-                      [maxlength]="maxLength.title"
+                      [maxlength]="titleMaxLength"
                       #conditionTitle
                     />
                     <mat-hint align="end"
                       >{{ conditionTitle.value.length }} /
-                      {{ maxLength.title }}</mat-hint
+                      {{ titleMaxLength }}</mat-hint
                     >
                     <mat-error
                       *ngIf="
@@ -50,7 +50,7 @@
                           .get('title')
                           .hasError('maxlength')
                       "
-                      >最大{{ maxLength.title }}文字です。</mat-error
+                      >最大{{ titleMaxLength }}文字です。</mat-error
                     >
                   </mat-form-field>
                 </div>
@@ -83,30 +83,23 @@
                         type="number"
                         matInput
                         autocomplete="off"
-                        [maxlength]="maxLength.base"
                         formControlName="base"
                         #base
                       />
                       <span class="unit" matSuffix>円</span>
                       <mat-hint align="end"
-                        >{{ base.value.length }} /
-                        {{ maxLength.base }}</mat-hint
+                        >半角数字を入力してください。</mat-hint
                       >
                       <mat-error
                         *ngIf="
                           formConditions.controls[i]
                             .get('base')
-                            .hasError('maxlength')
+                            .hasError('min') ||
+                          formConditions.controls[i].get('base').hasError('max')
                         "
-                        >最大{{ maxLength.base }}文字です。</mat-error
-                      >
-                      <mat-error
-                        *ngIf="
-                          formConditions.controls[i]
-                            .get('base')
-                            .hasError('pattern')
-                        "
-                        >半角数字で金額を入力してください。</mat-error
+                        >{{ range.base.min | number }}から{{
+                          range.base.max | number
+                        }}までの数字を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -118,30 +111,24 @@
                         type="number"
                         matInput
                         autocomplete="off"
-                        [maxlength]="maxLength.allowance"
                         formControlName="allowance"
-                        #allowance
                       />
                       <span class="unit" matSuffix>円</span>
                       <mat-hint align="end"
-                        >{{ allowance.value.length }} /
-                        {{ maxLength.allowance }}</mat-hint
+                        >半角数字を入力してください。</mat-hint
                       >
                       <mat-error
                         *ngIf="
                           formConditions.controls[i]
                             .get('allowance')
-                            .hasError('maxlength')
-                        "
-                        >最大{{ maxLength.allowance }}文字です。</mat-error
-                      >
-                      <mat-error
-                        *ngIf="
+                            .hasError('min') ||
                           formConditions.controls[i]
                             .get('allowance')
-                            .hasError('pattern')
+                            .hasError('max')
                         "
-                        >半角数字で金額を入力してください。</mat-error
+                        >{{ range.allowance.min | number }}から{{
+                          range.allowance.max | number
+                        }}までの数字を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -153,30 +140,24 @@
                         type="number"
                         matInput
                         autocomplete="off"
-                        [maxlength]="maxLength.travelCost"
                         formControlName="travelCost"
-                        #travelCost
                       />
                       <span class="unit" matSuffix>円</span>
                       <mat-hint align="end"
-                        >{{ travelCost.value.length }} /
-                        {{ maxLength.travelCost }}</mat-hint
+                        >半角数字を入力してください。</mat-hint
                       >
                       <mat-error
                         *ngIf="
                           formConditions.controls[i]
                             .get('travelCost')
-                            .hasError('maxlength')
-                        "
-                        >最大{{ maxLength.travelCost }}文字です。</mat-error
-                      >
-                      <mat-error
-                        *ngIf="
+                            .hasError('min') ||
                           formConditions.controls[i]
                             .get('travelCost')
-                            .hasError('pattern')
+                            .hasError('max')
                         "
-                        >半角数字で金額を入力してください。</mat-error
+                        >{{ range.travelCost.min | number }}から{{
+                          range.travelCost.max | number
+                        }}までの数字を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -190,30 +171,24 @@
                         type="number"
                         matInput
                         autocomplete="off"
-                        [maxlength]="maxLength.basePerHour"
                         formControlName="basePerHour"
-                        #basePerHour
                       />
                       <span class="unit" matSuffix>円</span>
                       <mat-hint align="end"
-                        >{{ basePerHour.value.length }} /
-                        {{ maxLength.basePerHour }}</mat-hint
+                        >半角数字を入力してください。</mat-hint
                       >
                       <mat-error
                         *ngIf="
                           formConditions.controls[i]
                             .get('basePerHour')
-                            .hasError('maxlength')
-                        "
-                        >最大{{ maxLength.basePerHour }}文字です。</mat-error
-                      >
-                      <mat-error
-                        *ngIf="
+                            .hasError('min') ||
                           formConditions.controls[i]
                             .get('basePerHour')
-                            .hasError('pattern')
+                            .hasError('max')
                         "
-                        >半角数字で金額を入力してください。</mat-error
+                        >{{ range.basePerHour.min | number }}から{{
+                          range.basePerHour.max | number
+                        }}までの数字を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -225,32 +200,24 @@
                         type="number"
                         matInput
                         autocomplete="off"
-                        [maxlength]="maxLength.travelCostPerDay"
                         formControlName="travelCostPerDay"
-                        #travelCostPerDay
                       />
                       <span class="unit" matSuffix>円</span>
                       <mat-hint align="end"
-                        >{{ travelCostPerDay.value.length }} /
-                        {{ maxLength.travelCostPerDay }}</mat-hint
+                        >半角数字を入力してください。</mat-hint
                       >
                       <mat-error
                         *ngIf="
                           formConditions.controls[i]
                             .get('travelCostPerDay')
-                            .hasError('maxlength')
-                        "
-                        >最大{{
-                          maxLength.travelCostPerDay
-                        }}文字です。</mat-error
-                      >
-                      <mat-error
-                        *ngIf="
+                            .hasError('min') ||
                           formConditions.controls[i]
                             .get('travelCostPerDay')
-                            .hasError('pattern')
+                            .hasError('max')
                         "
-                        >半角数字で金額を入力してください。</mat-error
+                        >{{ range.travelCostPerDay.min | number }}から{{
+                          range.travelCostPerDay.max | number
+                        }}までの数字を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -262,30 +229,24 @@
                         type="number"
                         matInput
                         autocomplete="off"
-                        [maxlength]="maxLength.hourPerDay"
                         formControlName="hourPerDay"
-                        #hourPerDay
                       />
                       <span class="unit" matSuffix>時間</span>
                       <mat-hint align="end"
-                        >{{ hourPerDay.value.length }} /
-                        {{ maxLength.hourPerDay }}</mat-hint
+                        >半角数字を入力してください。</mat-hint
                       >
                       <mat-error
                         *ngIf="
                           formConditions.controls[i]
                             .get('hourPerDay')
-                            .hasError('maxlength')
-                        "
-                        >最大{{ maxLength.hourPerDay }}文字です。</mat-error
-                      >
-                      <mat-error
-                        *ngIf="
+                            .hasError('min') ||
                           formConditions.controls[i]
                             .get('hourPerDay')
-                            .hasError('pattern')
+                            .hasError('max')
                         "
-                        >半角数字で時間を入力してください。</mat-error
+                        >{{ range.hourPerDay.min | number }}から{{
+                          range.hourPerDay.max | number
+                        }}までの数字を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -297,30 +258,24 @@
                         type="number"
                         matInput
                         autocomplete="off"
-                        [maxlength]="maxLength.dayPerMonth"
                         formControlName="dayPerMonth"
-                        #dayPerMonth
                       />
                       <span class="unit" matSuffix>日</span>
                       <mat-hint align="end"
-                        >{{ dayPerMonth.value.length }} /
-                        {{ maxLength.dayPerMonth }}</mat-hint
+                        >半角数字を入力してください。</mat-hint
                       >
                       <mat-error
                         *ngIf="
                           formConditions.controls[i]
                             .get('dayPerMonth')
-                            .hasError('maxlength')
-                        "
-                        >最大{{ maxLength.dayPerMonth }}文字です。</mat-error
-                      >
-                      <mat-error
-                        *ngIf="
+                            .hasError('min') ||
                           formConditions.controls[i]
                             .get('dayPerMonth')
-                            .hasError('pattern')
+                            .hasError('max')
                         "
-                        >半角数字で日数を入力してください。</mat-error
+                        >{{ range.dayPerMonth.min | number }}から{{
+                          range.dayPerMonth.max | number
+                        }}までの数字を入力してください。</mat-error
                       >
                     </mat-form-field>
                   </div>
@@ -413,30 +368,24 @@
                       type="number"
                       matInput
                       autocomplete="off"
-                      [maxlength]="maxLength.cityTax"
                       formControlName="cityTax"
-                      #cityTax
                     />
                     <span class="unit" matSuffix>円</span>
                     <mat-hint align="end"
-                      >{{ cityTax.value.length }} /
-                      {{ maxLength.cityTax }}</mat-hint
+                      >半角数字を入力してください。</mat-hint
                     >
                     <mat-error
                       *ngIf="
                         formConditions.controls[i]
                           .get('cityTax')
-                          .hasError('maxlength')
-                      "
-                      >最大{{ maxLength.cityTax }}文字です。</mat-error
-                    >
-                    <mat-error
-                      *ngIf="
+                          .hasError('min') ||
                         formConditions.controls[i]
                           .get('cityTax')
-                          .hasError('pattern')
+                          .hasError('max')
                       "
-                      >半角数字で金額を入力してください。</mat-error
+                      >{{ range.cityTax.min | number }}から{{
+                        range.cityTax.max | number
+                      }}までの数字を入力してください。</mat-error
                     >
                   </mat-form-field>
                 </div>
@@ -447,30 +396,24 @@
                       type="number"
                       matInput
                       autocomplete="off"
-                      [maxlength]="maxLength.otherDeduction"
                       formControlName="otherDeduction"
-                      #otherDeduction
                     />
                     <span class="unit" matSuffix>円</span>
                     <mat-hint align="end"
-                      >{{ otherDeduction.value.length }} /
-                      {{ maxLength.otherDeduction }}</mat-hint
+                      >半角数字を入力してください。</mat-hint
                     >
                     <mat-error
                       *ngIf="
                         formConditions.controls[i]
                           .get('otherDeduction')
-                          .hasError('maxlength')
-                      "
-                      >最大{{ maxLength.otherDeduction }}文字です。</mat-error
-                    >
-                    <mat-error
-                      *ngIf="
+                          .hasError('min') ||
                         formConditions.controls[i]
                           .get('otherDeduction')
-                          .hasError('pattern')
+                          .hasError('max')
                       "
-                      >半角数字で金額を入力してください。</mat-error
+                      >{{ range.otherDeduction.min | number }}から{{
+                        range.otherDeduction.max | number
+                      }}までの数字を入力してください。</mat-error
                     >
                   </mat-form-field>
                 </div>

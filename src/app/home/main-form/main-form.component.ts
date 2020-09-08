@@ -12,7 +12,8 @@ import { areaList } from 'src/app/models/area-list';
 })
 export class MainFormComponent implements OnInit {
   user$ = this.authService.afUser$;
-  maxLength = this.conditionsService.maxLength;
+  titleMaxLength = this.conditionsService.titleMaxLength;
+  range = this.conditionsService.range;
   uid: string;
   formGroup: FormGroup;
   areaList: string[] = areaList;
@@ -45,55 +46,55 @@ export class MainFormComponent implements OnInit {
     });
     for (let i = 0; i < this.conditionsCount; i++) {
       const conditionGroup = this.fb.group({
-        title: ['', [Validators.maxLength(this.maxLength.title)]],
+        title: ['', [Validators.maxLength(this.titleMaxLength)]],
         type: ['monthly', [Validators.pattern(/monthly|hourly/)]],
         base: [
           '',
           [
-            Validators.maxLength(this.maxLength.base),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.base.min),
+            Validators.max(this.range.base.max),
           ],
         ],
         allowance: [
           '',
           [
-            Validators.maxLength(this.maxLength.allowance),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.allowance.min),
+            Validators.max(this.range.allowance.max),
           ],
         ],
         travelCost: [
           '',
           [
-            Validators.maxLength(this.maxLength.travelCost),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.travelCost.min),
+            Validators.max(this.range.travelCost.max),
           ],
         ],
         basePerHour: [
           '',
           [
-            Validators.maxLength(this.maxLength.basePerHour),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.basePerHour.min),
+            Validators.max(this.range.basePerHour.max),
           ],
         ],
         travelCostPerDay: [
           '',
           [
-            Validators.maxLength(this.maxLength.travelCostPerDay),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.travelCostPerDay.min),
+            Validators.max(this.range.travelCostPerDay.max),
           ],
         ],
         hourPerDay: [
           '',
           [
-            Validators.maxLength(this.maxLength.hourPerDay),
-            Validators.pattern(/^[0-9]+(\.[0-9]+)?$/),
+            Validators.min(this.range.hourPerDay.min),
+            Validators.max(this.range.hourPerDay.max),
           ],
         ],
         dayPerMonth: [
           '',
           [
-            Validators.maxLength(this.maxLength.dayPerMonth),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.dayPerMonth.min),
+            Validators.max(this.range.dayPerMonth.max),
           ],
         ],
         ins: [true, []],
@@ -104,15 +105,15 @@ export class MainFormComponent implements OnInit {
         cityTax: [
           '',
           [
-            Validators.maxLength(this.maxLength.cityTax),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.cityTax.min),
+            Validators.max(this.range.cityTax.max),
           ],
         ],
         otherDeduction: [
           '',
           [
-            Validators.maxLength(this.maxLength.otherDeduction),
-            Validators.pattern(/^[0-9]*$/),
+            Validators.min(this.range.otherDeduction.min),
+            Validators.max(this.range.otherDeduction.max),
           ],
         ],
       });

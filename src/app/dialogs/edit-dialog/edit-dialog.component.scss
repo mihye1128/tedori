@@ -57,7 +57,7 @@
   &__item {
     width: 100%;
     &:not(:first-of-type) {
-      margin-top: 8px;
+      margin-top: 16px;
     }
     .condition-radio + &:not(.condition-radio) {
       margin-top: 32px;

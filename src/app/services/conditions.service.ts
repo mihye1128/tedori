@@ -16,6 +16,7 @@ export class ConditionsService {
   conditions$ = this.conditions.asObservable();
 
   dependentsCounts = [...Array(7)].map((_, i) => i + 1);
+  titleMaxLength = 12;
   maxLength = {
     title: 12,
     base: 8,
@@ -27,6 +28,44 @@ export class ConditionsService {
     dayPerMonth: 2,
     cityTax: 8,
     otherDeduction: 8,
+  };
+  range = {
+    base: {
+      min: 0,
+      max: 9999999,
+    },
+    allowance: {
+      min: 0,
+      max: 9999999,
+    },
+    travelCost: {
+      min: 0,
+      max: 999999,
+    },
+    basePerHour: {
+      min: 0,
+      max: 999999,
+    },
+    travelCostPerDay: {
+      min: 0,
+      max: 99999,
+    },
+    hourPerDay: {
+      min: 1,
+      max: 24,
+    },
+    dayPerMonth: {
+      min: 1,
+      max: 31,
+    },
+    cityTax: {
+      min: 0,
+      max: 9999999,
+    },
+    otherDeduction: {
+      min: 0,
+      max: 9999999,
+    },
   };
 
   constructor(

@@ -15,59 +15,60 @@ export class EditDialogComponent implements OnInit {
   rate$ = this.rateService.rate$;
   areaList: string[] = areaList;
   dependents = this.conditionsService.dependentsCounts;
-  maxLength = this.conditionsService.maxLength;
+  titleMaxLength = this.conditionsService.titleMaxLength;
+  range = this.conditionsService.range;
   processing = false;
 
   form = this.fb.group({
-    title: [this.data.title, [Validators.maxLength(this.maxLength.title)]],
+    title: [this.data.title, [Validators.maxLength(this.titleMaxLength)]],
     type: [this.data.type, [Validators.pattern(/monthly|hourly/)]],
     base: [
       this.data.base,
       [
-        Validators.maxLength(this.maxLength.base),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.base.min),
+        Validators.max(this.range.base.max),
       ],
     ],
     allowance: [
       this.data.allowance,
       [
-        Validators.maxLength(this.maxLength.allowance),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.allowance.min),
+        Validators.max(this.range.allowance.max),
       ],
     ],
     travelCost: [
       this.data.travelCost,
       [
-        Validators.maxLength(this.maxLength.travelCost),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.travelCost.min),
+        Validators.max(this.range.travelCost.max),
       ],
     ],
     basePerHour: [
       this.data.basePerHour,
       [
-        Validators.maxLength(this.maxLength.basePerHour),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.basePerHour.min),
+        Validators.max(this.range.basePerHour.max),
       ],
     ],
     travelCostPerDay: [
       this.data.travelCostPerDay,
       [
-        Validators.maxLength(this.maxLength.travelCostPerDay),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.travelCostPerDay.min),
+        Validators.max(this.range.travelCostPerDay.max),
       ],
     ],
     hourPerDay: [
       this.data.hourPerDay,
       [
-        Validators.maxLength(this.maxLength.hourPerDay),
-        Validators.pattern(/^[0-9]+(\.[0-9]+)?$/),
+        Validators.min(this.range.hourPerDay.min),
+        Validators.max(this.range.hourPerDay.max),
       ],
     ],
     dayPerMonth: [
       this.data.dayPerMonth,
       [
-        Validators.maxLength(this.maxLength.dayPerMonth),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.dayPerMonth.min),
+        Validators.max(this.range.dayPerMonth.max),
       ],
     ],
     ins: [this.data.ins, []],
@@ -78,15 +79,15 @@ export class EditDialogComponent implements OnInit {
     cityTax: [
       this.data.cityTax,
       [
-        Validators.maxLength(this.maxLength.cityTax),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.cityTax.min),
+        Validators.max(this.range.cityTax.max),
       ],
     ],
     otherDeduction: [
       this.data.otherDeduction,
       [
-        Validators.maxLength(this.maxLength.otherDeduction),
-        Validators.pattern(/^[0-9]*$/),
+        Validators.min(this.range.otherDeduction.min),
+        Validators.max(this.range.otherDeduction.max),
       ],
     ],
   });
