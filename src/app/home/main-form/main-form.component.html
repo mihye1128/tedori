@@ -38,11 +38,12 @@
                       autocomplete="off"
                       formControlName="title"
                       [maxlength]="titleMaxLength"
-                      #conditionTitle
                     />
                     <mat-hint align="end"
-                      >{{ conditionTitle.value.length }} /
-                      {{ titleMaxLength }}</mat-hint
+                      >{{
+                        formConditions.controls[i].get('title').value.length
+                      }}
+                      / {{ titleMaxLength }}</mat-hint
                     >
                     <mat-error
                       *ngIf="
