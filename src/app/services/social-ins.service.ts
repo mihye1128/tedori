@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ByArea } from '../interfaces/by-area';
 import { FeeTable } from '../interfaces/fee-table';
-import { standardMonthlyFeeTable } from '../models/standard-monthly-fee-table';
+import { STANDARD_MONTHLY_FEE_TABLE } from '../models/standard-monthly-fee-table';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocialInsService {
-  standardMonthlyFeeTable: FeeTable[] = standardMonthlyFeeTable;
+  standardMonthlyFeeTable: FeeTable[] = STANDARD_MONTHLY_FEE_TABLE;
 
   constructor() {}
 

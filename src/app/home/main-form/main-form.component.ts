@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { Condition } from 'src/app/interfaces/condition';
-import { areaList } from 'src/app/models/area-list';
+import { AREA_LIST } from 'src/app/models/area-list';
 
 @Component({
   selector: 'app-main-form',
@@ -16,7 +16,7 @@ export class MainFormComponent implements OnInit {
   range = this.conditionsService.range;
   uid: string;
   formGroup: FormGroup;
-  areaList: string[] = areaList;
+  areaList: string[] = AREA_LIST;
   dependentsCounts = this.conditionsService.dependentsCounts;
   processing = false;
 

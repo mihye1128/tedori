@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { RateService } from 'src/app/services/rate.service';
 import { Condition } from 'src/app/interfaces/condition';
 import { ConditionsService } from 'src/app/services/conditions.service';
-import { areaList } from 'src/app/models/area-list';
+import { AREA_LIST } from 'src/app/models/area-list';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -13,7 +13,7 @@ import { areaList } from 'src/app/models/area-list';
 })
 export class EditDialogComponent implements OnInit {
   rate$ = this.rateService.rate$;
-  areaList: string[] = areaList;
+  areaList: string[] = AREA_LIST;
   dependents = this.conditionsService.dependentsCounts;
   titleMaxLength = this.conditionsService.titleMaxLength;
   range = this.conditionsService.range;

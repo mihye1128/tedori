@@ -1,4 +1,4 @@
-export const areaList = [
+export const AREA_LIST = [
   '北海道',
   '青森県',
   '岩手県',
