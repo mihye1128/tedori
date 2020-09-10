@@ -1,4 +1,4 @@
-export const standardMonthlyFeeTable = [
+export const STANDARD_MONTHLY_FEE_TABLE = [
   {
     min: 0,
     max: 1,

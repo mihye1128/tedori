@@ -36,21 +36,25 @@
 
 .condition {
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
   max-width: 600px;
   margin: 0 auto;
   .unit {
+    margin-left: 0.5em;
     opacity: 0.64;
     font-size: 0.8em;
   }
   &__title {
-    margin: 0 0 16px;
-    padding: 12px 8px;
+    margin: 0 0 24px;
+    padding: 12px 16px;
     font-weight: normal;
     background-color: $color-base;
   }
   &__field {
     width: 100%;
+    input[type='number'] {
+      text-align: right;
+    }
   }
   &__detail {
     @include sm {
@@ -74,6 +78,9 @@
   }
   &__item {
     width: 100%;
+    &:not(:first-of-type) {
+      margin-top: 16px;
+    }
     .condition-radio + &:not(.condition-radio) {
       margin-top: 32px;
     }

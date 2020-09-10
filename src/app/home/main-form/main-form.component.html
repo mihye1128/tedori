@@ -25,19 +25,36 @@
           <mat-divider></mat-divider>
           <div class="condition">
             <h3 class="condition__title" *ngIf="multi.checked">
-              条件 {{ i + 1 }}
+              {{ i + 1 }} 件目
             </h3>
-            <mat-form-field class="condition__field">
-              <mat-label>条件名</mat-label>
-              <input
-                type="text"
-                matInput
-                autocomplete="off"
-                formControlName="title"
-              />
-            </mat-form-field>
             <div class="condition__detail">
               <div class="condition__income">
+                <div class="condition__item">
+                  <mat-form-field class="condition__field">
+                    <mat-label>条件名</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      autocomplete="off"
+                      formControlName="title"
+                      [maxlength]="titleMaxLength"
+                    />
+                    <mat-hint align="end"
+                      >{{
+                        formConditions.controls[i].get('title').value.length
+                      }}
+                      / {{ titleMaxLength }}</mat-hint
+                    >
+                    <mat-error
+                      *ngIf="
+                        formConditions.controls[i]
+                          .get('title')
+                          .hasError('maxlength')
+                      "
+                      >最大{{ titleMaxLength }}文字です。</mat-error
+                    >
+                  </mat-form-field>
+                </div>
                 <div class="condition__item">
                   <mat-radio-group
                     aria-label=""
@@ -64,12 +81,27 @@
                       <mat-label>基本給</mat-label>
                       <input
                         placeholder="320000"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         formControlName="base"
+                        #base
                       />
                       <span class="unit" matSuffix>円</span>
+                      <mat-hint align="end"
+                        >半角数字を入力してください。</mat-hint
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('base')
+                            .hasError('min') ||
+                          formConditions.controls[i].get('base').hasError('max')
+                        "
+                        >{{ range.base.min | number }}から{{
+                          range.base.max | number
+                        }}までの数字を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -77,12 +109,28 @@
                       <mat-label>諸手当（課税分）</mat-label>
                       <input
                         placeholder="40000"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         formControlName="allowance"
                       />
                       <span class="unit" matSuffix>円</span>
+                      <mat-hint align="end"
+                        >半角数字を入力してください。</mat-hint
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('allowance')
+                            .hasError('min') ||
+                          formConditions.controls[i]
+                            .get('allowance')
+                            .hasError('max')
+                        "
+                        >{{ range.allowance.min | number }}から{{
+                          range.allowance.max | number
+                        }}までの数字を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -90,12 +138,28 @@
                       <mat-label>交通費（非課税）</mat-label>
                       <input
                         placeholder="15000"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         formControlName="travelCost"
                       />
                       <span class="unit" matSuffix>円</span>
+                      <mat-hint align="end"
+                        >半角数字を入力してください。</mat-hint
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('travelCost')
+                            .hasError('min') ||
+                          formConditions.controls[i]
+                            .get('travelCost')
+                            .hasError('max')
+                        "
+                        >{{ range.travelCost.min | number }}から{{
+                          range.travelCost.max | number
+                        }}までの数字を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                 </ng-container>
@@ -105,12 +169,28 @@
                       <mat-label>時給</mat-label>
                       <input
                         placeholder="1400"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         formControlName="basePerHour"
                       />
                       <span class="unit" matSuffix>円</span>
+                      <mat-hint align="end"
+                        >半角数字を入力してください。</mat-hint
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('basePerHour')
+                            .hasError('min') ||
+                          formConditions.controls[i]
+                            .get('basePerHour')
+                            .hasError('max')
+                        "
+                        >{{ range.basePerHour.min | number }}から{{
+                          range.basePerHour.max | number
+                        }}までの数字を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -118,12 +198,28 @@
                       <mat-label>1日あたりの交通費</mat-label>
                       <input
                         placeholder="400"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         formControlName="travelCostPerDay"
                       />
                       <span class="unit" matSuffix>円</span>
+                      <mat-hint align="end"
+                        >半角数字を入力してください。</mat-hint
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('travelCostPerDay')
+                            .hasError('min') ||
+                          formConditions.controls[i]
+                            .get('travelCostPerDay')
+                            .hasError('max')
+                        "
+                        >{{ range.travelCostPerDay.min | number }}から{{
+                          range.travelCostPerDay.max | number
+                        }}までの数字を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -131,12 +227,28 @@
                       <mat-label>1日あたりの就業時間</mat-label>
                       <input
                         placeholder="5"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         formControlName="hourPerDay"
                       />
                       <span class="unit" matSuffix>時間</span>
+                      <mat-hint align="end"
+                        >半角数字を入力してください。</mat-hint
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('hourPerDay')
+                            .hasError('min') ||
+                          formConditions.controls[i]
+                            .get('hourPerDay')
+                            .hasError('max')
+                        "
+                        >{{ range.hourPerDay.min | number }}から{{
+                          range.hourPerDay.max | number
+                        }}までの数字を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                   <div class="condition__item">
@@ -144,12 +256,28 @@
                       <mat-label>1ヶ月あたりの就業日数</mat-label>
                       <input
                         placeholder="15"
-                        type="text"
+                        type="number"
                         matInput
                         autocomplete="off"
                         formControlName="dayPerMonth"
                       />
                       <span class="unit" matSuffix>日</span>
+                      <mat-hint align="end"
+                        >半角数字を入力してください。</mat-hint
+                      >
+                      <mat-error
+                        *ngIf="
+                          formConditions.controls[i]
+                            .get('dayPerMonth')
+                            .hasError('min') ||
+                          formConditions.controls[i]
+                            .get('dayPerMonth')
+                            .hasError('max')
+                        "
+                        >{{ range.dayPerMonth.min | number }}から{{
+                          range.dayPerMonth.max | number
+                        }}までの数字を入力してください。</mat-error
+                      >
                     </mat-form-field>
                   </div>
                 </ng-container>
@@ -200,10 +328,10 @@
                       <mat-label>就業地</mat-label>
                       <mat-select formControlName="area">
                         <mat-option
-                          *ngFor="let area of rate.socialIns.healthInsRateList"
-                          [value]="area.area"
+                          *ngFor="let area of areaList"
+                          [value]="area"
                         >
-                          {{ area.area }}
+                          {{ area }}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -238,24 +366,56 @@
                     <mat-label>住民税</mat-label>
                     <input
                       placeholder="20000"
-                      type="text"
+                      type="number"
                       matInput
                       autocomplete="off"
                       formControlName="cityTax"
                     />
                     <span class="unit" matSuffix>円</span>
+                    <mat-hint align="end"
+                      >半角数字を入力してください。</mat-hint
+                    >
+                    <mat-error
+                      *ngIf="
+                        formConditions.controls[i]
+                          .get('cityTax')
+                          .hasError('min') ||
+                        formConditions.controls[i]
+                          .get('cityTax')
+                          .hasError('max')
+                      "
+                      >{{ range.cityTax.min | number }}から{{
+                        range.cityTax.max | number
+                      }}までの数字を入力してください。</mat-error
+                    >
                   </mat-form-field>
                 </div>
                 <div class="condition__item">
                   <mat-form-field class="condition__field">
                     <mat-label>その他控除</mat-label>
                     <input
-                      type="text"
+                      type="number"
                       matInput
                       autocomplete="off"
                       formControlName="otherDeduction"
                     />
                     <span class="unit" matSuffix>円</span>
+                    <mat-hint align="end"
+                      >半角数字を入力してください。</mat-hint
+                    >
+                    <mat-error
+                      *ngIf="
+                        formConditions.controls[i]
+                          .get('otherDeduction')
+                          .hasError('min') ||
+                        formConditions.controls[i]
+                          .get('otherDeduction')
+                          .hasError('max')
+                      "
+                      >{{ range.otherDeduction.min | number }}から{{
+                        range.otherDeduction.max | number
+                      }}までの数字を入力してください。</mat-error
+                    >
                   </mat-form-field>
                 </div>
               </div>
@@ -266,7 +426,12 @@
     </ng-container>
   </mat-card>
   <div class="form__actions">
-    <button mat-raised-button color="accent" class="form__submit-btn">
+    <button
+      mat-raised-button
+      [disabled]="formGroup.invalid || formGroup.pristine || processing"
+      color="accent"
+      class="form__submit-btn"
+    >
       計算する
     </button>
   </div>

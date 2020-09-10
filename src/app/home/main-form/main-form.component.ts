@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { Condition } from 'src/app/interfaces/condition';
+import { AREA_LIST } from 'src/app/models/area-list';
 
 @Component({
   selector: 'app-main-form',
@@ -11,12 +11,14 @@ import { Condition } from 'src/app/interfaces/condition';
   styleUrls: ['./main-form.component.scss'],
 })
 export class MainFormComponent implements OnInit {
-  @Input() rate: Deductions;
-
   user$ = this.authService.afUser$;
+  titleMaxLength = this.conditionsService.titleMaxLength;
+  range = this.conditionsService.range;
   uid: string;
   formGroup: FormGroup;
-  dependentsCounts = [...Array(7)].map((_, i) => i + 1);
+  areaList: string[] = AREA_LIST;
+  dependentsCounts = this.conditionsService.dependentsCounts;
+  processing = false;
 
   private conditionsCount = 2;
 
@@ -44,60 +46,87 @@ export class MainFormComponent implements OnInit {
     });
     for (let i = 0; i < this.conditionsCount; i++) {
       const conditionGroup = this.fb.group({
-        title: ['', [Validators.maxLength(20)]],
+        title: ['', [Validators.maxLength(this.titleMaxLength)]],
         type: ['monthly', [Validators.pattern(/monthly|hourly/)]],
-        base: ['', [Validators.maxLength(8)]],
-        allowance: ['', [Validators.maxLength(8)]],
-        travelCost: ['', [Validators.maxLength(7)]],
-        basePerHour: ['', [Validators.maxLength(6)]],
-        travelCostPerDay: ['', [Validators.maxLength(5)]],
-        hourPerDay: ['', [Validators.maxLength(2)]],
-        dayPerMonth: ['', [Validators.maxLength(2)]],
+        base: [
+          '',
+          [
+            Validators.min(this.range.base.min),
+            Validators.max(this.range.base.max),
+          ],
+        ],
+        allowance: [
+          '',
+          [
+            Validators.min(this.range.allowance.min),
+            Validators.max(this.range.allowance.max),
+          ],
+        ],
+        travelCost: [
+          '',
+          [
+            Validators.min(this.range.travelCost.min),
+            Validators.max(this.range.travelCost.max),
+          ],
+        ],
+        basePerHour: [
+          '',
+          [
+            Validators.min(this.range.basePerHour.min),
+            Validators.max(this.range.basePerHour.max),
+          ],
+        ],
+        travelCostPerDay: [
+          '',
+          [
+            Validators.min(this.range.travelCostPerDay.min),
+            Validators.max(this.range.travelCostPerDay.max),
+          ],
+        ],
+        hourPerDay: [
+          '',
+          [
+            Validators.min(this.range.hourPerDay.min),
+            Validators.max(this.range.hourPerDay.max),
+          ],
+        ],
+        dayPerMonth: [
+          '',
+          [
+            Validators.min(this.range.dayPerMonth.min),
+            Validators.max(this.range.dayPerMonth.max),
+          ],
+        ],
         ins: [true, []],
         unemploymentIns: [true, []],
         area: ['東京都', []],
         age: ['young', [Validators.pattern(/young|middle|elderly/)]],
         dependents: [0, []],
-        cityTax: ['', []],
-        otherDeduction: ['', [Validators.maxLength(8)]],
+        cityTax: [
+          '',
+          [
+            Validators.min(this.range.cityTax.min),
+            Validators.max(this.range.cityTax.max),
+          ],
+        ],
+        otherDeduction: [
+          '',
+          [
+            Validators.min(this.range.otherDeduction.min),
+            Validators.max(this.range.otherDeduction.max),
+          ],
+        ],
       });
       this.formConditions.push(conditionGroup);
     }
   }
 
   transferData(condition: Condition): Condition {
-    const base = condition.type === 'monthly' ? +condition.base : 0;
-    const allowance = condition.type === 'monthly' ? +condition.allowance : 0;
-    const travelCost = condition.type === 'monthly' ? +condition.travelCost : 0;
-    const basePerHour =
-      condition.type === 'hourly' ? +condition.basePerHour : 0;
-    const travelCostPerDay =
-      condition.type === 'hourly' ? +condition.travelCostPerDay : 0;
-    const hourPerDay = condition.type === 'hourly' ? +condition.hourPerDay : 0;
-    const dayPerMonth =
-      condition.type === 'hourly' ? +condition.dayPerMonth : 0;
-    return {
-      title: condition.title,
-      type: condition.type,
-      base,
-      allowance,
-      travelCost,
-      basePerHour,
-      travelCostPerDay,
-      hourPerDay,
-      dayPerMonth,
-      ins: condition.ins,
-      unemploymentIns: condition.unemploymentIns,
-      area: condition.area,
-      age: condition.age,
-      dependents: condition.dependents,
-      cityTax: +condition.cityTax,
-      otherDeduction: +condition.otherDeduction,
-      userId: this.authService.uid,
-    };
+    return this.conditionsService.transferData(condition);
   }
 
   submit() {
+    this.processing = true;
     const formValue = this.formGroup.value;
     const conditions = formValue.formConditions;
     let formData: Condition[];
@@ -108,5 +137,6 @@ export class MainFormComponent implements OnInit {
       formData = conditions.map((condition) => this.transferData(condition));
     }
     this.conditionsService.setConditions(formData);
+    this.processing = false;
   }
 }
