@@ -1,0 +1,59 @@
+<div class="container">
+  <h2 class="main-title">給与所得の源泉徴収税額表（月額表）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2" colspan="2">
+            社会保険料等控除後の<br />給与等の金額
+          </th>
+          <th colspan="8">扶養親族等の数</th>
+        </tr>
+        <tr>
+          <th>0<span class="unit">人</span></th>
+          <ng-container
+            *ngFor="let count of condetionsService.dependentsCounts"
+          >
+            <th>{{ count }}<span class="unit">人</span></th>
+          </ng-container>
+        </tr>
+        <tr>
+          <th>以上<span class="unit">（単位：円）</span></th>
+          <th>未満<span class="unit">（単位：円）</span></th>
+          <th colspan="8">税額<span class="unit">（単位：円）</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let fee of nationalTaxTable.table">
+          <tr>
+            <ng-container *ngIf="fee.rate; else standard">
+              <th colspan="2">
+                {{ fee.min | number }} <span class="unit spacer">円</span>
+              </th>
+            </ng-container>
+            <ng-template #standard>
+              <th>{{ fee.min | number }}</th>
+              <th>{{ fee.max | number }}</th>
+            </ng-template>
+            <td *ngFor="let tax of fee.tax">{{ tax | number }}</td>
+          </tr>
+          <tr *ngIf="fee.rate">
+            <th colspan="2">
+              {{ fee.min | number }} <span class="unit spacer-half">円 超</span
+              ><br *ngIf="fee.max" />
+              <ng-container *ngIf="fee.max">
+                {{ fee.max | number }} <span class="unit">円 未満</span>
+              </ng-container>
+            </th>
+            <td colspan="8" class="text-center">
+              <em>{{ fee.min | number }}円の場合の税額</em
+              >に、社会保険料控除後の給与等の金額のうち<br />
+              <em>{{ fee.min | number }}円を超える金額の{{ fee.rate }}％</em
+              >に相当する金額を<em>加算</em>した金額
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

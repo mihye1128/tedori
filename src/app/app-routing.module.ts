@@ -32,6 +32,13 @@ const routes: Routes = [
       import('./terms/terms.module').then((m) => m.TermsModule),
   },
   {
+    path: 'national-tax-table',
+    loadChildren: () =>
+      import('./national-tax-table/national-tax-table.module').then(
+        (m) => m.NationalTaxTableModule
+      ),
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },
