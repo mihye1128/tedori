@@ -1276,6 +1276,7 @@ export const NATIONAL_TAX_TABLE = {
     },
     {
       min: 3500000,
+      max: 999999999,
       tax: [
         1125620,
         1119150,
