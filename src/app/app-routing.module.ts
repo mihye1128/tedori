@@ -32,10 +32,10 @@ const routes: Routes = [
       import('./terms/terms.module').then((m) => m.TermsModule),
   },
   {
-    path: 'national-tax-table',
+    path: 'national-tax',
     loadChildren: () =>
-      import('./national-tax-table/national-tax-table.module').then(
-        (m) => m.NationalTaxTableModule
+      import('./national-tax/national-tax.module').then(
+        (m) => m.NationalTaxModule
       ),
   },
   {

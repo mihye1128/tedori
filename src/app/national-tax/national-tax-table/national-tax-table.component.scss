@@ -3,17 +3,18 @@
 
 :host {
   display: block;
-  padding: 40px 0;
-  @include sm {
-    padding: 80px 0;
+  margin-top: 40px;
+  @include md {
+    margin-top: 80px;
   }
 }
+
 .table-wrap {
   overflow: auto;
   white-space: nowrap;
   margin-top: 32px;
   width: calc(100vw - 32px);
-  max-width: 1024px;
+  max-width: 720px;
   @include sm {
     margin-top: 40px;
     width: calc(100vw - 48px);
@@ -32,15 +33,12 @@ table {
   font-size: 12px;
   border-collapse: collapse;
   border-spacing: 0;
-  @include sm {
-    font-size: 14px;
-  }
 }
 th,
 td {
   border: 1px solid $color-font-400;
   font-weight: normal;
-  padding: 10px 8px;
+  padding: 8px;
 }
 
 thead {
@@ -66,7 +64,6 @@ tbody {
 .unit {
   display: inline-block;
   font-size: 0.75em;
-  margin-left: 2px;
 }
 .spacer {
   margin-right: 2.25em;

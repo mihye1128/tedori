@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NationalTaxTableComponent } from './national-tax-table/national-tax-table.component';
+import { NationalTaxComponent } from './national-tax/national-tax.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: NationalTaxTableComponent,
+    component: NationalTaxComponent,
   },
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class NationalTaxTableRoutingModule {}
+export class NationalTaxRoutingModule {}

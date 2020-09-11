@@ -1,0 +1,64 @@
+@import 'variables';
+@import 'mixins';
+
+.calc {
+  margin: 0 auto;
+  max-width: 400px;
+  &__body {
+    margin-top: 20px;
+    @include md {
+      margin-top: 40px;
+    }
+  }
+  &__field {
+    width: 100%;
+    &:not(:first-of-type) {
+      margin-top: 20px;
+    }
+    input[type='number'] {
+      text-align: right;
+    }
+    .unit {
+      margin-left: 0.5em;
+      opacity: 0.64;
+      font-size: 0.8em;
+    }
+  }
+  &__action {
+    text-align: center;
+    @include md {
+      margin-top: 20px;
+    }
+    button {
+      color: #fff;
+    }
+  }
+}
+.result {
+  margin-top: 30px;
+  border: 1px solid $color-font-400;
+  text-align: center;
+  display: flex;
+  @include md {
+    margin-top: 40px;
+  }
+  &__title {
+    background-color: $color-base;
+    padding: 12px 16px;
+    width: 134px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__value {
+    border-left: 1px solid $color-font-400;
+    margin: 0;
+    padding: 12px 16px;
+    width: calc(100% - 134px);
+    text-align: right;
+    font-size: 20px;
+    .unit {
+      font-size: 0.5em;
+    }
+  }
+}

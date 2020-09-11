@@ -1,0 +1,31 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { NationalTaxRoutingModule } from './national-tax-routing.module';
+import { NationalTaxComponent } from './national-tax/national-tax.component';
+import { NationalTaxTableComponent } from './national-tax-table/national-tax-table.component';
+import { NationalTaxCalcComponent } from './national-tax-calc/national-tax-calc.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+@NgModule({
+  declarations: [
+    NationalTaxComponent,
+    NationalTaxTableComponent,
+    NationalTaxCalcComponent,
+  ],
+  imports: [
+    CommonModule,
+    NationalTaxRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+  ],
+})
+export class NationalTaxModule {}
