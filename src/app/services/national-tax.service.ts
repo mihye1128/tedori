@@ -10,19 +10,19 @@ export class NationalTaxService {
   constructor() {}
 
   getNationalTax(taxTargetFee: number, dependents: number) {
-    let standard: number;
+    let tax: number;
 
     this.nationalTaxTable.table.forEach((rank, i) => {
       if (taxTargetFee < rank.max && taxTargetFee >= rank.min) {
-        standard = rank.tax[dependents];
+        tax = rank.tax[dependents];
         if (rank.rate) {
-          standard = Math.round(
+          tax = Math.round(
             rank.tax[dependents] + ((taxTargetFee - rank.min) * rank.rate) / 100
           );
         }
       }
     });
 
-    return standard;
+    return tax;
   }
 }
