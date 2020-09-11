@@ -50,7 +50,10 @@ thead {
 tbody {
   tr {
     &:nth-of-type(even) {
-      background-color: rgba(0, 0, 0, 0.025);
+      background-color: #fafafa;
+    }
+    &:hover {
+      background-color: #fff3e0;
     }
   }
   th,
@@ -58,6 +61,11 @@ tbody {
     text-align: right;
     &.text-center {
       text-align: center;
+    }
+  }
+  td {
+    &:hover {
+      background-color: #ffe0b2;
     }
   }
 }
