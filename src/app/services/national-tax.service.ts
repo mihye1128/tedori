@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Condition } from '../interfaces/condition';
 import { NATIONAL_TAX_TABLE } from '../models/national-tax-table';
 
 @Injectable({

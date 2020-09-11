@@ -22,8 +22,4 @@ export interface Deductions {
     workerBurden: number;
     ownerBurden: number;
   };
-  nationalTax: {
-    title: string;
-    url: string;
-  };
 }
