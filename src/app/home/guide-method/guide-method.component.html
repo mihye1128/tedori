@@ -2,10 +2,8 @@
 <dl class="method__data">
   <dt>社会保険料</dt>
   <dd>
-    全国健康保険協会（協会けんぽ）の保険料率を基に算出します。
-    <span>
-      社会保険料の算出に関する詳細は、全国健康保険協会HPの下記のページをご参照ください。
-    </span>
+    全国健康保険協会（協会けんぽ）の保険料率を基に算出します。<br />
+    社会保険料の算出に関する詳細は、全国健康保険協会HPの下記のページをご参照ください。
     <span>
       「<a [href]="rate.socialIns.url" target="_blank">{{
         rate.socialIns.title
@@ -16,10 +14,8 @@
   <dt>労災保険料</dt>
   <dd>
     事業の種類により、労災保険料率は異なります。<br />
-    こちらの試算ツールでは、「その他の各種事業」の保険料率を基に算出します。
-    <span>
-      労災保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
-    </span>
+    こちらの試算ツールでは、「その他の各種事業」の保険料率を基に算出します。<br />
+    労災保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
     <span>
       「<a [href]="rate.compensationIns.url" target="_blank">{{
         rate.compensationIns.title
@@ -30,10 +26,8 @@
   <dt>雇用保険料</dt>
   <dd>
     事業の種類により、雇用保険料率は異なります。<br />
-    こちらの試算ツールでは、「一般の事業」の保険料率を基に算出します。
-    <span>
-      雇用保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
-    </span>
+    こちらの試算ツールでは、「一般の事業」の保険料率を基に算出します。<br />
+    雇用保険料の算出に関する詳細は、厚生労働省HPの下記のページをご参照ください。
     <span>
       「<a [href]="rate.unemploymentIns.url" target="_blank">{{
         rate.unemploymentIns.title
@@ -43,14 +37,11 @@
   </dd>
   <dt>源泉所得税</dt>
   <dd>
-    源泉所得税の計算は、電算機計算の特例に基づいて算出しています。<br />
-    税額表により求めた税額との差額が生じることがありますが、実際の税額は年末調整で精算されます。
+    源泉所得税の計算は、給与所得の源泉徴収税額表（月額表）に基づいて算出しています。<br />
+    源泉所得税額の算出に関する詳細は、国税庁HPの下記のページをご参照ください。
     <span>
-      源泉所得税額の算出に関する詳細は、国税庁HPの下記のページをご参照ください。
-    </span>
-    <span>
-      「<a [href]="rate.nationalTax.url" target="_blank">{{
-        rate.nationalTax.title
+      「<a [href]="nationalTaxTable.url" target="_blank">{{
+        nationalTaxTable.title
       }}</a
       >」
     </span>

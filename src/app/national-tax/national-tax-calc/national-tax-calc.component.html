@@ -1,0 +1,59 @@
+<h2 class="main-title">源泉徴収税額 計算</h2>
+<div class="calc">
+  <form [formGroup]="form" (ngSubmit)="getNationalTax()">
+    <div class="calc__body">
+      <mat-form-field class="calc__field">
+        <mat-label>社会保険料控除後の金額</mat-label>
+        <input
+          placeholder="280000"
+          type="number"
+          matInput
+          autocomplete="off"
+          formControlName="target"
+        />
+        <span class="unit" matSuffix>円</span>
+        <mat-hint align="end">半角数字を入力してください。</mat-hint>
+        <mat-error *ngIf="form.get('target').hasError('required')"
+          >金額を入力してください。</mat-error
+        >
+        <mat-error
+          *ngIf="
+            form.get('target').hasError('min') ||
+            form.get('target').hasError('max')
+          "
+          >{{ range.min | number }}から{{
+            range.max | number
+          }}までの数字を入力してください。</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="calc__field">
+        <mat-label>扶養家族</mat-label>
+        <mat-select formControlName="dependents">
+          <mat-option [value]="0">なし</mat-option>
+          <mat-option
+            *ngFor="let dependent of condetionsService.dependentsCounts"
+            [value]="dependent"
+          >
+            {{ dependent }}人
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="calc__action">
+      <button
+        mat-raised-button
+        [disabled]="form.invalid || form.pristine || processing"
+        color="accent"
+        class="form__submit-btn"
+      >
+        計算する
+      </button>
+    </div>
+    <dl class="result">
+      <dt class="result__title">源泉徴収税額</dt>
+      <dd class="result__value">
+        {{ (result | number) || '-' }} <span class="unit">円</span>
+      </dd>
+    </dl>
+  </form>
+</div>

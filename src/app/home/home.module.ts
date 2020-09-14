@@ -42,7 +42,6 @@ import { HeadComponent } from './head/head.component';
     ReactiveFormsModule,
     MatCardModule,
     MatExpansionModule,
-    HomeRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,

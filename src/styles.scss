@@ -70,6 +70,10 @@ input[type='number']::-webkit-inner-spin-button {
   @include sm {
     font-size: 24px;
   }
+  small {
+    display: inline-block;
+    font-size: 0.75em;
+  }
 }
 .main-sub-title {
   margin: 24px 0 8px;
