@@ -9,6 +9,10 @@ import { ConditionsService } from 'src/app/services/conditions.service';
 })
 export class NationalTaxTableComponent implements OnInit {
   nationalTaxTable = NATIONAL_TAX_TABLE;
+  nationalTaxTableLength: number = this.nationalTaxTable.table.length;
+  nationalTaxBranchPoint: number = this.nationalTaxTable.table[
+    this.nationalTaxTableLength - 1
+  ].min;
 
   constructor(public condetionsService: ConditionsService) {}
 
