@@ -27,7 +27,7 @@ export class NationalTaxCalcComponent implements OnInit {
         Validators.max(this.range.max),
       ],
     ],
-    dependents: [0, []],
+    dependents: 0,
   });
 
   constructor(
