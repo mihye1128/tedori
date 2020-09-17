@@ -123,9 +123,9 @@ export class ConditionsService {
 
   getConditions(uid: string) {
     return this.db
-      .collection<Condition>(`conditions`, (ref) =>
-        ref.where('userId', '==', uid)
-      )
+      .collection<Condition>(`conditions`, (ref) => {
+        return ref.where('userId', '==', uid).orderBy('craetedAt', 'desc');
+      })
       .valueChanges();
   }
 
