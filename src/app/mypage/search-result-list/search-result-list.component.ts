@@ -32,7 +32,7 @@ export class SearchResultListComponent implements OnInit {
   constructor(
     public rateService: RateService,
     private authService: AuthService,
-    private searchService: SearchService,
+    public searchService: SearchService,
     private route: ActivatedRoute
   ) {}
 

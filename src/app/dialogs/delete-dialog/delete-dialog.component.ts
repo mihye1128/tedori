@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ConditionsService } from 'src/app/services/conditions.service';
-import { Router } from '@angular/router';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -16,7 +16,8 @@ export class DeleteDialogComponent implements OnInit {
       id: string;
     },
     private dialogRef: MatDialogRef<DeleteDialogComponent>,
-    private conditionsService: ConditionsService
+    private conditionsService: ConditionsService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {}
@@ -31,6 +32,7 @@ export class DeleteDialogComponent implements OnInit {
 
   deleteCondition() {
     this.conditionsService.deleteCondition(this.data.id).then(() => {
+      this.searchService.deletedIds.push(this.data.id);
       this.dialogRef.close();
     });
   }

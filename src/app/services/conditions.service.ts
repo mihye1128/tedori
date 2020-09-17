@@ -5,7 +5,6 @@ import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -57,7 +56,6 @@ export class ConditionsService {
   };
 
   constructor(
-    private fb: FormBuilder,
     private authService: AuthService,
     private db: AngularFirestore,
     private snackBar: MatSnackBar,
@@ -134,9 +132,6 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .set(condition, { merge: true })
       .then(() => {
-        if (this.router.url.match(/search/)) {
-          this.router.navigateByUrl('/mypage');
-        }
         this.snackBar.open('条件を更新しました。');
       })
       .catch(() => {
@@ -149,9 +144,6 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .delete()
       .then(() => {
-        if (this.router.url.match(/search/)) {
-          this.router.navigateByUrl('/mypage');
-        }
         this.snackBar.open('条件を削除しました。');
       })
       .catch(() => {

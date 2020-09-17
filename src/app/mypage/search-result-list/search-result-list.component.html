@@ -1,12 +1,14 @@
 <div class="condition-list" *ngIf="rateService.rate$ | async as rate">
   <ng-container *ngIf="!loading; else load">
     <div class="condition-list__list" *ngIf="result?.hits.length; else blank">
-      <app-condition-card
-        *ngFor="let condition of result?.hits"
-        [condition]="condition"
-        [rate]="rate"
-        class="condition-list__item"
-      ></app-condition-card>
+      <ng-container *ngFor="let condition of result?.hits">
+        <app-condition-card
+          *ngIf="!searchService.deletedIds.includes(condition.id)"
+          [condition]="condition"
+          [rate]="rate"
+          class="condition-list__item"
+        ></app-condition-card>
+      </ng-container>
     </div>
     <ng-template #blank>
       <p class="condition-list__none">該当する条件はありません。</p>
