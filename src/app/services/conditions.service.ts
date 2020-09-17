@@ -17,18 +17,6 @@ export class ConditionsService {
 
   dependentsCounts = [...Array(7)].map((_, i) => i + 1);
   titleMaxLength = 12;
-  maxLength = {
-    title: 12,
-    base: 8,
-    allowance: 8,
-    travelCost: 6,
-    basePerHour: 6,
-    travelCostPerDay: 5,
-    hourPerDay: 2,
-    dayPerMonth: 2,
-    cityTax: 8,
-    otherDeduction: 8,
-  };
   range = {
     base: {
       min: 0,
