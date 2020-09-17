@@ -173,7 +173,7 @@
                   form.get('hourPerDay').hasError('min') ||
                   form.get('hourPerDay').hasError('max')
                 "
-                >{{ range.hourPerDay.min | number }}から{{
+                >{{ range.hourPerDay.min + 1 | number }}から{{
                   range.hourPerDay.max | number
                 }}までの数字を入力してください。</mat-error
               >
@@ -196,7 +196,7 @@
                   form.get('dayPerMonth').hasError('min') ||
                   form.get('dayPerMonth').hasError('max')
                 "
-                >{{ range.dayPerMonth.min | number }}から{{
+                >{{ range.dayPerMonth.min + 1 | number }}から{{
                   range.dayPerMonth.max | number
                 }}までの数字を入力してください。</mat-error
               >

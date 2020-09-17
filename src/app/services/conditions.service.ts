@@ -38,11 +38,11 @@ export class ConditionsService {
       max: 99999,
     },
     hourPerDay: {
-      min: 1,
+      min: 0,
       max: 24,
     },
     dayPerMonth: {
-      min: 1,
+      min: 0,
       max: 31,
     },
     cityTax: {
