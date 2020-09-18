@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { RateService } from 'src/app/services/rate.service';
+import { ConditionsService } from 'src/app/services/conditions.service';
 
 @Component({
   selector: 'app-search-result-list',
@@ -31,8 +32,9 @@ export class SearchResultListComponent implements OnInit {
 
   constructor(
     public rateService: RateService,
-    private authService: AuthService,
     public searchService: SearchService,
+    private conditionsService: ConditionsService,
+    private authService: AuthService,
     private route: ActivatedRoute
   ) {}
 
@@ -98,5 +100,24 @@ export class SearchResultListComponent implements OnInit {
         this.conditionsList.push(...items);
         this.loading = false;
       });
+  }
+
+  setCondition(condition: Condition) {
+    const updateConditions = this.searchService.updateConditions;
+    if (
+      updateConditions.find(
+        (updateConditionData) => updateConditionData.id === condition.id
+      )
+    ) {
+      let updateCondition: Condition;
+      updateConditions.map((updateConditionData) => {
+        if (updateConditionData.id === condition.id) {
+          updateCondition = updateConditionData;
+        }
+      });
+      return updateCondition;
+    } else {
+      return condition;
+    }
   }
 }

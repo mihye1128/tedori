@@ -16,6 +16,7 @@ export class SearchService {
   index = {
     condition: searchClient.initIndex('conditions'),
   };
+  updateConditions: Condition[] = [];
   deletedIds: string[] = [];
 
   constructor() {}

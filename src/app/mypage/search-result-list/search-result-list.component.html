@@ -4,7 +4,7 @@
       <ng-container *ngFor="let condition of result?.hits">
         <app-condition-card
           *ngIf="!searchService.deletedIds.includes(condition.id)"
-          [condition]="condition"
+          [condition]="setCondition(condition)"
           [rate]="rate"
           class="condition-list__item"
         ></app-condition-card>
