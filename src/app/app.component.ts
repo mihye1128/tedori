@@ -7,13 +7,12 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(protected router: Router) {}
-
-  ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0);
-      }
-    });
-  }
+  // constructor(protected router: Router) {}
+  // ngOnInit(): void {
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       window.scrollTo(0, 0);
+  //     }
+  //   });
+  // }
 }

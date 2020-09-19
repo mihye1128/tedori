@@ -12,7 +12,7 @@ import { ConditionsService } from 'src/app/services/conditions.service';
   styleUrls: ['./search-result-list.component.scss'],
 })
 export class SearchResultListComponent implements OnInit {
-  conditionsList: Condition[];
+  conditionsList = [];
   queryTitle: string;
   typeFilter: string;
   baseLower: number;
@@ -22,13 +22,11 @@ export class SearchResultListComponent implements OnInit {
   basePerHourLower: number;
   basePerHourUpper: number;
   baseRange: string;
+  page = 0;
+  maxPage: number;
   loading: boolean;
 
   private index = this.searchService.index.condition;
-  result: {
-    nbHits: number;
-    hits: any[];
-  }; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
 
   constructor(
     public rateService: RateService,
@@ -40,7 +38,6 @@ export class SearchResultListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
-      this.conditionsList = [];
       this.index = this.searchService.index.condition;
       this.queryTitle = params.get('title') || '';
       this.typeFilter = params.get('type') || '';
@@ -85,21 +82,24 @@ export class SearchResultListComponent implements OnInit {
   }
 
   search() {
-    this.loading = true;
-    this.index
-      .search(this.queryTitle, {
-        facetFilters: [
-          `userId: ${this.authService.uid}`,
-          `type: ${this.typeFilter}`,
-        ],
-        numericFilters: this.setRange(),
-      })
-      .then((result) => {
-        this.result = result;
-        const items = result.hits as any[]; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
-        this.conditionsList.push(...items);
-        this.loading = false;
-      });
+    if (!this.loading && (!this.maxPage || this.maxPage > this.page)) {
+      this.loading = true;
+      this.index
+        .search(this.queryTitle, {
+          facetFilters: [
+            `userId: ${this.authService.uid}`,
+            `type: ${this.typeFilter}`,
+          ],
+          numericFilters: this.setRange(),
+          page: this.page++,
+        })
+        .then((result) => {
+          this.maxPage = result.nbPages;
+          const items = result.hits as any[]; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
+          this.conditionsList.push(...result.hits);
+          this.loading = false;
+        });
+    }
   }
 
   setCondition(condition: Condition) {
