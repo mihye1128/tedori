@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { RateService } from 'src/app/services/rate.service';
-import { ConditionsService } from 'src/app/services/conditions.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-result-list',
@@ -23,21 +23,23 @@ export class SearchResultListComponent implements OnInit {
   basePerHourUpper: number;
   baseRange: string;
   page = 0;
+  perPage = 18;
   maxPage: number;
   loading: boolean;
+  isInit = true;
 
   private index = this.searchService.index.condition;
 
   constructor(
     public rateService: RateService,
     public searchService: SearchService,
-    private conditionsService: ConditionsService,
     private authService: AuthService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
+      this.conditionsList = [];
       this.index = this.searchService.index.condition;
       this.queryTitle = params.get('title') || '';
       this.typeFilter = params.get('type') || '';
@@ -48,6 +50,7 @@ export class SearchResultListComponent implements OnInit {
       this.basePerHourLower = +params.get('basePerHourLower');
       this.basePerHourUpper = +params.get('basePerHourUpper');
       this.search();
+      this.isInit = false;
     });
   }
 
@@ -82,23 +85,36 @@ export class SearchResultListComponent implements OnInit {
   }
 
   search() {
-    if (!this.loading && (!this.maxPage || this.maxPage > this.page)) {
+    if (!this.loading) {
       this.loading = true;
-      this.index
-        .search(this.queryTitle, {
-          facetFilters: [
-            `userId: ${this.authService.uid}`,
-            `type: ${this.typeFilter}`,
-          ],
-          numericFilters: this.setRange(),
-          page: this.page++,
-        })
-        .then((result) => {
-          this.maxPage = result.nbPages;
-          const items = result.hits as any[]; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
-          this.conditionsList.push(...result.hits);
-          this.loading = false;
-        });
+      setTimeout(
+        () => {
+          console.log(this.queryTitle);
+          this.index
+            .search(this.queryTitle, {
+              facetFilters: [
+                `userId: ${this.authService.uid}`,
+                `type: ${this.typeFilter}`,
+              ],
+              numericFilters: this.setRange(),
+              page: this.page++,
+              hitsPerPage: this.perPage,
+            })
+            .then(async (result) => {
+              this.maxPage = result.nbPages;
+              const items = (await result.hits) as any[];
+              this.conditionsList.push(...items);
+            })
+            .finally(() => (this.loading = false));
+        },
+        this.isInit ? 0 : 500
+      );
+    }
+  }
+
+  addSearch() {
+    if (!this.loading && (!this.maxPage || this.maxPage > this.page)) {
+      this.search();
     }
   }
 
