@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  QueryDocumentSnapshot,
+} from '@angular/fire/firestore';
 import { Condition } from '../interfaces/condition';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -106,7 +110,7 @@ export class ConditionsService {
         return this.db.doc(`conditions/${id}`).set({
           id,
           ...condition,
-          craetedAt: firestore.Timestamp.now(),
+          createdAt: firestore.Timestamp.now(),
         });
       })
     ).then(() => {
@@ -119,12 +123,25 @@ export class ConditionsService {
     });
   }
 
-  getConditions(uid: string) {
+  getConditions(uid: string, startAt?: QueryDocumentSnapshot<Condition>) {
     return this.db
       .collection<Condition>(`conditions`, (ref) => {
-        return ref.where('userId', '==', uid).orderBy('craetedAt', 'desc');
+        if (startAt) {
+          return ref
+            .where('userId', '==', uid)
+            .orderBy('createdAt', 'desc')
+            .startAfter(startAt)
+            .limit(18);
+        } else {
+          console.log(uid);
+          return ref
+            .where('userId', '==', uid)
+            .orderBy('createdAt', 'desc')
+            .limit(18);
+        }
       })
-      .valueChanges();
+      .snapshotChanges()
+      .pipe(map((snaps) => snaps.map((snap) => snap.payload.doc)));
   }
 
   updateCondition(condition: Condition, id: string): Promise<void> {

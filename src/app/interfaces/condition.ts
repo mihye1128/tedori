@@ -17,5 +17,5 @@ export interface Condition {
   otherDeduction: number;
   userId?: string;
   id?: string;
-  craetedAt?: string;
+  createdAt?: string;
 }
