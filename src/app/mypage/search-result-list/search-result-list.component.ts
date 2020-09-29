@@ -12,7 +12,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./search-result-list.component.scss'],
 })
 export class SearchResultListComponent implements OnInit {
-  conditionsList = [];
+  conditionsList: Condition[];
   queryTitle: string;
   typeFilter: string;
   baseLower: number;
@@ -22,7 +22,7 @@ export class SearchResultListComponent implements OnInit {
   basePerHourLower: number;
   basePerHourUpper: number;
   baseRange: string;
-  page = 0;
+  page: number;
   perPage = 18;
   maxPage: number;
   loading: boolean;
@@ -40,6 +40,7 @@ export class SearchResultListComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.conditionsList = [];
+      this.page = 0;
       this.index = this.searchService.index.condition;
       this.queryTitle = params.get('title') || '';
       this.typeFilter = params.get('type') || '';
@@ -87,28 +88,22 @@ export class SearchResultListComponent implements OnInit {
   search() {
     if (!this.loading) {
       this.loading = true;
-      setTimeout(
-        () => {
-          console.log(this.queryTitle);
-          this.index
-            .search(this.queryTitle, {
-              facetFilters: [
-                `userId: ${this.authService.uid}`,
-                `type: ${this.typeFilter}`,
-              ],
-              numericFilters: this.setRange(),
-              page: this.page++,
-              hitsPerPage: this.perPage,
-            })
-            .then(async (result) => {
-              this.maxPage = result.nbPages;
-              const items = (await result.hits) as any[];
-              this.conditionsList.push(...items);
-            })
-            .finally(() => (this.loading = false));
-        },
-        this.isInit ? 0 : 500
-      );
+      this.index
+        .search(this.queryTitle, {
+          facetFilters: [
+            `userId: ${this.authService.uid}`,
+            `type: ${this.typeFilter}`,
+          ],
+          numericFilters: this.setRange(),
+          page: this.page++,
+          hitsPerPage: this.perPage,
+        })
+        .then((result) => {
+          this.maxPage = result.nbPages;
+          const items = result.hits as any[];
+          this.conditionsList.push(...items);
+        })
+        .finally(() => (this.loading = false));
     }
   }
 
