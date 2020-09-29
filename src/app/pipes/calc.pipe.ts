@@ -89,7 +89,10 @@ export class CalcPipe implements PipeTransform {
       unemploymentInsWorker;
 
     // 源泉所得税
-    const taxTargetFee: number = baseSalary + allowance - insTotal;
+    const taxTargetFee: number =
+      baseSalary + allowance - insTotal > 0
+        ? baseSalary + allowance - insTotal
+        : 0;
     const nationalTax: number = this.nationalTaxService.getNationalTax(
       taxTargetFee,
       condition.dependents
