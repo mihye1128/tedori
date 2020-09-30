@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-national-tax',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./national-tax.component.scss'],
 })
 export class NationalTaxComponent implements OnInit {
-  constructor() {}
+  constructor(private seoService: SeoService) {
+    this.seoService.setTitleAndMeta(
+      '源泉所得税シミュレーション',
+      '簡単に源泉徴収税額を検索できます。'
+    );
+  }
 
   ngOnInit(): void {}
 }
