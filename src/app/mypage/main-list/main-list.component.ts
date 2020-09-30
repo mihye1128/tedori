@@ -36,15 +36,15 @@ export class MainListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((docs) => {
         if (docs) {
-          if (!docs.length) {
+          if (docs.length) {
+            this.lastDoc = docs[docs.length - 1];
+            const conditions = docs.map((doc) => doc.data());
+            this.conditions.push(...conditions);
+            this.loading = false;
+          } else {
             this.isComplete = true;
             this.loading = false;
-            return;
           }
-          this.lastDoc = docs[docs.length - 1];
-          const conditions = docs.map((doc) => doc.data());
-          this.conditions.push(...conditions);
-          this.loading = false;
         }
       });
   }
