@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-not-found',
@@ -7,7 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./not-found.component.scss'],
 })
 export class NotFoundComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private seoService: SeoService) {
+    this.seoService.setTitleAndMeta('404', '404 Not Found.');
+  }
 
   ngOnInit(): void {}
 
