@@ -10,7 +10,7 @@ export class AboutComponent implements OnInit {
   constructor(private seoService: SeoService) {
     this.seoService.setTitleAndMeta(
       'TEDORIについて',
-      'TEDORIβの機能説明、活用例をご紹介します。'
+      'TEDORIβの機能、活用例をご紹介します。'
     );
   }
 
