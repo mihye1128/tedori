@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { SharedModule } from '../shared/shared.module';
 import { MypageComponent } from './mypage/mypage.component';
@@ -51,6 +52,7 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
     MatCheckboxModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    InfiniteScrollModule,
     ReactiveFormsModule,
     FormsModule,
     SharedModule,

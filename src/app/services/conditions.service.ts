@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  QueryDocumentSnapshot,
+} from '@angular/fire/firestore';
 import { Condition } from '../interfaces/condition';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -17,18 +20,6 @@ export class ConditionsService {
 
   dependentsCounts = [...Array(7)].map((_, i) => i + 1);
   titleMaxLength = 12;
-  maxLength = {
-    title: 12,
-    base: 8,
-    allowance: 8,
-    travelCost: 6,
-    basePerHour: 6,
-    travelCostPerDay: 5,
-    hourPerDay: 2,
-    dayPerMonth: 2,
-    cityTax: 8,
-    otherDeduction: 8,
-  };
   range = {
     base: {
       min: 0,
@@ -51,11 +42,11 @@ export class ConditionsService {
       max: 99999,
     },
     hourPerDay: {
-      min: 1,
+      min: 0,
       max: 24,
     },
     dayPerMonth: {
-      min: 1,
+      min: 0,
       max: 31,
     },
     cityTax: {
@@ -69,7 +60,6 @@ export class ConditionsService {
   };
 
   constructor(
-    private fb: FormBuilder,
     private authService: AuthService,
     private db: AngularFirestore,
     private snackBar: MatSnackBar,
@@ -120,7 +110,7 @@ export class ConditionsService {
         return this.db.doc(`conditions/${id}`).set({
           id,
           ...condition,
-          craetedAt: firestore.Timestamp.now(),
+          createdAt: firestore.Timestamp.now(),
         });
       })
     ).then(() => {
@@ -133,12 +123,24 @@ export class ConditionsService {
     });
   }
 
-  getConditions(uid: string) {
+  getConditions(uid: string, startAt?: QueryDocumentSnapshot<Condition>) {
     return this.db
-      .collection<Condition>(`conditions`, (ref) =>
-        ref.where('userId', '==', uid)
-      )
-      .valueChanges();
+      .collection<Condition>(`conditions`, (ref) => {
+        if (startAt) {
+          return ref
+            .where('userId', '==', uid)
+            .orderBy('createdAt', 'desc')
+            .startAfter(startAt)
+            .limit(18);
+        } else {
+          return ref
+            .where('userId', '==', uid)
+            .orderBy('createdAt', 'desc')
+            .limit(18);
+        }
+      })
+      .snapshotChanges()
+      .pipe(map((snaps) => snaps.map((snap) => snap.payload.doc)));
   }
 
   updateCondition(condition: Condition, id: string): Promise<void> {
@@ -146,9 +148,6 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .set(condition, { merge: true })
       .then(() => {
-        if (this.router.url.match(/search/)) {
-          this.router.navigateByUrl('/mypage');
-        }
         this.snackBar.open('条件を更新しました。');
       })
       .catch(() => {
@@ -161,9 +160,6 @@ export class ConditionsService {
       .doc(`conditions/${id}`)
       .delete()
       .then(() => {
-        if (this.router.url.match(/search/)) {
-          this.router.navigateByUrl('/mypage');
-        }
         this.snackBar.open('条件を削除しました。');
       })
       .catch(() => {

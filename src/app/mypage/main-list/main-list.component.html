@@ -1,8 +1,5 @@
 <div class="condition-list" *ngIf="rateService.rate$ | async as rate">
-  <div
-    class="condition-list__list"
-    *ngIf="conditions$ | async as conditions; else blank"
-  >
+  <div class="condition-list__list" *ngIf="conditions; else blank">
     <app-condition-card
       *ngFor="let condition of conditions"
       [condition]="condition"
@@ -10,6 +7,12 @@
       class="condition-list__item"
     ></app-condition-card>
   </div>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="getConditions()"
+  ></div>
   <ng-template #blank>
     <p class="condition-list__none" *ngIf="!loading">
       保存された条件はありません。

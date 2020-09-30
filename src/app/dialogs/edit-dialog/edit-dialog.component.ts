@@ -5,6 +5,7 @@ import { RateService } from 'src/app/services/rate.service';
 import { Condition } from 'src/app/interfaces/condition';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { AREA_LIST } from 'src/app/models/area-list';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -98,7 +99,8 @@ export class EditDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<EditDialogComponent>,
     private fb: FormBuilder,
     private rateService: RateService,
-    private conditionsService: ConditionsService
+    private conditionsService: ConditionsService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {}
@@ -119,6 +121,8 @@ export class EditDialogComponent implements OnInit {
       .updateCondition(editedCondition, this.data.id)
       .then(() => {
         this.processing = false;
+        editedCondition.id = this.data.id;
+        this.searchService.updateConditions.push(editedCondition);
         this.dialogRef.close();
       });
   }

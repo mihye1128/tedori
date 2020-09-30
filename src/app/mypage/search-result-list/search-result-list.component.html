@@ -1,20 +1,28 @@
 <div class="condition-list" *ngIf="rateService.rate$ | async as rate">
-  <ng-container *ngIf="!loading; else load">
-    <div class="condition-list__list" *ngIf="result?.hits.length; else blank">
-      <app-condition-card
-        *ngFor="let condition of result?.hits"
-        [condition]="condition"
-        [rate]="rate"
-        class="condition-list__item"
-      ></app-condition-card>
+  <ng-container *ngIf="conditionsList.length; else blank">
+    <div
+      class="condition-list__list"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="addSearch()"
+    >
+      <ng-container *ngFor="let condition of conditionsList">
+        <app-condition-card
+          *ngIf="!searchService.deletedIds.includes(condition.id)"
+          [condition]="setCondition(condition)"
+          [rate]="rate"
+          class="condition-list__item"
+        ></app-condition-card>
+      </ng-container>
     </div>
-    <ng-template #blank>
-      <p class="condition-list__none">該当する条件はありません。</p>
-    </ng-template>
   </ng-container>
-  <ng-template #load>
-    <div class="loading">
-      <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
-    </div>
+  <div *ngIf="loading" class="loading">
+    <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
+  </div>
+  <ng-template #blank>
+    <p class="condition-list__none" *ngIf="!loading">
+      該当する条件はありません。
+    </p>
   </ng-template>
 </div>

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Condition } from 'src/app/interfaces/condition';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { RateService } from 'src/app/services/rate.service';
-import { tap } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-list',
@@ -12,18 +11,41 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./main-list.component.scss'],
 })
 export class MainListComponent implements OnInit {
+  lastDoc;
+  conditions: Condition[] = [];
+  isComplete: boolean;
   loading: boolean;
-  conditions$: Observable<Condition[]> = this.conditionsService
-    .getConditions(this.authService.uid)
-    .pipe(tap(() => (this.loading = false)));
 
   constructor(
     public rateService: RateService,
     private authService: AuthService,
     private conditionsService: ConditionsService
   ) {
-    this.loading = true;
+    this.getConditions();
   }
 
   ngOnInit(): void {}
+
+  getConditions() {
+    if (this.isComplete) {
+      return;
+    }
+    this.loading = true;
+    this.conditionsService
+      .getConditions(this.authService.uid, this.lastDoc)
+      .pipe(take(1))
+      .subscribe((docs) => {
+        if (docs) {
+          if (docs.length) {
+            this.lastDoc = docs[docs.length - 1];
+            const conditions = docs.map((doc) => doc.data());
+            this.conditions.push(...conditions);
+            this.loading = false;
+          } else {
+            this.isComplete = true;
+            this.loading = false;
+          }
+        }
+      });
+  }
 }

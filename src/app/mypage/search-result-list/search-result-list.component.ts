@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { RateService } from 'src/app/services/rate.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-result-list',
@@ -21,24 +22,25 @@ export class SearchResultListComponent implements OnInit {
   basePerHourLower: number;
   basePerHourUpper: number;
   baseRange: string;
+  page: number;
+  perPage = 18;
+  maxPage: number;
   loading: boolean;
+  isInit = true;
 
   private index = this.searchService.index.condition;
-  result: {
-    nbHits: number;
-    hits: any[];
-  }; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
 
   constructor(
     public rateService: RateService,
+    public searchService: SearchService,
     private authService: AuthService,
-    private searchService: SearchService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.conditionsList = [];
+      this.page = 0;
       this.index = this.searchService.index.condition;
       this.queryTitle = params.get('title') || '';
       this.typeFilter = params.get('type') || '';
@@ -49,6 +51,7 @@ export class SearchResultListComponent implements OnInit {
       this.basePerHourLower = +params.get('basePerHourLower');
       this.basePerHourUpper = +params.get('basePerHourUpper');
       this.search();
+      this.isInit = false;
     });
   }
 
@@ -83,20 +86,49 @@ export class SearchResultListComponent implements OnInit {
   }
 
   search() {
-    this.loading = true;
-    this.index
-      .search(this.queryTitle, {
-        facetFilters: [
-          `userId: ${this.authService.uid}`,
-          `type: ${this.typeFilter}`,
-        ],
-        numericFilters: this.setRange(),
-      })
-      .then((result) => {
-        this.result = result;
-        const items = result.hits as any[]; // TODO: 型対応後調整(https://github.com/algolia/algoliasearch-client-javascript/pull/1086)
-        this.conditionsList.push(...items);
-        this.loading = false;
+    if (!this.loading) {
+      this.loading = true;
+      this.index
+        .search(this.queryTitle, {
+          facetFilters: [
+            `userId: ${this.authService.uid}`,
+            `type: ${this.typeFilter}`,
+          ],
+          numericFilters: this.setRange(),
+          page: this.page++,
+          hitsPerPage: this.perPage,
+        })
+        .then((result) => {
+          this.maxPage = result.nbPages;
+          const items = result.hits as any[];
+          this.conditionsList.push(...items);
+        })
+        .finally(() => (this.loading = false));
+    }
+  }
+
+  addSearch() {
+    if (!this.loading && (!this.maxPage || this.maxPage > this.page)) {
+      this.search();
+    }
+  }
+
+  setCondition(condition: Condition) {
+    const updateConditions = this.searchService.updateConditions;
+    if (
+      updateConditions.find(
+        (updateConditionData) => updateConditionData.id === condition.id
+      )
+    ) {
+      let updateCondition: Condition;
+      updateConditions.map((updateConditionData) => {
+        if (updateConditionData.id === condition.id) {
+          updateCondition = updateConditionData;
+        }
       });
+      return updateCondition;
+    } else {
+      return condition;
+    }
   }
 }
