@@ -133,7 +133,6 @@ export class ConditionsService {
             .startAfter(startAt)
             .limit(18);
         } else {
-          console.log(uid);
           return ref
             .where('userId', '==', uid)
             .orderBy('createdAt', 'desc')

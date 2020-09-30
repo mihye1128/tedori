@@ -21,7 +21,6 @@ export class MainListComponent implements OnInit {
     private authService: AuthService,
     private conditionsService: ConditionsService
   ) {
-    console.log(this.authService.uid);
     this.getConditions();
   }
 
