@@ -1,9 +1,9 @@
-<div class="condition-list" *ngIf="rateService.rate$ | async as rate">
+<div class="condition-list" *ngIf="rateService.rate">
   <div class="condition-list__list" *ngIf="conditions; else blank">
     <app-condition-card
       *ngFor="let condition of conditions"
       [condition]="condition"
-      [rate]="rate"
+      [rate]="rateService.rate"
       class="condition-list__item"
     ></app-condition-card>
   </div>

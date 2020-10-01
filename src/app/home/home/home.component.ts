@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Deductions } from 'src/app/interfaces/deductions';
 import { RateService } from 'src/app/services/rate.service';
 import { SeoService } from 'src/app/services/seo.service';
 
@@ -8,12 +9,7 @@ import { SeoService } from 'src/app/services/seo.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  rate$ = this.rateService.rate$;
-
-  constructor(
-    private rateService: RateService,
-    private seoService: SeoService
-  ) {
+  constructor(public rateService: RateService, private seoService: SeoService) {
     this.seoService.setTitleAndMeta();
   }
 

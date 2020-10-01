@@ -13,7 +13,7 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./edit-dialog.component.scss'],
 })
 export class EditDialogComponent implements OnInit {
-  rate$ = this.rateService.rate$;
+  rate = this.rateService.rate;
   areaList: string[] = AREA_LIST;
   dependents = this.conditionsService.dependentsCounts;
   titleMaxLength = this.conditionsService.titleMaxLength;
