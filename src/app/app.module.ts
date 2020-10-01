@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,9 @@ import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component
     MatRadioModule,
     MatSelectModule,
     MatDialogModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   entryComponents: [DeleteDialogComponent, EditDialogComponent],
   providers: [
