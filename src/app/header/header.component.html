@@ -20,13 +20,18 @@
           class="header__login"
           matTooltip="Googleアカウントでログインする"
           aria-label="Googleアカウントでログインする"
-          (click)="login()"
+          [disabled]="authService.loginProcessing"
+          (click)="authService.login()"
         >
-          <img src="/assets/images/icon_google.svg" alt="Googleアカウント" />
-          ログイン
+          <img
+            *ngIf="!authService.loginProcessing"
+            src="/assets/images/icon_google.svg"
+            alt="Googleアカウント"
+          />
+          {{ authService.loginProcessing ? 'ログイン中' : 'ログイン' }}
         </button>
       </ng-template>
-      <ng-container *ngIf="user$ | async as user; else default">
+      <ng-container *ngIf="authService.afUser$ | async as user; else default">
         <button
           mat-mini-fab
           color="primary"
@@ -35,11 +40,11 @@
           class="header__icon"
         ></button>
         <mat-menu #userMenu="matMenu" class="header__menu">
-          <button mat-menu-item (click)="mypage()">
+          <a mat-menu-item routerLink="/mypage">
             <mat-icon>account_circle</mat-icon>
             <span>マイページ</span>
-          </button>
-          <button mat-menu-item (click)="logout()">
+          </a>
+          <button mat-menu-item (click)="authService.logout()">
             <mat-icon>exit_to_app</mat-icon>
             <span>ログアウト</span>
           </button>
