@@ -8,15 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./head.component.scss'],
 })
 export class HeadComponent implements OnInit {
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {}
-
-  mypage() {
-    this.router.navigateByUrl('/mypage');
-  }
-  login() {
-    this.authService.login();
-  }
-  scroll() {}
 }
