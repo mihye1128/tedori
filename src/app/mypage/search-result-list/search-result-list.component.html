@@ -1,4 +1,4 @@
-<div class="condition-list" *ngIf="rateService.rate$ | async as rate">
+<div class="condition-list" *ngIf="rateService.rate">
   <ng-container *ngIf="conditionsList.length; else blank">
     <div
       class="condition-list__list"
@@ -11,7 +11,7 @@
         <app-condition-card
           *ngIf="!searchService.deletedIds.includes(condition.id)"
           [condition]="setCondition(condition)"
-          [rate]="rate"
+          [rate]="rateService.rate"
           class="condition-list__item"
         ></app-condition-card>
       </ng-container>

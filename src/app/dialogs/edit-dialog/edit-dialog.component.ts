@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
-import { RateService } from 'src/app/services/rate.service';
 import { Condition } from 'src/app/interfaces/condition';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { AREA_LIST } from 'src/app/models/area-list';
@@ -13,7 +12,6 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./edit-dialog.component.scss'],
 })
 export class EditDialogComponent implements OnInit {
-  rate$ = this.rateService.rate$;
   areaList: string[] = AREA_LIST;
   dependents = this.conditionsService.dependentsCounts;
   titleMaxLength = this.conditionsService.titleMaxLength;
@@ -98,7 +96,6 @@ export class EditDialogComponent implements OnInit {
     public data: Condition,
     private dialogRef: MatDialogRef<EditDialogComponent>,
     private fb: FormBuilder,
-    private rateService: RateService,
     private conditionsService: ConditionsService,
     private searchService: SearchService
   ) {}

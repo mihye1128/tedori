@@ -32,23 +32,28 @@
               color="primary"
               class="head__login"
               aria-label="Googleアカウントでログインする"
-              (click)="login()"
+              [disabled]="authService.loginProcessing"
+              (click)="authService.login()"
             >
-              Googleアカウントでログイン
+              {{
+                authService.loginProcessing
+                  ? 'ログイン中'
+                  : 'Googleアカウントでログイン'
+              }}
             </button>
           </ng-template>
           <ng-container
             *ngIf="authService.afUser$ | async as user; else default"
           >
-            <button
+            <a
               mat-flat-button
               color="primary"
               class="head__login"
               aria-label="Googleアカウントでログインする"
-              (click)="mypage()"
+              routerLink="/mypage"
             >
               マイページを見る
-            </button>
+            </a>
           </ng-container>
         </li>
       </ul>

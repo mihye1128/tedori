@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   afUser$: Observable<User> = this.afAuth.user;
   uid: string;
+  loginProcessing = false;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -23,11 +24,19 @@ export class AuthService {
   }
 
   login() {
+    this.loginProcessing = true;
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
-    this.afAuth.signInWithPopup(provider).then(() => {
-      this.router.navigateByUrl('/');
-    });
+    this.afAuth
+      .signInWithPopup(provider)
+      .then(() => {
+        this.router.navigateByUrl('/');
+        this.loginProcessing = false;
+      })
+      .catch(() => {
+        this.snackBar.open('ログイン中にエラーが発生しました。');
+        this.loginProcessing = false;
+      });
   }
   logout() {
     this.afAuth.signOut().then(() => {
