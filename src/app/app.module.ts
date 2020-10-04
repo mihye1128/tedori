@@ -33,6 +33,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireFunctionsModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     SharedModule,
     MatToolbarModule,
     MatMenuModule,

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { NATIONAL_TAX_TABLE } from 'src/app/models/national-tax-table';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { NationalTaxService } from 'src/app/services/national-tax.service';
 
@@ -10,7 +9,6 @@ import { NationalTaxService } from 'src/app/services/national-tax.service';
   styleUrls: ['./national-tax-calc.component.scss'],
 })
 export class NationalTaxCalcComponent implements OnInit {
-  nationalTaxTable = NATIONAL_TAX_TABLE;
   result: number;
   range = {
     min: 0,

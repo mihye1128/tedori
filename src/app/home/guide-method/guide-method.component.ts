@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Deductions } from 'src/app/interfaces/deductions';
-import { NATIONAL_TAX_TABLE } from 'src/app/models/national-tax-table';
+import { NationalTaxService } from 'src/app/services/national-tax.service';
 
 @Component({
   selector: 'app-guide-method',
@@ -8,11 +8,9 @@ import { NATIONAL_TAX_TABLE } from 'src/app/models/national-tax-table';
   styleUrls: ['./guide-method.component.scss'],
 })
 export class GuideMethodComponent implements OnInit {
-  nationalTaxTable = NATIONAL_TAX_TABLE;
-
   @Input() rate: Deductions;
 
-  constructor() {}
+  constructor(public nationalTaxService: NationalTaxService) {}
 
   ngOnInit(): void {}
 }

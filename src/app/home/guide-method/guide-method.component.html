@@ -39,10 +39,12 @@
   <dd>
     源泉所得税の計算は、給与所得の源泉徴収税額表（月額表）に基づいて算出しています。<br />
     源泉所得税額の算出に関する詳細は、国税庁HPの下記のページをご参照ください。
-    <span>
-      「<a [href]="nationalTaxTable.url" target="_blank" rel="noopener">{{
-        nationalTaxTable.title
-      }}</a
+    <span *ngIf="nationalTaxService.nationalTaxTable">
+      「<a
+        [href]="nationalTaxService.nationalTaxTable.url"
+        target="_blank"
+        rel="noopener"
+        >{{ nationalTaxService.nationalTaxTable.title }}</a
       >」
     </span>
   </dd>
