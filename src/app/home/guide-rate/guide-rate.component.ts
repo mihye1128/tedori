@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { Insurance } from 'src/app/interfaces/insurance';
 
 @Component({
   selector: 'app-guide-rate',
@@ -7,7 +7,7 @@ import { Deductions } from 'src/app/interfaces/deductions';
   styleUrls: ['./guide-rate.component.scss'],
 })
 export class GuideRateComponent implements OnInit {
-  @Input() rate: Deductions;
+  @Input() rate: Insurance;
 
   constructor() {}
 

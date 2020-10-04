@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Condition } from 'src/app/interfaces/condition';
-import { Deductions } from 'src/app/interfaces/deductions';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from 'src/app/dialogs/edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
+import { Insurance } from 'src/app/interfaces/insurance';
 
 @Component({
   selector: 'app-condition-card',
@@ -12,7 +12,7 @@ import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dial
 })
 export class ConditionCardComponent implements OnInit {
   @Input() condition: Condition;
-  @Input() rate: Deductions;
+  @Input() rate: Insurance;
 
   constructor(private dialog: MatDialog) {}
 

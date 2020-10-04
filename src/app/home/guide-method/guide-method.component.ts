@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { Insurance } from 'src/app/interfaces/insurance';
 import { NationalTaxService } from 'src/app/services/national-tax.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { NationalTaxService } from 'src/app/services/national-tax.service';
   styleUrls: ['./guide-method.component.scss'],
 })
 export class GuideMethodComponent implements OnInit {
-  @Input() rate: Deductions;
+  @Input() rate: Insurance;
 
   constructor(public nationalTaxService: NationalTaxService) {}
 

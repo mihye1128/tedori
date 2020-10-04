@@ -1,0 +1,212 @@
+{
+  "socialIns": {
+    "title": "令和2年度の保険料率額表（令和2年4月から）",
+    "healthInsRateListUrl": "https://www.kyoukaikenpo.or.jp/g3/cat330/sb3130/r2/20207/",
+    "url": "https://www.kyoukaikenpo.or.jp/g3/cat330/sb3150/r02/r2ryougakuhyou4gatukara/",
+    "pensionInsRate": 18.3,
+    "childrenInsRate": 0.36,
+    "nursingInsRate": 1.79,
+    "healthInsRateList": [
+      {
+        "area": "北海道",
+        "rate": 10.41
+      },
+      {
+        "rate": 9.88,
+        "area": "青森県"
+      },
+      {
+        "area": "岩手県",
+        "rate": "9.77"
+      },
+      {
+        "rate": 10.06,
+        "area": "宮城県"
+      },
+      {
+        "area": "秋田県",
+        "rate": 10.25
+      },
+      {
+        "rate": 10.05,
+        "area": "山形県"
+      },
+      {
+        "area": "福島県",
+        "rate": 9.71
+      },
+      {
+        "area": "茨城県",
+        "rate": 9.77
+      },
+      {
+        "rate": 9.88,
+        "area": "栃木県"
+      },
+      {
+        "rate": 9.77,
+        "area": "群馬県"
+      },
+      {
+        "area": "埼玉県",
+        "rate": 9.81
+      },
+      {
+        "area": "千葉県",
+        "rate": 9.75
+      },
+      {
+        "area": "東京都",
+        "rate": 9.87
+      },
+      {
+        "area": "神奈川県",
+        "rate": 9.93
+      },
+      {
+        "area": "新潟県",
+        "rate": 9.58
+      },
+      {
+        "rate": 9.59,
+        "area": "富山県"
+      },
+      {
+        "rate": 10.01,
+        "area": "石川県"
+      },
+      {
+        "rate": 9.95,
+        "area": "福井県"
+      },
+      {
+        "area": "山梨県",
+        "rate": 9.81
+      },
+      {
+        "area": "長野県",
+        "rate": 9.7
+      },
+      {
+        "area": "岐阜県",
+        "rate": 9.92
+      },
+      {
+        "rate": 9.73,
+        "area": "静岡県"
+      },
+      {
+        "area": "愛知県",
+        "rate": 9.88
+      },
+      {
+        "area": "三重県",
+        "rate": 9.77
+      },
+      {
+        "rate": 9.79,
+        "area": "滋賀県"
+      },
+      {
+        "rate": 10.03,
+        "area": "京都府"
+      },
+      {
+        "area": "大阪府",
+        "rate": 10.22
+      },
+      {
+        "rate": 10.14,
+        "area": "兵庫県"
+      },
+      {
+        "area": "奈良県",
+        "rate": 10.14
+      },
+      {
+        "rate": 10.14,
+        "area": "和歌山県"
+      },
+      {
+        "area": "鳥取県",
+        "rate": 9.99
+      },
+      {
+        "rate": 10.15,
+        "area": "島根県"
+      },
+      {
+        "area": "岡山県",
+        "rate": 10.17
+      },
+      {
+        "area": "広島県",
+        "rate": 10.01
+      },
+      {
+        "rate": 10.2,
+        "area": "山口県"
+      },
+      {
+        "rate": 10.28,
+        "area": "徳島県"
+      },
+      {
+        "rate": 10.34,
+        "area": "香川県"
+      },
+      {
+        "rate": 10.07,
+        "area": "愛媛県"
+      },
+      {
+        "rate": 10.3,
+        "area": "高知県"
+      },
+      {
+        "rate": 10.32,
+        "area": "福岡県"
+      },
+      {
+        "rate": 10.73,
+        "area": "佐賀県"
+      },
+      {
+        "area": "長崎県",
+        "rate": 10.22
+      },
+      {
+        "rate": 10.33,
+        "area": "熊本県"
+      },
+      {
+        "area": "大分県",
+        "rate": 10.17
+      },
+      {
+        "area": "宮崎県",
+        "rate": 9.91
+      },
+      {
+        "area": "鹿児島県",
+        "rate": 10.25
+      },
+      {
+        "area": "沖縄県",
+        "rate": 9.97
+      }
+    ]
+  },
+  "compensationIns": {
+    "title": "労災保険料率（平成30年度〜）",
+    "url": "https://www.mhlw.go.jp/bunya/roudoukijun/rousaihoken.html",
+    "rate": 3
+  },
+  "unemploymentIns": {
+    "title": "令和２年度の雇用保険料率",
+    "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000108634.html",
+    "rate": 9,
+    "workerBurden": 3,
+    "ownerBurden": 6
+  }
+}

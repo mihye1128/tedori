@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Deductions } from 'src/app/interfaces/deductions';
 import { Condition } from 'src/app/interfaces/condition';
+import { Insurance } from 'src/app/interfaces/insurance';
 
 @Component({
   selector: 'app-main-result-owner',
@@ -8,7 +8,7 @@ import { Condition } from 'src/app/interfaces/condition';
   styleUrls: ['./main-result-owner.component.scss'],
 })
 export class MainResultOwnerComponent implements OnInit {
-  @Input() rate: Deductions;
+  @Input() rate: Insurance;
   @Input() conditions: Condition[];
 
   constructor() {}

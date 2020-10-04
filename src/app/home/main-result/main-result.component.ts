@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Deductions } from 'src/app/interfaces/deductions';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Condition } from 'src/app/interfaces/condition';
+import { Insurance } from 'src/app/interfaces/insurance';
 
 @Component({
   selector: 'app-main-result',
@@ -10,7 +10,7 @@ import { Condition } from 'src/app/interfaces/condition';
   styleUrls: ['./main-result.component.scss'],
 })
 export class MainResultComponent implements OnInit {
-  @Input() rate: Deductions;
+  @Input() rate: Insurance;
 
   conditions$ = this.conditionsService.conditions$;
   user$ = this.authService.afUser$;
