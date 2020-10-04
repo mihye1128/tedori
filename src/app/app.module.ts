@@ -68,6 +68,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
+      registrationStrategy: 'registerImmediately',
     }),
   ],
   entryComponents: [DeleteDialogComponent, EditDialogComponent],
