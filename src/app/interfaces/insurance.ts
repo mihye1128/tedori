@@ -1,6 +1,6 @@
 import { ByArea } from './by-area';
 
-export interface Deductions {
+export interface Insurance {
   socialIns: {
     title: string;
     url: string;

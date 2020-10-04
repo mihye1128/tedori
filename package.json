@@ -28,6 +28,7 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "@angular/service-worker": "~9.1.9",
     "algoliasearch": "^4.4.0",
     "firebase": "^7.13.1",
     "ngx-infinite-scroll": "^9.1.0",

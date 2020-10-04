@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Deductions } from 'src/app/interfaces/deductions';
+import { Component, OnInit } from '@angular/core';
 import { RateService } from 'src/app/services/rate.service';
 import { SeoService } from 'src/app/services/seo.service';
 

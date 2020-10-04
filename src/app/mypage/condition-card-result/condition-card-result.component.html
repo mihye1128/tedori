@@ -1,5 +1,5 @@
 <p class="result__title">労働者支給額</p>
-<dl class="result__data">
+<dl class="result__data" *ngIf="nationalTaxService.nationalTaxTable">
   <dt class="result__dt">
     総支給額<span class="btn-detail" (click)="opendTotal = !opendTotal">{{
       changedText(opendTotal)
@@ -86,7 +86,7 @@
   </ng-container>
 </dl>
 <p class="result__title">事業者支出額</p>
-<dl class="result__data">
+<dl class="result__data" *ngIf="nationalTaxService.nationalTaxTable">
   <dt class="result__dt">総支給額</dt>
   <dd class="result__dd">
     {{ condition | calc: 'total' }}<span class="yen">円</span>

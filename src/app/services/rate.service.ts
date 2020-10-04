@@ -1,25 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Deductions } from '../interfaces/deductions';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Insurance } from '../interfaces/insurance';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RateService {
-  rate: Deductions;
+  rate: Insurance;
 
-  constructor(private db: AngularFirestore) {
-    this.getRate()
-      .pipe(take(1))
-      .toPromise()
-      .then((res) => {
-        this.rate = res;
-      });
+  private insuranceData = '/assets/data/insurance.json';
+
+  constructor(private http: HttpClient) {
+    this.getRate().then((data) => (this.rate = data));
   }
 
-  private getRate(): Observable<Deductions> {
-    return this.db.doc<Deductions>('rates/rate').valueChanges();
+  private getRate(): Promise<Insurance> {
+    return this.http.get<Insurance>(this.insuranceData).toPromise();
   }
 }

@@ -4,7 +4,7 @@ import { NationalTaxService } from '../services/national-tax.service';
 import { LaborInsService } from '../services/labor-ins.service';
 import { SocialInsService } from '../services/social-ins.service';
 import { Condition } from '../interfaces/condition';
-import { Deductions } from '../interfaces/deductions';
+import { Insurance } from '../interfaces/insurance';
 
 @Pipe({
   name: 'calc',
@@ -17,7 +17,7 @@ export class CalcPipe implements PipeTransform {
     private socialInsService: SocialInsService
   ) {}
 
-  transform(condition: Condition, key: string, rate?: Deductions): unknown {
+  transform(condition: Condition, key: string, rate?: Insurance): unknown {
     // 総支給額
     const payment = this.paymentServise.getPayment(condition);
     const baseSalary: number = payment.baseSalary;

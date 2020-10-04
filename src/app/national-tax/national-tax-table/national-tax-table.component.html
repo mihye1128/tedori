@@ -1,3 +1,4 @@
+<ng-container *ngIf="nationalTaxService.nationalTaxTable"></ng-container>
 <h2 class="main-title">給与所得の源泉徴収税額表<small>（月額表）</small></h2>
 <div class="table-wrap">
   <table>
@@ -23,7 +24,9 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let fee of nationalTaxTable.table">
+      <ng-container
+        *ngFor="let fee of nationalTaxService.nationalTaxTable.table"
+      >
         <tr>
           <ng-container *ngIf="fee.rate; else standard">
             <th colspan="2">
@@ -40,7 +43,14 @@
           <th colspan="2">
             {{ fee.min | number }} <span class="unit spacer-half">円 超</span
             ><br *ngIf="fee.max" />
-            <ng-container *ngIf="fee.max <= nationalTaxBranchPoint">
+            <ng-container
+              *ngIf="
+                fee.max <=
+                nationalTaxService.nationalTaxTable.table[
+                  nationalTaxService.nationalTaxTable.table.length - 1
+                ].min
+              "
+            >
               {{ fee.max | number }} <span class="unit">円 未満</span>
             </ng-container>
           </th>
