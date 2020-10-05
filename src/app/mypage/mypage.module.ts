@@ -24,8 +24,9 @@ import { ConditionCardComponent } from './condition-card/condition-card.componen
 import { ConditionCardDataComponent } from './condition-card-data/condition-card-data.component';
 import { ConditionCardResultComponent } from './condition-card-result/condition-card-result.component';
 import { SearchFormComponent } from './search-form/search-form.component';
-import { MainListComponent } from './main-list/main-list.component';
-import { SearchResultListComponent } from './search-result-list/search-result-list.component';
+import { ConditionListComponent } from './condition-list/condition-list.component';
+import { ResultMainComponent } from './result-main/result-main.component';
+import { ResultSearchComponent } from './result-search/result-search.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,9 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
     ConditionCardDataComponent,
     ConditionCardResultComponent,
     SearchFormComponent,
-    MainListComponent,
-    SearchResultListComponent,
+    ConditionListComponent,
+    ResultMainComponent,
+    ResultSearchComponent,
   ],
   imports: [
     CommonModule,

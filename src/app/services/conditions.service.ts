@@ -18,6 +18,9 @@ export class ConditionsService {
   conditions = new Subject<Condition[]>();
   conditions$ = this.conditions.asObservable();
 
+  updateConditions: Condition[] = [];
+  deletedIds: string[] = [];
+
   dependentsCounts = [...Array(7)].map((_, i) => i + 1);
   titleMaxLength = 12;
   range = {
@@ -96,6 +99,25 @@ export class ConditionsService {
       otherDeduction: +condition.otherDeduction,
       userId: this.authService.uid,
     };
+  }
+
+  setCondition(condition: Condition) {
+    const updateConditions = this.updateConditions;
+    if (
+      updateConditions.find(
+        (updateConditionData) => updateConditionData.id === condition.id
+      )
+    ) {
+      let updateCondition: Condition;
+      updateConditions.map((updateConditionData) => {
+        if (updateConditionData.id === condition.id) {
+          updateCondition = updateConditionData;
+        }
+      });
+      return updateCondition;
+    } else {
+      return condition;
+    }
   }
 
   setConditions(conditions: Condition[]) {
