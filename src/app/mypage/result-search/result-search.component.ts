@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { RateService } from 'src/app/services/rate.service';
-import { ConditionsService } from 'src/app/services/conditions.service';
 
 @Component({
   selector: 'app-result-search',
@@ -35,7 +34,6 @@ export class ResultSearchComponent implements OnInit {
     public rateService: RateService,
     public searchService: SearchService,
     private authService: AuthService,
-    private conditionsService: ConditionsService,
     private route: ActivatedRoute
   ) {}
 
