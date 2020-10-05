@@ -18,15 +18,15 @@
       </div>
       <ul class="hero__actions">
         <li>
-          <button
+          <a
             mat-flat-button
             color="primary"
             class="hero__home"
-            (click)="home()"
             aria-label="計算する"
+            routerLink="/"
           >
             計算する
-          </button>
+          </a>
         </li>
         <li>
           <ng-template #default>
@@ -35,21 +35,28 @@
               color="primary"
               class="hero__login"
               aria-label="Googleアカウントでログインする"
-              (click)="login()"
+              [disabled]="authService.loginProcessing"
+              (click)="authService.login()"
             >
-              Googleアカウントでログイン
+              {{
+                authService.loginProcessing
+                  ? 'ログイン中'
+                  : 'Googleアカウントでログイン'
+              }}
             </button>
           </ng-template>
-          <ng-container *ngIf="user$ | async as user; else default">
-            <button
+          <ng-container
+            *ngIf="authService.afUser$ | async as user; else default"
+          >
+            <a
               mat-flat-button
               color="primary"
               class="hero__login"
               aria-label="Googleアカウントでログインする"
-              (click)="mypage()"
+              routerLink="/mypage"
             >
               マイページを見る
-            </button>
+            </a>
           </ng-container>
         </li>
       </ul>

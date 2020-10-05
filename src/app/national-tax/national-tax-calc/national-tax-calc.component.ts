@@ -9,11 +9,12 @@ import { NationalTaxService } from 'src/app/services/national-tax.service';
   styleUrls: ['./national-tax-calc.component.scss'],
 })
 export class NationalTaxCalcComponent implements OnInit {
-  result: number;
-  range = {
+  readonly range = {
     min: 0,
     max: 999999999,
   };
+
+  result: number;
   processing = false;
 
   form = this.fb.group({

@@ -12,17 +12,10 @@ import { Insurance } from 'src/app/interfaces/insurance';
 export class MainResultComponent implements OnInit {
   @Input() rate: Insurance;
 
-  conditions$ = this.conditionsService.conditions$;
-  user$ = this.authService.afUser$;
-
   constructor(
-    private conditionsService: ConditionsService,
-    private authService: AuthService
+    public conditionsService: ConditionsService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {}
-
-  saveConditions(conditions: Condition[]) {
-    this.conditionsService.saveConditions(conditions);
-  }
 }
