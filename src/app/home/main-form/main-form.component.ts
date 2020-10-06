@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { Condition } from 'src/app/interfaces/condition';
@@ -23,7 +24,8 @@ export class MainFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private conditionsService: ConditionsService
+    private conditionsService: ConditionsService,
+    private viewportScroller: ViewportScroller
   ) {
     this.buildForm();
   }
@@ -135,6 +137,7 @@ export class MainFormComponent implements OnInit {
       formData = conditions.map((condition) => this.transferData(condition));
     }
     this.conditionsService.setConditions(formData);
+    this.viewportScroller.scrollToAnchor('result');
     this.processing = false;
   }
 }

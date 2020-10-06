@@ -15,7 +15,7 @@ export class PointsComponent implements OnInit {
     },
     {
       icon: 'save_alt',
-      title: '条件を保存',
+      title: '条件保存',
       text:
         'Googleアカウントでログインすると、条件保存が可能に。他デバイスで確認したい時にも便利です。',
     },

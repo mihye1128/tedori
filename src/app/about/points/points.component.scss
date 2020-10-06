@@ -7,6 +7,29 @@ ul {
   padding: 0;
 }
 
+.logo-text {
+  margin: 0;
+  font-size: 25px;
+  font-family: $font-logo;
+  font-weight: 700;
+  line-height: 1;
+  @include md {
+    font-size: 30px;
+  }
+  em {
+    font-style: normal;
+    text-transform: uppercase;
+    color: $color-logo;
+  }
+  .beta {
+    color: $color-main;
+    font-size: 20px;
+    @include md {
+      font-size: 24px;
+    }
+  }
+}
+
 .points {
   padding-top: 80px;
   padding-bottom: 80px;
