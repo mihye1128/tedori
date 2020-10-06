@@ -13,7 +13,7 @@ export class SocialInsService {
 
   getStandardMonthlyFee(total: number, insType: string = 'default') {
     let standard: number;
-    this.standardMonthlyFeeTable.forEach((grade, i) => {
+    this.standardMonthlyFeeTable.forEach((grade) => {
       if (total < grade.max && total >= grade.min) {
         standard = grade.standard;
       }
@@ -36,6 +36,9 @@ export class SocialInsService {
     area: string,
     healthInsRateList: ByArea[]
   ) {
+    let healthInsWorder: number;
+    let healthInsOwner: number;
+
     if (subscribedSocialIns && healthInsRateList.length) {
       let healthInsRate: number;
       for (const item of healthInsRateList) {
@@ -45,14 +48,13 @@ export class SocialInsService {
       }
       const healthIns: number =
         this.getStandardMonthlyFee(total) * (healthInsRate / 100);
-      const healthInsWorder: number = Math.round(healthIns / 2);
-      const healthInsOwner: number = Math.round(healthIns - healthInsWorder);
-      return { healthInsWorder, healthInsOwner };
+      healthInsWorder = Math.round(healthIns / 2);
+      healthInsOwner = Math.round(healthIns - healthInsWorder);
     } else {
-      const healthInsWorder = 0;
-      const healthInsOwner = 0;
-      return { healthInsWorder, healthInsOwner };
+      healthInsWorder = 0;
+      healthInsOwner = 0;
     }
+    return { healthInsWorder, healthInsOwner };
   }
 
   getNursingIns(
@@ -61,17 +63,19 @@ export class SocialInsService {
     age: string,
     nursingInsRate: number
   ) {
+    let nursingInsWorker: number;
+    let nursingInsOwner: number;
+
     if (subscribedSocialIns && age === 'middle') {
       const nursingIns: number =
         this.getStandardMonthlyFee(total) * (nursingInsRate / 100);
-      const nursingInsWorker: number = Math.round(nursingIns / 2);
-      const nursingInsOwner: number = Math.round(nursingIns - nursingInsWorker);
-      return { nursingInsWorker, nursingInsOwner };
+      nursingInsWorker = Math.round(nursingIns / 2);
+      nursingInsOwner = Math.round(nursingIns - nursingInsWorker);
     } else {
-      const nursingInsWorker = 0;
-      const nursingInsOwner = 0;
-      return { nursingInsWorker, nursingInsOwner };
+      nursingInsWorker = 0;
+      nursingInsOwner = 0;
     }
+    return { nursingInsWorker, nursingInsOwner };
   }
 
   getPensionIns(
@@ -79,20 +83,22 @@ export class SocialInsService {
     subscribedSocialIns: boolean,
     pensionInsRate: number
   ) {
+    let pensionInsWorker: number;
+    let pensionInsOwner: number;
+
     if (subscribedSocialIns) {
       const standardMonthlyFee: number = this.getStandardMonthlyFee(
         total,
         'PensionIns'
       );
       const pensionIns: number = standardMonthlyFee * (pensionInsRate / 100);
-      const pensionInsWorker: number = Math.round(pensionIns / 2);
-      const pensionInsOwner: number = Math.round(pensionIns - pensionInsWorker);
-      return { pensionInsWorker, pensionInsOwner };
+      pensionInsWorker = Math.round(pensionIns / 2);
+      pensionInsOwner = Math.round(pensionIns - pensionInsWorker);
     } else {
-      const pensionInsWorker = 0;
-      const pensionInsOwner = 0;
-      return { pensionInsWorker, pensionInsOwner };
+      pensionInsWorker = 0;
+      pensionInsOwner = 0;
     }
+    return { pensionInsWorker, pensionInsOwner };
   }
 
   getChildrenIns(
@@ -100,14 +106,17 @@ export class SocialInsService {
     subscribedSocialIns: boolean,
     childrenInsRate: number
   ) {
+    let childrenIns: number;
+
     if (subscribedSocialIns) {
       const standardMonthlyFee: number = this.getStandardMonthlyFee(
         total,
         'childrenIns'
       );
-      return Math.round(standardMonthlyFee * (childrenInsRate / 100));
+      childrenIns = Math.round(standardMonthlyFee * (childrenInsRate / 100));
     } else {
-      return 0;
+      childrenIns = 0;
     }
+    return childrenIns;
   }
 }
