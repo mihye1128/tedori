@@ -7,6 +7,12 @@
   }
 }
 
+.sp-only {
+  @include md {
+    display: none;
+  }
+}
+
 .main-container {
   max-width: 720px;
   margin: 0 auto;
