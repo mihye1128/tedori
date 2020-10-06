@@ -5,15 +5,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 48px - 225px);
-}
-.nf {
+  min-height: calc(100vh - 48px - 225px - 160px);
   padding-top: 40px;
   padding-bottom: 60px;
-  text-align: center;
   @include md {
     padding-top: 80px;
     padding-bottom: 80px;
+  }
+}
+.nf {
+  text-align: center;
+  @include md {
     display: flex;
     align-items: center;
     justify-content: center;

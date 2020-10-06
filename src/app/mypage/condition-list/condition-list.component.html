@@ -1,0 +1,27 @@
+<div class="condition-list">
+  <div
+    class="condition-list__list"
+    *ngIf="conditionList; else blank"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="scrolled.emit()"
+  >
+    <ng-container *ngFor="let condition of conditionList">
+      <app-condition-card
+        *ngIf="!conditionsService.deletedIds.includes(condition.id)"
+        [condition]="conditionsService.setCondition(condition)"
+        [rate]="rate"
+        class="condition-list__item"
+      ></app-condition-card>
+    </ng-container>
+  </div>
+  <div *ngIf="loading" class="loading">
+    <mat-spinner class="loading__spinner" diameter="40"></mat-spinner>
+  </div>
+  <ng-template #blank>
+    <p class="condition-list__none" *ngIf="!loading">
+      保存された条件はありません。
+    </p>
+  </ng-template>
+</div>

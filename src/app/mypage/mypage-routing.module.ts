@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MypageComponent } from './mypage/mypage.component';
-import { MainListComponent } from './main-list/main-list.component';
-import { SearchResultListComponent } from './search-result-list/search-result-list.component';
+import { ResultMainComponent } from './result-main/result-main.component';
+import { ResultSearchComponent } from './result-search/result-search.component';
 
 const routes: Routes = [
   {
@@ -12,11 +12,11 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: MainListComponent,
+        component: ResultMainComponent,
       },
       {
         path: 'search',
-        component: SearchResultListComponent,
+        component: ResultSearchComponent,
       },
     ],
   },

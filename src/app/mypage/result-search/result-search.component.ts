@@ -4,15 +4,16 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { RateService } from 'src/app/services/rate.service';
-import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-search-result-list',
-  templateUrl: './search-result-list.component.html',
-  styleUrls: ['./search-result-list.component.scss'],
+  selector: 'app-result-search',
+  templateUrl: './result-search.component.html',
+  styleUrls: ['./result-search.component.scss'],
 })
-export class SearchResultListComponent implements OnInit {
-  conditionsList: Condition[];
+export class ResultSearchComponent implements OnInit {
+  conditionList: Condition[];
+  loading: boolean;
+
   queryTitle: string;
   typeFilter: string;
   baseLower: number;
@@ -25,7 +26,6 @@ export class SearchResultListComponent implements OnInit {
   page: number;
   perPage = 18;
   maxPage: number;
-  loading: boolean;
   isInit = true;
 
   private index = this.searchService.index.condition;
@@ -38,21 +38,7 @@ export class SearchResultListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params) => {
-      this.conditionsList = [];
-      this.page = 0;
-      this.index = this.searchService.index.condition;
-      this.queryTitle = params.get('title') || '';
-      this.typeFilter = params.get('type') || '';
-      this.baseLower = +params.get('baseLower');
-      this.baseUpper = +params.get('baseUpper');
-      this.allowanceLower = +params.get('allowanceLower');
-      this.allowanceUpper = +params.get('allowanceUpper');
-      this.basePerHourLower = +params.get('basePerHourLower');
-      this.basePerHourUpper = +params.get('basePerHourUpper');
-      this.search();
-      this.isInit = false;
-    });
+    this.initialSearch();
   }
 
   pushRange(rangeList: string[], key: string, lower?: number, upper?: number) {
@@ -101,34 +87,33 @@ export class SearchResultListComponent implements OnInit {
         .then((result) => {
           this.maxPage = result.nbPages;
           const items = result.hits as any[];
-          this.conditionsList.push(...items);
+          this.conditionList.push(...items);
         })
         .finally(() => (this.loading = false));
     }
   }
 
+  initialSearch() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.conditionList = [];
+      this.page = 0;
+      this.index = this.searchService.index.condition;
+      this.queryTitle = params.get('title') || '';
+      this.typeFilter = params.get('type') || '';
+      this.baseLower = +params.get('baseLower');
+      this.baseUpper = +params.get('baseUpper');
+      this.allowanceLower = +params.get('allowanceLower');
+      this.allowanceUpper = +params.get('allowanceUpper');
+      this.basePerHourLower = +params.get('basePerHourLower');
+      this.basePerHourUpper = +params.get('basePerHourUpper');
+      this.search();
+      this.isInit = false;
+    });
+  }
+
   addSearch() {
     if (!this.loading && (!this.maxPage || this.maxPage > this.page)) {
       this.search();
-    }
-  }
-
-  setCondition(condition: Condition) {
-    const updateConditions = this.searchService.updateConditions;
-    if (
-      updateConditions.find(
-        (updateConditionData) => updateConditionData.id === condition.id
-      )
-    ) {
-      let updateCondition: Condition;
-      updateConditions.map((updateConditionData) => {
-        if (updateConditionData.id === condition.id) {
-          updateCondition = updateConditionData;
-        }
-      });
-      return updateCondition;
-    } else {
-      return condition;
     }
   }
 }

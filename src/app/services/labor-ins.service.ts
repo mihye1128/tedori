@@ -12,19 +12,22 @@ export class LaborInsService {
     unemploymentInsWorkerBurden: number,
     unemploymentInsOwnerBurden: number
   ) {
+    let unemploymentInsWorker: number;
+    let unemploymentInsOwner: number;
+
     if (unemploymentIns) {
-      const unemploymentInsWorker: number = Math.round(
+      unemploymentInsWorker = Math.round(
         (total * unemploymentInsWorkerBurden) / 1000
       );
-      const unemploymentInsOwner: number = Math.round(
+      unemploymentInsOwner = Math.round(
         (total * unemploymentInsOwnerBurden) / 1000
       );
-      return { unemploymentInsWorker, unemploymentInsOwner };
     } else {
-      const unemploymentInsWorker = 0;
-      const unemploymentInsOwner = 0;
-      return { unemploymentInsWorker, unemploymentInsOwner };
+      unemploymentInsWorker = 0;
+      unemploymentInsOwner = 0;
     }
+
+    return { unemploymentInsWorker, unemploymentInsOwner };
   }
 
   getCompensationIns(total: number, compensationInsRate: number) {

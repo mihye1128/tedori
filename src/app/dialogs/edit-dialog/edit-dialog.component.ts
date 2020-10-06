@@ -119,7 +119,7 @@ export class EditDialogComponent implements OnInit {
       .then(() => {
         this.processing = false;
         editedCondition.id = this.data.id;
-        this.searchService.updateConditions.push(editedCondition);
+        this.conditionsService.updateConditions.push(editedCondition);
         this.dialogRef.close();
       });
   }

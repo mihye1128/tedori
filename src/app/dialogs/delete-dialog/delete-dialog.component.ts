@@ -32,7 +32,7 @@ export class DeleteDialogComponent implements OnInit {
 
   deleteCondition() {
     this.conditionsService.deleteCondition(this.data.id).then(() => {
-      this.searchService.deletedIds.push(this.data.id);
+      this.conditionsService.deletedIds.push(this.data.id);
       this.dialogRef.close();
     });
   }

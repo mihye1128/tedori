@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 import { ConditionsService } from 'src/app/services/conditions.service';
 import { Condition } from 'src/app/interfaces/condition';
 import { AREA_LIST } from 'src/app/models/area-list';
@@ -11,9 +10,9 @@ import { AREA_LIST } from 'src/app/models/area-list';
   styleUrls: ['./main-form.component.scss'],
 })
 export class MainFormComponent implements OnInit {
-  user$ = this.authService.afUser$;
-  titleMaxLength = this.conditionsService.titleMaxLength;
-  range = this.conditionsService.range;
+  readonly titleMaxLength = this.conditionsService.titleMaxLength;
+  readonly range = this.conditionsService.range;
+
   uid: string;
   formGroup: FormGroup;
   areaList: string[] = AREA_LIST;
@@ -24,7 +23,6 @@ export class MainFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
     private conditionsService: ConditionsService
   ) {
     this.buildForm();

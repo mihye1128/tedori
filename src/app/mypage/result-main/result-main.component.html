@@ -1,0 +1,7 @@
+<app-condition-list
+  *ngIf="rateService.rate"
+  [rate]="rateService.rate"
+  [conditionList]="conditionList"
+  [loading]="loading"
+  (scrolled)="getConditions()"
+></app-condition-list>

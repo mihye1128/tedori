@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./points.component.scss'],
 })
 export class PointsComponent implements OnInit {
-  points = [
+  readonly points = [
     {
       icon: 'supervisor_account',
       title: '2件同時計算',

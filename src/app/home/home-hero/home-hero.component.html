@@ -1,23 +1,23 @@
-<section class="head">
+<section class="hero">
   <div class="main-container">
-    <div class="head__main">
-      <h1 class="head__title"><em>Tedori</em><sup class="beta">β</sup></h1>
-      <p class="head__main-text">
+    <div class="hero__main">
+      <h1 class="hero__title"><em>Tedori</em><sup class="beta">β</sup></h1>
+      <p class="hero__main-text">
         条件を入力して、給与をカンタン試算。
       </p>
-      <p class="head__sub-text">
+      <p class="hero__sub-text">
         Googleアカウントでログインすると、条件設定をマイページに保存できます。<br />
         多数の条件で比較したい時や、他デバイスとの共有におすすめです。<br />
       </p>
-      <div class="head__images">
+      <div class="hero__images">
         <img src="/assets/images/use_calculator.svg" alt="" />
       </div>
-      <ul class="head__actions">
+      <ul class="hero__actions">
         <li>
           <a
             mat-flat-button
             color="primary"
-            class="head__home"
+            class="hero__home"
             aria-label="計算する"
             routerLink="/"
             fragment="main"
@@ -30,7 +30,7 @@
             <button
               mat-flat-button
               color="primary"
-              class="head__login"
+              class="hero__login"
               aria-label="Googleアカウントでログインする"
               [disabled]="authService.loginProcessing"
               (click)="authService.login()"
@@ -48,7 +48,7 @@
             <a
               mat-flat-button
               color="primary"
-              class="head__login"
+              class="hero__login"
               aria-label="Googleアカウントでログインする"
               routerLink="/mypage"
             >
