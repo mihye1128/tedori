@@ -2,13 +2,11 @@ html,
 body {
   height: 100%;
 }
-html {
-  scroll-behavior: smooth;
-}
 body {
   margin: 0;
   color: $color-font-900;
-  font-family: Roboto, 'Noto Sans JP', 'Helvetica Neue', sans-serif;
+  font-family: Roboto, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN',
+    'Hiragino Sans', Meiryo, sans-serif;
 }
 a {
   color: inherit;
