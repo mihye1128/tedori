@@ -1,0 +1,96 @@
+@import 'variables';
+@import 'mixins';
+
+.logo-text {
+  margin: 0;
+  font-size: 25px;
+  font-family: $font-logo;
+  font-weight: 700;
+  line-height: 1;
+  @include md {
+    font-size: 30px;
+  }
+  em {
+    font-style: normal;
+    text-transform: uppercase;
+    color: $color-logo;
+  }
+  .beta {
+    color: $color-main;
+    font-size: 20px;
+    @include md {
+      font-size: 24px;
+    }
+  }
+}
+
+.about-footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  text-align: center;
+  @include md {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  &__title {
+    margin: 0;
+    font-size: 40px;
+    font-family: $font-logo;
+    font-weight: 700;
+    line-height: 1;
+    em {
+      font-style: normal;
+      text-transform: uppercase;
+      color: $color-logo;
+    }
+    .beta {
+      color: $color-main;
+      font-size: 32px;
+    }
+    @include sm {
+      font-size: 50px;
+      .beta {
+        font-size: 40px;
+      }
+    }
+  }
+  &__actions {
+    padding: 0;
+    list-style: none;
+    li {
+      &:not(:first-of-type) {
+        margin-top: 8px;
+      }
+    }
+    @include md {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      li {
+        margin-left: 8px;
+        margin-right: 8px;
+        &:not(:first-of-type) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  &__home,
+  &__login {
+    border-radius: 36px;
+    padding: 0.25em 2em;
+    width: 100%;
+    max-width: 360px;
+    font-size: 16px;
+    color: #fff;
+    @include md {
+      width: 240px;
+    }
+  }
+  &__home {
+    background-color: $color-main;
+  }
+  &__login {
+    background-color: $color-google;
+  }
+}

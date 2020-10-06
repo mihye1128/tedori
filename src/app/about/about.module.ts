@@ -8,6 +8,7 @@ import { HeroComponent } from './hero/hero.component';
 import { UseComponent } from './use/use.component';
 import { PointsComponent } from './points/points.component';
 import { HeadingComponent } from './heading/heading.component';
+import { AboutFooterComponent } from './about-footer/about-footer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HeadingComponent } from './heading/heading.component';
     UseComponent,
     PointsComponent,
     HeadingComponent,
+    AboutFooterComponent,
   ],
   imports: [CommonModule, AboutRoutingModule, SharedModule],
 })
