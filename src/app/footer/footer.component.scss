@@ -2,11 +2,11 @@
 @import 'mixins';
 
 .footer {
-  padding: 30px 0;
+  padding: 60px 0 30px;
   background-color: $color-footer;
   color: #fff;
   @include sm {
-    padding: 40px 0;
+    padding: 50px 0 40px;
   }
   &__container {
     padding: 0 16px;
@@ -23,18 +23,25 @@
       opacity: 0.64;
     }
     @include sm {
-      font-size: 30px;
+      font-size: 36px;
     }
   }
   &__dev {
-    margin: 20px 0 0;
+    margin: 40px 0 0;
     font-family: $font-logo;
+    font-size: 18px;
+    @include sm {
+      margin-top: 30px;
+    }
   }
   &__sns {
     margin-top: 8px;
-    font-size: 24px;
+    margin-left: -8px;
+    font-size: 32px;
     a {
       display: inline-block;
+      padding: 8px;
+      line-height: 1;
       transition: opacity 0.4s;
       &::after {
         content: none;
@@ -48,36 +55,61 @@
     }
   }
   &__end {
-    margin-top: 20px;
-    font-size: 10px;
+    font-size: 12px;
     @include sm {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 12px;
+      flex-wrap: wrap;
+      line-height: 2;
     }
   }
   &__nav {
-    margin: 0;
+    margin: 30px 0 0;
     padding-left: 0;
-    display: flex;
-    flex-wrap: wrap;
     list-style: none;
+    @include sm {
+      display: flex;
+      flex-wrap: wrap;
+    }
     li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+      @include sm {
+        border: none;
+      }
+      &:first-of-type {
+        border-top: 1px solid rgba(255, 255, 255, 0.32);
+        @include sm {
+          border: none;
+        }
+      }
       &:not(:first-of-type) {
-        &::before {
-          content: '/';
-          margin-left: 0.5em;
-          margin-right: 0.5em;
-          opacity: 0.64;
+        @include sm {
+          &::before {
+            content: '/';
+            margin-left: 0.5em;
+            margin-right: 0.5em;
+            opacity: 0.64;
+          }
         }
       }
     }
     a {
-      transition: opacity 0.4s;
+      display: block;
+      padding: 1em 0;
+      transition: background-color 0.4s;
       opacity: 0.64;
+      @include sm {
+        display: inline;
+        padding: 0;
+        transition: opacity 0.4s;
+      }
       &:hover {
-        opacity: 0.8;
+        background-color: rgba(255, 255, 255, 0.4);
+        @include sm {
+          opacity: 0.8;
+          background-color: transparent;
+        }
       }
     }
     .logo {
@@ -85,11 +117,8 @@
     }
   }
   &__copy {
-    margin: 1em 0 0;
+    margin: 30px 0 0;
     font-family: $font-logo;
     opacity: 0.64;
-    @include sm {
-      margin: 0;
-    }
   }
 }
