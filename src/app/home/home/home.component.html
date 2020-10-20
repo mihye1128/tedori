@@ -1,19 +1,18 @@
 <app-home-hero></app-home-hero>
-<div class="main" id="main">
+<div class="main">
   <div class="main-container">
     <app-main-form></app-main-form>
     <div id="result">
-      <ng-container *ngIf="rateService.rate">
-        <app-main-result [rate]="rateService.rate"></app-main-result>
-      </ng-container>
+      <app-main-result
+        *ngIf="rateService.rate"
+        [rate]="rateService.rate"
+      ></app-main-result>
     </div>
   </div>
 </div>
-<ng-container *ngIf="rateService.rate">
-  <div class="guide">
-    <div class="main-container">
-      <app-guide-rate [rate]="rateService.rate"></app-guide-rate>
-      <app-guide-method [rate]="rateService.rate"></app-guide-method>
-    </div>
+<div class="guide" *ngIf="rateService.rate">
+  <div class="main-container">
+    <app-guide-rate [rate]="rateService.rate"></app-guide-rate>
+    <app-guide-method [rate]="rateService.rate"></app-guide-method>
   </div>
-</ng-container>
+</div>
