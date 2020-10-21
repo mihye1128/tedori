@@ -27,11 +27,20 @@ img {
   vertical-align: top;
 }
 
+mat-form-field {
+  width: 100%;
+}
+
 input[type='number'] {
   -moz-appearance: textfield;
+  text-align: right;
 }
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.mat-content {
+  align-items: center;
 }

@@ -1,6 +1,14 @@
 @import 'variables';
 @import 'mixins';
 
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
 .header {
   min-height: 48px;
   background-color: #fff;

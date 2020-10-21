@@ -1,15 +1,8 @@
-.l-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-.l-wrap {
+.wrap {
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: 100%;
 }
-.l-main {
+.main {
   padding-top: 48px;
 }

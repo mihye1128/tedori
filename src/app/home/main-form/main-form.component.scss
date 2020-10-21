@@ -40,34 +40,28 @@
   padding-bottom: 60px;
   max-width: 600px;
   margin: 0 auto;
+  @include sm {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .unit {
     margin-left: 0.5em;
     opacity: 0.64;
     font-size: 0.8em;
   }
   &__title {
+    box-sizing: border-box;
     margin: 0 0 24px;
     padding: 12px 16px;
     font-weight: normal;
     background-color: $color-base;
-  }
-  &__field {
     width: 100%;
-    input[type='number'] {
-      text-align: right;
-    }
-  }
-  &__detail {
-    @include sm {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-    }
   }
   &__income,
   &__deduction {
     @include sm {
       width: calc(50% - 16px);
+      margin-top: 16px;
     }
   }
   &__deduction {

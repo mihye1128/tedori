@@ -4,7 +4,7 @@
       <p class="header__title">
         <a routerLink="/" class="header__link">
           <img
-            src="/assets/images/logo_header.svg"
+            src="assets/images/logo_header.svg"
             alt="テドリ ベータ版"
             class="header__logo"
           />
@@ -25,7 +25,7 @@
         >
           <img
             *ngIf="!authService.loginProcessing"
-            src="/assets/images/icon_google.svg"
+            src="assets/images/icon_google.svg"
             alt="Googleアカウント"
           />
           {{ authService.loginProcessing ? 'ログイン中' : 'ログイン' }}

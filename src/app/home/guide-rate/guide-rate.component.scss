@@ -75,22 +75,27 @@
     }
   }
   &__annotation {
-    margin-top: 12px;
-    margin-bottom: 40px;
+    margin: 12px 0 40px;
+    padding: 0;
     color: $color-font-700;
-    font-size: 10px;
+    font-size: 12px;
+    list-style: none;
+    counter-reset: annotation;
     @include sm {
-      margin-top: 12px;
       margin-bottom: 80px;
-      font-size: 12px;
     }
-    p {
+    li {
       margin-top: 0;
       margin-bottom: 0;
       padding-left: 2em;
       text-indent: -2em;
       &:not(:first-of-type) {
         margin-top: 4px;
+      }
+      &:before {
+        counter-increment: annotation;
+        content: '※' counter(annotation);
+        margin-right: 0.75em;
       }
     }
   }
