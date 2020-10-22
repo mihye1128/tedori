@@ -14,25 +14,22 @@ export class ResultSearchComponent implements OnInit {
   conditionList: Condition[];
   loading: boolean;
 
-  queryTitle: string;
-  typeFilter: string;
-  baseLower: number;
-  baseUpper: number;
-  allowanceLower: number;
-  allowanceUpper: number;
-  basePerHourLower: number;
-  basePerHourUpper: number;
-  baseRange: string;
-  page: number;
-  perPage = 18;
-  maxPage: number;
-  isInit = true;
-
+  private queryTitle: string;
+  private typeFilter: string;
+  private baseLower: number;
+  private baseUpper: number;
+  private allowanceLower: number;
+  private allowanceUpper: number;
+  private basePerHourLower: number;
+  private basePerHourUpper: number;
+  private readonly perPage = 18;
+  private page: number;
+  private maxPage: number;
   private index = this.searchService.index.condition;
 
   constructor(
     public rateService: RateService,
-    public searchService: SearchService,
+    private searchService: SearchService,
     private authService: AuthService,
     private route: ActivatedRoute
   ) {}
@@ -41,7 +38,12 @@ export class ResultSearchComponent implements OnInit {
     this.initialSearch();
   }
 
-  pushRange(rangeList: string[], key: string, lower?: number, upper?: number) {
+  private pushRange(
+    rangeList: string[],
+    key: string,
+    lower?: number,
+    upper?: number
+  ) {
     if (lower && upper) {
       rangeList.push(`${key}: ${lower} TO ${upper}`);
     } else if (lower) {
@@ -51,7 +53,7 @@ export class ResultSearchComponent implements OnInit {
     }
   }
 
-  setRange() {
+  private setRange() {
     const rangeList: string[] = [];
 
     this.pushRange(rangeList, 'base', this.baseLower, this.baseUpper);
@@ -71,7 +73,7 @@ export class ResultSearchComponent implements OnInit {
     return rangeList;
   }
 
-  search() {
+  private search() {
     if (!this.loading) {
       this.loading = true;
       this.index
@@ -107,7 +109,6 @@ export class ResultSearchComponent implements OnInit {
       this.basePerHourLower = +params.get('basePerHourLower');
       this.basePerHourUpper = +params.get('basePerHourUpper');
       this.search();
-      this.isInit = false;
     });
   }
 

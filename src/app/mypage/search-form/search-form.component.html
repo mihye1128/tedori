@@ -1,138 +1,220 @@
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      絞り込み設定
-    </mat-panel-title>
-  </mat-expansion-panel-header>
+<mat-card>
+  <mat-card-header>絞り込み設定</mat-card-header>
   <form [formGroup]="form" class="form">
-    <dl class="form__data">
-      <dt class="form__dt">条件名</dt>
-      <dd class="form__dd">
-        <mat-form-field class="form__title">
-          <mat-label>条件名で探す</mat-label>
-          <input
-            type="text"
-            matInput
-            autocomplete="off"
-            formControlName="title"
-            [value]="form.value.title"
-          />
-        </mat-form-field>
-      </dd>
-    </dl>
-    <dl class="form__data">
-      <dt class="form__dt">基本給</dt>
-      <dd class="form__dd">
-        <mat-checkbox
-          class="form__radio-btn"
-          name="monthly"
-          formControlName="typeMonthly"
-          [value]="form.value.typeMonthly"
-          #typeMonthly
-          >月給</mat-checkbox
-        >
-        <mat-checkbox
-          class="form__radio-btn"
-          name="hourly"
-          formControlName="typeHourly"
-          [value]="form.value.typeHourly"
-          #typeHourly
-          >時給</mat-checkbox
-        >
-      </dd>
-    </dl>
-    <ng-container *ngIf="typeMonthly.checked">
+    <mat-card-content>
       <dl class="form__data">
-        <dt class="form__dt">月給</dt>
+        <dt class="form__dt">条件名</dt>
         <dd class="form__dd">
-          <mat-form-field class="form__field">
-            <mat-label>下限</mat-label>
+          <mat-form-field class="form__title">
+            <mat-label>条件名で探す</mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               autocomplete="off"
-              formControlName="baseLower"
-              class="price"
+              formControlName="title"
+              [value]="form.value.title"
             />
           </mat-form-field>
-          〜
-          <mat-form-field class="form__field">
-            <mat-label>上限</mat-label>
-            <input
-              type="number"
-              matInput
-              autocomplete="off"
-              formControlName="baseUpper"
-              class="price"
-            />
-          </mat-form-field>
-          <span class="yen">円</span>
         </dd>
       </dl>
       <dl class="form__data">
-        <dt class="form__dt">諸手当</dt>
+        <dt class="form__dt">基本給</dt>
         <dd class="form__dd">
-          <mat-form-field class="form__field">
-            <mat-label>下限</mat-label>
-            <input
-              type="number"
-              matInput
-              autocomplete="off"
-              formControlName="allowanceLower"
-              class="price"
-            />
-          </mat-form-field>
-          〜
-          <mat-form-field class="form__field">
-            <mat-label>上限</mat-label>
-            <input
-              type="number"
-              matInput
-              autocomplete="off"
-              formControlName="allowanceUpper"
-              class="price"
-            />
-          </mat-form-field>
-          <span class="yen">円</span>
+          <mat-checkbox
+            class="form__radio-btn"
+            name="monthly"
+            formControlName="typeMonthly"
+            [value]="form.value.typeMonthly"
+            #typeMonthly
+            >月給</mat-checkbox
+          >
+          <mat-checkbox
+            class="form__radio-btn"
+            name="hourly"
+            formControlName="typeHourly"
+            [value]="form.value.typeHourly"
+            #typeHourly
+            >時給</mat-checkbox
+          >
         </dd>
       </dl>
-    </ng-container>
-    <ng-container *ngIf="typeHourly.checked">
-      <dl class="form__data">
-        <dt class="form__dt">時給</dt>
-        <dd class="form__dd">
-          <mat-form-field class="form__field">
-            <mat-label>下限</mat-label>
-            <input
-              type="number"
-              matInput
-              autocomplete="off"
-              formControlName="basePerHourLower"
-              class="price"
-            />
-          </mat-form-field>
-          〜
-          <mat-form-field class="form__field">
-            <mat-label>上限</mat-label>
-            <input
-              type="number"
-              matInput
-              autocomplete="off"
-              formControlName="basePerHourUpper"
-              class="price"
-            />
-          </mat-form-field>
-          <span class="yen">円</span>
-        </dd>
-      </dl>
-    </ng-container>
-    <div class="form__actions">
+      <ng-container *ngIf="typeMonthly.checked">
+        <dl class="form__data">
+          <dt class="form__dt">月給</dt>
+          <dd class="form__dd">
+            <mat-form-field class="form__field">
+              <mat-label>下限</mat-label>
+              <input
+                type="number"
+                step="1"
+                [min]="range.base.min"
+                [max]="range.base.max"
+                matInput
+                autocomplete="off"
+                formControlName="baseLower"
+                class="price"
+              />
+              <mat-error
+                *ngIf="
+                  form.get('baseLower').hasError('min') ||
+                  form.get('baseLower').hasError('max') ||
+                  form.get('baseLower').hasError('pattern')
+                "
+              >
+                {{ range.basePerHour.min | number }}から{{
+                  range.basePerHour.max | number
+                }}までの整数を入力してください。
+              </mat-error>
+            </mat-form-field>
+            〜
+            <mat-form-field class="form__field">
+              <mat-label>上限</mat-label>
+              <input
+                type="number"
+                step="1"
+                [min]="range.base.min"
+                [max]="range.base.max"
+                matInput
+                autocomplete="off"
+                formControlName="baseUpper"
+                class="price"
+              />
+              <mat-error
+                *ngIf="
+                  form.get('baseUpper').hasError('min') ||
+                  form.get('baseUpper').hasError('max') ||
+                  form.get('baseUpper').hasError('pattern')
+                "
+              >
+                {{ range.basePerHour.min | number }}から{{
+                  range.basePerHour.max | number
+                }}までの整数を入力してください。
+              </mat-error>
+            </mat-form-field>
+            <span class="yen">円</span>
+          </dd>
+        </dl>
+        <dl class="form__data">
+          <dt class="form__dt">諸手当</dt>
+          <dd class="form__dd">
+            <mat-form-field class="form__field">
+              <mat-label>下限</mat-label>
+              <input
+                type="number"
+                step="1"
+                [min]="range.allowance.min"
+                [max]="range.allowance.max"
+                matInput
+                autocomplete="off"
+                formControlName="allowanceLower"
+                class="price"
+              />
+              <mat-error
+                *ngIf="
+                  form.get('allowanceLower').hasError('min') ||
+                  form.get('allowanceLower').hasError('max') ||
+                  form.get('allowanceLower').hasError('pattern')
+                "
+              >
+                {{ range.basePerHour.min | number }}から{{
+                  range.basePerHour.max | number
+                }}までの整数を入力してください。
+              </mat-error>
+            </mat-form-field>
+            〜
+            <mat-form-field class="form__field">
+              <mat-label>上限</mat-label>
+              <input
+                type="number"
+                step="1"
+                [min]="range.allowance.min"
+                [max]="range.allowance.max"
+                matInput
+                autocomplete="off"
+                formControlName="allowanceUpper"
+                class="price"
+              />
+              <mat-error
+                *ngIf="
+                  form.get('allowanceUpper').hasError('min') ||
+                  form.get('allowanceUpper').hasError('max') ||
+                  form.get('allowanceUpper').hasError('pattern')
+                "
+              >
+                {{ range.basePerHour.min | number }}から{{
+                  range.basePerHour.max | number
+                }}までの整数を入力してください。
+              </mat-error>
+            </mat-form-field>
+            <span class="yen">円</span>
+          </dd>
+        </dl>
+      </ng-container>
+      <ng-container *ngIf="typeHourly.checked">
+        <dl class="form__data">
+          <dt class="form__dt">時給</dt>
+          <dd class="form__dd">
+            <mat-form-field class="form__field">
+              <mat-label>下限</mat-label>
+              <input
+                type="number"
+                step="1"
+                [min]="range.basePerHour.min"
+                [max]="range.basePerHour.max"
+                matInput
+                autocomplete="off"
+                formControlName="basePerHourLower"
+                class="price"
+              />
+              <mat-error
+                *ngIf="
+                  form.get('basePerHourLower').hasError('min') ||
+                  form.get('basePerHourLower').hasError('max') ||
+                  form.get('basePerHourLower').hasError('pattern')
+                "
+              >
+                {{ range.basePerHour.min | number }}から{{
+                  range.basePerHour.max | number
+                }}までの整数を入力してください。
+              </mat-error>
+            </mat-form-field>
+            〜
+            <mat-form-field class="form__field">
+              <mat-label>上限</mat-label>
+              <input
+                type="number"
+                step="1"
+                [min]="range.basePerHour.min"
+                [max]="range.basePerHour.max"
+                matInput
+                autocomplete="off"
+                formControlName="basePerHourUpper"
+                class="price"
+              />
+              <mat-error
+                *ngIf="
+                  form.get('basePerHourUpper').hasError('min') ||
+                  form.get('basePerHourUpper').hasError('max') ||
+                  form.get('basePerHourUpper').hasError('pattern')
+                "
+              >
+                {{ range.basePerHour.min | number }}から{{
+                  range.basePerHour.max | number
+                }}までの整数を入力してください。
+              </mat-error>
+            </mat-form-field>
+            <span class="yen">円</span>
+          </dd>
+        </dl>
+      </ng-container>
+    </mat-card-content>
+    <mat-card-actions>
       <button mat-flat-button color="accent" (click)="serchConditions()">
         検索
       </button>
       <button mat-stroked-button (click)="cancelSearchConditions()">
         検索条件クリア
       </button>
-    </div>
+    </mat-card-actions>
   </form>
-</mat-expansion-panel>
+</mat-card>
