@@ -12,6 +12,7 @@ export class ConditionListComponent implements OnInit {
   @Input() conditionList: Condition[];
   @Input() loading: boolean;
   @Input() rate: Insurance;
+  @Input() blankMessage: string;
 
   @Output() scrolled = new EventEmitter();
 
