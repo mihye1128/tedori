@@ -1,7 +1,7 @@
 <div class="condition-list">
   <div
     class="condition-list__list"
-    *ngIf="conditionList; else blank"
+    *ngIf="conditionList.length > 0; else blank"
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="50"
@@ -21,7 +21,7 @@
   </div>
   <ng-template #blank>
     <p class="condition-list__none" *ngIf="!loading">
-      保存された条件はありません。
+      {{ blankMessage }}
     </p>
   </ng-template>
 </div>

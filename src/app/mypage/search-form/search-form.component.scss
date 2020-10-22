@@ -1,8 +1,26 @@
 @import 'variables';
 @import 'mixins';
 
+mat-card {
+  padding: 16px;
+  @include sm {
+    padding: 24px;
+  }
+}
+mat-card-content {
+  margin: 0;
+  padding: 16px 0;
+}
+mat-card-actions {
+  margin: 0;
+  button {
+    &:first-of-type {
+      color: #fff;
+    }
+  }
+}
+
 .form {
-  padding-top: 16px;
   &__title {
     width: 100%;
     max-width: 300px;
@@ -40,20 +58,6 @@
     font-weight: 400;
     &:not(:last-of-type) {
       margin-right: 21px;
-    }
-  }
-  &__actions {
-    margin-top: 16px;
-    margin-bottom: 8px;
-    button {
-      font-size: 14px;
-      font-weight: 400;
-      &:first-of-type {
-        color: #fff;
-      }
-      &:not(:first-of-type) {
-        margin-left: 8px;
-      }
     }
   }
 }
