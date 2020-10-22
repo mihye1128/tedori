@@ -31,13 +31,15 @@ export class AuthService {
       .signInWithPopup(provider)
       .then(() => {
         this.router.navigateByUrl('/');
-        this.loginProcessing = false;
       })
       .catch(() => {
         this.snackBar.open('ログイン中にエラーが発生しました。');
+      })
+      .finally(() => {
         this.loginProcessing = false;
       });
   }
+
   logout() {
     this.afAuth.signOut().then(() => {
       this.snackBar.open('ログアウトしました。');

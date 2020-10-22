@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { firestore } from 'firebase';
 import {
   AngularFirestore,
   QueryDocumentSnapshot,
 } from '@angular/fire/firestore';
-import { Condition } from '../interfaces/condition';
 import { Subject } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { firestore } from 'firebase';
-import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { Condition } from '../interfaces/condition';
 
 @Injectable({
   providedIn: 'root',
