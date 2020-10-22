@@ -38,7 +38,7 @@ export class ConditionsService {
     },
     basePerHour: {
       min: 0,
-      max: 999999,
+      max: 99999,
     },
     travelCostPerDay: {
       min: 0,
