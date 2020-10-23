@@ -26,7 +26,7 @@
 
 em {
   font-style: normal;
-  text-decoration: underline;
+  font-weight: 700;
 }
 table {
   color: $color-font-700;
@@ -78,4 +78,7 @@ tbody {
 }
 .spacer-half {
   margin-right: 1em;
+}
+.text-block {
+  display: block;
 }
