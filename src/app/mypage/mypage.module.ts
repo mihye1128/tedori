@@ -27,6 +27,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { ConditionListComponent } from './condition-list/condition-list.component';
 import { ResultMainComponent } from './result-main/result-main.component';
 import { ResultSearchComponent } from './result-search/result-search.component';
+import { PageHeadModule } from '../page-head/page-head.module';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ResultSearchComponent } from './result-search/result-search.component';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
+    PageHeadModule,
     PipesModule,
   ],
 })

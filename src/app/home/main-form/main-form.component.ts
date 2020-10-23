@@ -68,6 +68,7 @@ export class MainFormComponent implements OnInit {
           new FormControl('', [
             Validators.min(this.range[key].min),
             Validators.max(this.range[key].max),
+            Validators.pattern(/^[0-9]\d*$/),
           ])
         );
       });

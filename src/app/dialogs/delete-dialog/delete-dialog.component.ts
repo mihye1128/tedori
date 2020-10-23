@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ConditionsService } from 'src/app/services/conditions.service';
-import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -16,8 +15,7 @@ export class DeleteDialogComponent implements OnInit {
       id: string;
     },
     private dialogRef: MatDialogRef<DeleteDialogComponent>,
-    private conditionsService: ConditionsService,
-    private searchService: SearchService
+    private conditionsService: ConditionsService
   ) {}
 
   ngOnInit(): void {}
