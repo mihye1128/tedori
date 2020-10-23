@@ -97,7 +97,12 @@
                         formConditions.controls[i]
                           .get('base')
                           .hasError('min') ||
-                        formConditions.controls[i].get('base').hasError('max')
+                        formConditions.controls[i]
+                          .get('base')
+                          .hasError('max') ||
+                        formConditions.controls[i]
+                          .get('base')
+                          .hasError('pattern')
                       "
                       >{{ range.base.min | number }}から{{
                         range.base.max | number
@@ -129,7 +134,10 @@
                           .hasError('min') ||
                         formConditions.controls[i]
                           .get('allowance')
-                          .hasError('max')
+                          .hasError('max') ||
+                        formConditions.controls[i]
+                          .get('allowance')
+                          .hasError('pattern')
                       "
                       >{{ range.allowance.min | number }}から{{
                         range.allowance.max | number
@@ -161,7 +169,10 @@
                           .hasError('min') ||
                         formConditions.controls[i]
                           .get('travelCost')
-                          .hasError('max')
+                          .hasError('max') ||
+                        formConditions.controls[i]
+                          .get('travelCost')
+                          .hasError('pattern')
                       "
                       >{{ range.travelCost.min | number }}から{{
                         range.travelCost.max | number
@@ -195,7 +206,10 @@
                           .hasError('min') ||
                         formConditions.controls[i]
                           .get('basePerHour')
-                          .hasError('max')
+                          .hasError('max') ||
+                        formConditions.controls[i]
+                          .get('basePerHour')
+                          .hasError('pattern')
                       "
                       >{{ range.basePerHour.min | number }}から{{
                         range.basePerHour.max | number
@@ -227,7 +241,10 @@
                           .hasError('min') ||
                         formConditions.controls[i]
                           .get('travelCostPerDay')
-                          .hasError('max')
+                          .hasError('max') ||
+                        formConditions.controls[i]
+                          .get('travelCostPerDay')
+                          .hasError('pattern')
                       "
                       >{{ range.travelCostPerDay.min | number }}から{{
                         range.travelCostPerDay.max | number
@@ -259,7 +276,10 @@
                           .hasError('min') ||
                         formConditions.controls[i]
                           .get('hourPerDay')
-                          .hasError('max')
+                          .hasError('max') ||
+                        formConditions.controls[i]
+                          .get('hourPerDay')
+                          .hasError('pattern')
                       "
                       >{{ range.hourPerDay.min + 1 | number }}から{{
                         range.hourPerDay.max | number
@@ -291,7 +311,10 @@
                           .hasError('min') ||
                         formConditions.controls[i]
                           .get('dayPerMonth')
-                          .hasError('max')
+                          .hasError('max') ||
+                        formConditions.controls[i]
+                          .get('dayPerMonth')
+                          .hasError('pattern')
                       "
                       >{{ range.dayPerMonth.min + 1 | number }}から{{
                         range.dayPerMonth.max | number
@@ -391,7 +414,12 @@
                       formConditions.controls[i]
                         .get('cityTax')
                         .hasError('min') ||
-                      formConditions.controls[i].get('cityTax').hasError('max')
+                      formConditions.controls[i]
+                        .get('cityTax')
+                        .hasError('max') ||
+                      formConditions.controls[i]
+                        .get('cityTax')
+                        .hasError('pattern')
                     "
                     >{{ range.cityTax.min | number }}から{{
                       range.cityTax.max | number
@@ -420,7 +448,10 @@
                         .hasError('min') ||
                       formConditions.controls[i]
                         .get('otherDeduction')
-                        .hasError('max')
+                        .hasError('max') ||
+                      formConditions.controls[i]
+                        .get('otherDeduction')
+                        .hasError('pattern')
                     "
                     >{{ range.otherDeduction.min | number }}から{{
                       range.otherDeduction.max | number
