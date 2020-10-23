@@ -6,4 +6,4 @@ import { CalcPipe } from './calc.pipe';
   imports: [],
   exports: [CalcPipe],
 })
-export class PipesModule {}
+export class CalcPipesModule {}
