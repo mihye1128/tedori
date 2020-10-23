@@ -8,7 +8,7 @@ import { Insurance } from '../interfaces/insurance';
 export class RateService {
   rate: Insurance;
 
-  private insuranceData = '/assets/data/insurance.json';
+  private readonly insuranceData = '/assets/data/insurance.json';
 
   constructor(private http: HttpClient) {
     this.getRate().then((data) => (this.rate = data));

@@ -11,7 +11,10 @@ export class LaborInsService {
     unemploymentIns: boolean,
     unemploymentInsWorkerBurden: number,
     unemploymentInsOwnerBurden: number
-  ) {
+  ): {
+    unemploymentInsWorker: number;
+    unemploymentInsOwner: number;
+  } {
     let unemploymentInsWorker: number;
     let unemploymentInsOwner: number;
 
@@ -30,7 +33,7 @@ export class LaborInsService {
     return { unemploymentInsWorker, unemploymentInsOwner };
   }
 
-  getCompensationIns(total: number, compensationInsRate: number) {
+  getCompensationIns(total: number, compensationInsRate: number): number {
     return Math.round((total * compensationInsRate) / 1000);
   }
 }
