@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
 import {
   FormGroup,
   FormBuilder,
@@ -24,14 +23,12 @@ export class MainFormComponent implements OnInit {
 
   uid: string;
   formGroup: FormGroup;
-  processing = false;
 
   private conditionsCount = 2;
 
   constructor(
     private fb: FormBuilder,
-    private conditionsService: ConditionsService,
-    private viewportScroller: ViewportScroller
+    private conditionsService: ConditionsService
   ) {
     this.buildForm();
   }
@@ -82,7 +79,6 @@ export class MainFormComponent implements OnInit {
   }
 
   submit() {
-    this.processing = true;
     const formValue = this.formGroup.value;
     const conditions: Condition[] = formValue.formConditions;
     let formData: Condition[];
@@ -94,7 +90,9 @@ export class MainFormComponent implements OnInit {
     }
 
     this.conditionsService.setConditions(formData);
-    this.viewportScroller.scrollToAnchor('result');
-    this.processing = false;
+    document.querySelector('#result').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   }
 }
