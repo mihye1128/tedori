@@ -21,7 +21,7 @@ import { GuideRateComponent } from './guide-rate/guide-rate.component';
 import { GuideMethodComponent } from './guide-method/guide-method.component';
 import { MainResultWorkerComponent } from './main-result-worker/main-result-worker.component';
 import { MainResultOwnerComponent } from './main-result-owner/main-result-owner.component';
-import { HomeHeroComponent } from './home-hero/home-hero.component';
+import { PageHeadModule } from '../page-head/page-head.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { HomeHeroComponent } from './home-hero/home-hero.component';
     MainResultOwnerComponent,
     GuideRateComponent,
     GuideMethodComponent,
-    HomeHeroComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +47,7 @@ import { HomeHeroComponent } from './home-hero/home-hero.component';
     MatSelectModule,
     MatDividerModule,
     SharedModule,
+    PageHeadModule,
     PipesModule,
   ],
 })

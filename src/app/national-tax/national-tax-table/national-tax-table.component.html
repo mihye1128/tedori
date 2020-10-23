@@ -55,10 +55,14 @@
             </ng-container>
           </th>
           <td colspan="8" class="text-center">
-            <em>{{ fee.min | number }}円の場合の税額</em
-            >に、社会保険料控除後の給与等の金額のうち<br />
-            <em>{{ fee.min | number }}円を超える金額の{{ fee.rate }}％</em
-            >に相当する金額を<em>加算</em>した金額
+            <span class="text-block">
+              <em>{{ fee.min | number }}円の場合の税額</em
+              >に、社会保険料控除後の給与等の金額のうち
+            </span>
+            <span class="text-block">
+              <em>{{ fee.min | number }}円を超える金額の{{ fee.rate }}％</em
+              >に相当する金額を<em>加算</em>した金額
+            </span>
           </td>
         </tr>
       </ng-container>
