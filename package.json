@@ -30,6 +30,7 @@
     "@angular/router": "~9.1.9",
     "@angular/service-worker": "~9.1.9",
     "algoliasearch": "^4.4.0",
+    "aos": "^2.3.4",
     "firebase": "^7.13.1",
     "ngx-infinite-scroll": "^9.1.0",
     "rxjs": "~6.5.4",

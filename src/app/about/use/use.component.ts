@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-use',
@@ -39,4 +40,8 @@ export class UseComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    AOS.init();
+  }
 }
