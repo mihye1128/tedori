@@ -1,64 +1,33 @@
 <section class="hero">
   <div class="container">
     <div class="hero__main">
-      <h1 class="hero__title"><em>Tedori</em><sup class="beta">β</sup></h1>
       <p class="hero__main-text">
-        条件を入力して、給与をカンタン試算。
+        ログイン不要で使える<br />かんたん給与試算ツール
       </p>
       <p class="hero__sub-text">
-        Googleアカウントでログインすると、条件設定をマイページに保存できます。<br />
-        多数の条件で比較したい時や、他デバイスとの共有におすすめです。
-      </p>
-      <div class="hero__images">
-        <img
-          src="/assets/images/points_worker.png"
-          alt=""
-          class="hero__laptop"
+        給与試算機能は、ログイン不要ですぐに使えます。<br />
+        計算した条件を保存したい時や、他デバイスとの共有をしたい場合は、<br
+          class="sp-none"
         />
+        Googleアカウントにてログインすると試算条件を保存できます。
+      </p>
+      <div class="hero__image">
+        <img src="/assets/images/hero.png" alt="" />
       </div>
-      <ul class="hero__actions">
-        <li>
-          <a
-            mat-flat-button
-            color="primary"
-            class="hero__home"
-            aria-label="計算する"
-            routerLink="/"
-          >
-            計算する
-          </a>
-        </li>
-        <li>
-          <ng-template #default>
-            <button
-              mat-flat-button
-              color="primary"
-              class="hero__login"
-              aria-label="Googleアカウントでログインする"
-              [disabled]="authService.loginProcessing"
-              (click)="authService.login()"
-            >
-              {{
-                authService.loginProcessing
-                  ? 'ログイン中'
-                  : 'Googleアカウントでログイン'
-              }}
-            </button>
-          </ng-template>
-          <ng-container
-            *ngIf="authService.afUser$ | async as user; else default"
-          >
-            <a
-              mat-flat-button
-              color="primary"
-              class="hero__login"
-              routerLink="/mypage"
-            >
-              マイページを見る
-            </a>
-          </ng-container>
-        </li>
-      </ul>
+      <a class="hero__btn" aria-label="今すぐ使ってみる" routerLink="/">
+        <span>今すぐ使ってみる</span>
+      </a>
     </div>
   </div>
+  <svg
+    class="hero__bottom"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 70"
+  >
+    <path
+      fill="#fff3e0"
+      fill-opacity="1"
+      d="M0,0,60,10.7C120,21,240,43,360,37.3,480,32,600,0,720,5.3,840,11,960,53,1080,64s240-11,300-21.3L1440,32V70H0Z"
+    ></path>
+  </svg>
 </section>

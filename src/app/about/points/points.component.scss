@@ -7,42 +7,14 @@ ul {
   padding: 0;
 }
 
-.logo-text {
-  margin: 0;
-  font-size: 25px;
-  font-family: $font-logo;
-  font-weight: 700;
-  line-height: 1;
-  @include md {
-    font-size: 30px;
-  }
-  em {
-    font-style: normal;
-    text-transform: uppercase;
-    color: $color-logo;
-  }
-  .beta {
-    color: $color-main;
-    font-size: 20px;
-    @include md {
-      font-size: 24px;
-    }
-  }
-}
-
 .points {
+  position: relative;
+  background-color: #fff3e0;
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: calc(80px + 3.5vw);
   @include md {
     padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
-  &__inner {
-    @include md {
-      display: flex;
-      align-items: center;
-    }
+    padding-bottom: calc(100px + 3.5vw);
   }
 
   &__img {
@@ -63,21 +35,42 @@ ul {
       width: 100%;
     }
   }
+  &__bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .points-contents {
   max-width: 340px;
   margin: 32px auto 0;
   @include md {
+    max-width: 100%;
+    display: flex;
     margin: 0;
-    width: 50%;
-    max-width: 50%;
-    padding-left: 40px;
   }
   &__item {
     display: flex;
+    @include md {
+      display: block;
+      border-radius: 8px;
+      padding: 2em 1.5em;
+      box-shadow: 0.2em 0.2em 1em 0 rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      width: calc(100% / 3 - 40px / 3);
+    }
     &:not(:first-of-type) {
       margin-top: 20px;
+      @include md {
+        margin-top: 0;
+      }
+    }
+    &:not(:nth-of-type(3n + 1)) {
+      @include md {
+        margin-left: 20px;
+      }
     }
   }
   &__icon {
@@ -91,20 +84,34 @@ ul {
     background: $bg-grad;
     color: #fff;
     font-size: 18px;
+    @include md {
+      margin: 0 auto;
+    }
   }
   &__data {
     margin: 0;
     width: calc(100% - 50px);
     padding-left: 16px;
+    @include md {
+      width: 100%;
+      padding: 0;
+      margin-top: 20px;
+    }
   }
   &__dt {
     @include md {
       font-size: 18px;
+      text-align: center;
+      color: $color-main;
+      font-weight: 700;
     }
   }
   &__dd {
     margin: 4px 0 0;
     color: $color-font-700;
     font-size: 14px;
+    @include md {
+      margin-top: 14px;
+    }
   }
 }

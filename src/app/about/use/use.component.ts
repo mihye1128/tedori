@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class UseComponent implements OnInit {
   uses = [
     {
-      img: '/assets/images/use_calculator.svg',
-      target: '就活生・転職活動中に…',
+      img: '/assets/images/use-worker.svg',
+      target: '就活・転職活動中に',
       title: '手取り額をカンタン試算',
       text: [
         '給料の条件を設定することで、簡単に手取り額を算出できます。',
@@ -17,8 +17,8 @@ export class UseComponent implements OnInit {
       ],
     },
     {
-      img: '/assets/images/use_interview.svg',
-      target: '採用後のコストを把握したい時に…',
+      img: '/assets/images/use-business.svg',
+      target: '採用後のコストを把握したい時に',
       title: '事業主負担額も同時に算出',
       text: [
         '社会保険料の事業主負担分や労働保険料など、事業者負担額も合わせて算出できるので、採用後のコストを把握したい時などにご活用ください。',
@@ -26,8 +26,8 @@ export class UseComponent implements OnInit {
       ],
     },
     {
-      img: '/assets/images/use_savings.svg',
-      target: '家計収入を計算したい時に…',
+      img: '/assets/images/use-family.svg',
+      target: '家計収入を計算したい時に',
       title: 'ふたりの収入をまとめて計算',
       text: [
         '2件同時に計算できるので、ご夫婦やパートナーとの収入をまとめて試算できます。',

@@ -1,46 +1,17 @@
 <section class="about-footer">
   <div class="container">
-    <app-heading>今すぐ使ってみる</app-heading>
-    <ul class="about-footer__actions">
-      <li>
-        <a
-          mat-flat-button
-          color="primary"
-          class="about-footer__home"
-          aria-label="計算する"
-          routerLink="/"
-        >
-          計算する
-        </a>
-      </li>
-      <li>
-        <ng-template #default>
-          <button
-            mat-flat-button
-            color="primary"
-            class="about-footer__login"
-            aria-label="Googleアカウントでログインする"
-            [disabled]="authService.loginProcessing"
-            (click)="authService.login()"
-          >
-            {{
-              authService.loginProcessing
-                ? 'ログイン中'
-                : 'Googleアカウントでログイン'
-            }}
-          </button>
-        </ng-template>
-        <ng-container *ngIf="authService.afUser$ | async as user; else default">
-          <a
-            mat-flat-button
-            color="primary"
-            class="about-footer__login"
-            routerLink="/mypage"
-          >
-            マイページを見る
-          </a>
-        </ng-container>
-      </li>
-    </ul>
+    <div class="about-footer__text">
+      <span>ログイン不要で使える</span>
+      <span>かんたん給与試算ツール</span>
+    </div>
+    <p class="about-footer__logo"><em>Tedori</em><sup class="beta">β</sup></p>
+    <a
+      color="primary"
+      class="about-footer__btn"
+      aria-label="今すぐ使ってみる"
+      routerLink="/"
+    >
+      <span>今すぐ使ってみる</span>
+    </a>
   </div>
 </section>
