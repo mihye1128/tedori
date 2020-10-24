@@ -8,8 +8,8 @@
   text-align: center;
   overflow: hidden;
   @include md {
-    padding-top: 120px;
-    padding-bottom: calc(120px + 5vw);
+    padding-top: 160px;
+    padding-bottom: calc(160px + 5vw);
     text-align: left;
   }
   &__main {
@@ -20,19 +20,23 @@
     }
   }
   &__main-text {
+    position: relative;
     margin: 0;
     font-size: 16px;
     font-weight: 600;
+    z-index: 3;
     @include md {
       font-size: 32px;
     }
   }
   &__sub-text {
+    position: relative;
     display: inline-block;
     margin: 16px auto 0;
     line-height: 1.75;
     font-size: 12px;
     text-align: left;
+    z-index: 3;
     @include md {
       display: block;
       margin: 30px 0 0;
@@ -49,10 +53,12 @@
       bottom: -20px;
       max-width: 50%;
     }
-    img {
-      width: 100%;
-      filter: drop-shadow(0px 8px 14px rgba(0, 0, 0, 0.2));
-    }
+  }
+  &__browser {
+    position: relative;
+    width: 100%;
+    filter: drop-shadow(0px 8px 14px rgba(0, 0, 0, 0.2));
+    z-index: 2;
   }
   &__btn {
     box-sizing: border-box;
@@ -68,6 +74,7 @@
     color: #fff;
     box-shadow: 0px 8px 14px -4px rgba(204, 143, 1, 0.4);
     overflow: hidden;
+    z-index: 3;
     @include md {
       margin-top: 30px;
       width: auto;
@@ -94,5 +101,30 @@
     bottom: 0;
     left: 0;
     right: 0;
+  }
+  &__blob1,
+  &__blob2 {
+    position: absolute;
+    opacity: 0.75;
+    z-index: 1;
+  }
+  &__blob1 {
+    top: -160%;
+    right: -40%;
+    transform: rotate(180deg);
+    width: 110%;
+    @include md {
+      top: -60%;
+    }
+  }
+  &__blob2 {
+    top: -120%;
+    right: 20%;
+    transform: rotate(-60deg);
+    width: 120%;
+    @include md {
+      top: -20%;
+      right: -50%;
+    }
   }
 }
