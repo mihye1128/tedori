@@ -1,43 +1,40 @@
 @import 'variables';
 @import 'mixins';
 
-.logo-text {
-  margin: 0;
-  font-size: 25px;
-  font-family: $font-logo;
-  font-weight: 700;
-  line-height: 1;
+.about-footer {
+  position: relative;
+  background-color: #fff3e0;
+  padding: 40px 0;
+  text-align: center;
+  overflow: hidden;
   @include md {
-    font-size: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
-  em {
-    font-style: normal;
-    text-transform: uppercase;
-    color: $color-logo;
-  }
-  .beta {
-    color: $color-main;
-    font-size: 20px;
+  &__text {
+    position: relative;
+    margin: 0;
+    font-size: 16px;
+    color: $color-font-800;
+    z-index: 3;
     @include md {
-      font-size: 24px;
+      font-size: 18px;
+    }
+    span {
+      display: block;
     }
   }
-}
-
-.about-footer {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  text-align: center;
-  @include md {
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-  &__title {
-    margin: 0;
+  &__logo {
+    position: relative;
+    margin: 16px 0 0;
     font-size: 40px;
     font-family: $font-logo;
     font-weight: 700;
     line-height: 1;
+    z-index: 3;
+    @include md {
+      font-size: 50px;
+    }
     em {
       font-style: normal;
       text-transform: uppercase;
@@ -46,51 +43,86 @@
     .beta {
       color: $color-main;
       font-size: 32px;
-    }
-    @include sm {
-      font-size: 50px;
-      .beta {
+      @include md {
         font-size: 40px;
       }
     }
   }
-  &__actions {
-    padding: 0;
-    list-style: none;
-    li {
-      &:not(:first-of-type) {
-        margin-top: 8px;
-      }
-    }
-    @include md {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      li {
-        margin-left: 8px;
-        margin-right: 8px;
-        &:not(:first-of-type) {
-          margin-top: 0;
-        }
-      }
-    }
-  }
-  &__home,
-  &__login {
+  &__btn {
+    box-sizing: border-box;
+    position: relative;
+    margin: 24px auto 0;
+    display: inline-block;
     border-radius: 36px;
-    padding: 0.25em 2em;
+    padding: 0.75em 4em;
     width: 100%;
-    max-width: 360px;
+    max-width: 340px;
     font-size: 16px;
+    text-align: center;
+    background: $bg-grad-hero;
     color: #fff;
+    box-shadow: 0px 8px 14px -4px rgba(204, 143, 1, 0.4);
+    overflow: hidden;
+    z-index: 3;
     @include md {
-      width: 240px;
+      margin-top: 32px;
+      width: auto;
+      max-width: inherit;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transition: background-color 0.4s;
+    }
+    &:hover::before {
+      background-color: #f89f46;
+    }
+    span {
+      position: relative;
     }
   }
-  &__home {
-    background-color: $color-main;
+  &__blob1,
+  &__blob2,
+  &__blob3,
+  &__blob4 {
+    position: absolute;
+    width: 200px;
+    opacity: 0.75;
+    @include md {
+      width: 320px;
+    }
   }
-  &__login {
-    background-color: $color-google;
+  &__blob1 {
+    right: calc(50% + 100px);
+    top: 10%;
+    @include md {
+      right: calc(50% + 320px);
+    }
+  }
+  &__blob2 {
+    right: calc(50% + 70px);
+    top: -30%;
+    @include md {
+      right: calc(50% + 220px);
+    }
+  }
+  &__blob3 {
+    position: absolute;
+    left: calc(50% + 100px);
+    bottom: 10%;
+    @include md {
+      left: calc(50% + 320px);
+    }
+  }
+  &__blob4 {
+    left: calc(50% + 70px);
+    bottom: -30%;
+    @include md {
+      left: calc(50% + 220px);
+    }
   }
 }

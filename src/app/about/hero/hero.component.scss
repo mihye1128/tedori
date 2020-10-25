@@ -2,64 +2,48 @@
 @import 'mixins';
 
 .hero {
-  padding-top: 40px;
-  padding-bottom: 60px;
-  background-color: #fff3e0;
-  background-image: $bg-grad-hero;
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: calc(60px + 4.8vw);
   text-align: center;
+  overflow: hidden;
   @include md {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 160px;
+    padding-bottom: calc(160px + 5vw);
     text-align: left;
   }
   &__main {
     position: relative;
+    z-index: 1;
     @include md {
       padding-right: 50%;
     }
   }
-  &__title {
-    margin: 0;
-    font-size: 40px;
-    font-family: $font-logo;
-    font-weight: 700;
-    line-height: 1;
-    em {
-      font-style: normal;
-      text-transform: uppercase;
-      color: $color-logo;
-    }
-    .beta {
-      color: $color-main;
-      font-size: 32px;
-    }
-    @include sm {
-      font-size: 50px;
-      .beta {
-        font-size: 40px;
-      }
-    }
-  }
   &__main-text {
-    margin: 32px 0 0;
+    position: relative;
+    margin: 0;
     font-size: 16px;
+    font-weight: 600;
+    z-index: 3;
     @include md {
-      margin: 40px 0 0;
-      font-size: 24px;
+      font-size: 32px;
     }
   }
   &__sub-text {
+    position: relative;
     display: inline-block;
     margin: 16px auto 0;
+    line-height: 1.75;
     font-size: 12px;
     text-align: left;
+    z-index: 3;
     @include md {
       display: block;
-      margin: 20px 0 0;
+      margin: 30px 0 0;
       font-size: 14px;
     }
   }
-  &__images {
+  &__image {
     position: relative;
     margin: 32px auto 0;
     max-width: 340px;
@@ -70,58 +54,77 @@
       max-width: 50%;
     }
   }
-  &__laptop {
+  &__browser {
+    position: relative;
     width: 100%;
-    border-radius: 4px;
-    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(0px 8px 14px rgba(0, 0, 0, 0.2));
+    z-index: 2;
   }
-  &__phone {
-    position: absolute;
-    display: block;
-    bottom: 0;
-    right: 0;
-    width: 25%;
-    @include md {
-      bottom: -20px;
-    }
-  }
-  &__actions {
-    margin: 40px 0 0;
-    padding: 0;
-    list-style: none;
-    li {
-      &:not(:first-of-type) {
-        margin-top: 8px;
-      }
-    }
-    @include md {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 32px;
-      li {
-        margin-top: 8px;
-        margin-left: 8px;
-        margin-right: 8px;
-      }
-    }
-  }
-  &__home,
-  &__login {
+  &__btn {
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 36px;
+    display: inline-block;
     border-radius: 36px;
-    padding: 0.25em 2em;
+    padding: 0.75em 4em;
     width: 100%;
-    max-width: 360px;
+    max-width: 340px;
     font-size: 16px;
+    background: $bg-grad-hero;
     color: #fff;
+    box-shadow: 0px 8px 14px -4px rgba(204, 143, 1, 0.4);
+    overflow: hidden;
+    z-index: 3;
     @include md {
+      margin-top: 30px;
       width: auto;
       max-width: inherit;
     }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transition: background-color 0.4s;
+    }
+    &:hover::before {
+      background-color: #f89f46;
+    }
+    span {
+      position: relative;
+    }
   }
-  &__home {
-    background-color: $color-main;
+  &__bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
-  &__login {
-    background-color: $color-google;
+  &__blob1,
+  &__blob2 {
+    position: absolute;
+    opacity: 0.75;
+    z-index: 1;
+  }
+  &__blob1 {
+    top: -160%;
+    right: -40%;
+    transform: rotate(180deg);
+    width: 110%;
+    @include md {
+      top: -60%;
+    }
+  }
+  &__blob2 {
+    top: -120%;
+    right: 20%;
+    transform: rotate(-60deg);
+    width: 120%;
+    @include md {
+      top: -20%;
+      right: -50%;
+    }
   }
 }

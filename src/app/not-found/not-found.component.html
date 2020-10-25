@@ -4,18 +4,16 @@
     <h1 class="nf__title">404 Not Found.</h1>
     <div class="nf__contents">
       <p>
-        あなたがアクセスしようとしたページは、<br />
-        削除されたかURLが変更されているため、<br />
-        見つけることができませんでした。
+        あなたがアクセスしようとしたページは、削除されたかURLが変更されているため、見つけることができませんでした。
       </p>
       <p>
         トップページへお戻りください。
       </p>
     </div>
     <div class="nf__actions">
-      <button mat-flat-button color="primary" class="nf__home" (click)="home()">
-        トップへ戻る
-      </button>
+      <a class="nf__btn" aria-label="トップへ戻る" routerLink="/">
+        <span>トップへ戻る</span>
+      </a>
     </div>
   </div>
 </div>

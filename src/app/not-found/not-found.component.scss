@@ -29,6 +29,7 @@
     margin: 0 auto;
     @include md {
       margin-right: 0;
+      width: 50%;
       max-width: 320px;
     }
   }
@@ -37,6 +38,7 @@
       padding-left: 32px;
       text-align: left;
       margin-right: auto;
+      width: 50%;
     }
   }
   &__title {
@@ -79,17 +81,37 @@
       text-align: left;
     }
   }
-  &__home {
+  &__btn {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
     border-radius: 36px;
-    padding: 0.25em 2em;
+    padding: 0.75em 4em;
     width: 100%;
-    max-width: 360px;
+    max-width: 340px;
     font-size: 16px;
-    background-color: $color-main;
+    background: $bg-grad-hero;
     color: #fff;
-    @include sm {
+    box-shadow: 0px 8px 14px -4px rgba(204, 143, 1, 0.4);
+    overflow: hidden;
+    @include md {
       width: auto;
       max-width: inherit;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transition: background-color 0.4s;
+    }
+    &:hover::before {
+      background-color: #f89f46;
+    }
+    span {
+      position: relative;
     }
   }
 }

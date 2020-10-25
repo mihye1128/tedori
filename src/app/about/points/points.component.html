@@ -2,23 +2,29 @@
   <div class="container">
     <app-heading
       ><span class="logo-text"><em>Tedori</em><sup class="beta">β</sup></span
-      >の<br class="sp-only" />シンプルで便利な機能</app-heading
+      >の特徴</app-heading
     >
-    <div class="points__inner">
-      <div class="points__img">
-        <img src="/assets/images/points_owner.png" alt="" />
-      </div>
-      <ul class="points-contents">
-        <li class="points-contents__item" *ngFor="let point of points">
-          <div class="points-contents__icon">
-            <mat-icon>{{ point.icon }}</mat-icon>
-          </div>
-          <dl class="points-contents__data">
-            <dt class="points-contents__dt">{{ point.title }}</dt>
-            <dd class="points-contents__dd">{{ point.text }}</dd>
-          </dl>
-        </li>
-      </ul>
-    </div>
+    <ul class="points-contents">
+      <li class="points-contents__item" *ngFor="let point of points">
+        <div class="points-contents__icon">
+          <mat-icon>{{ point.icon }}</mat-icon>
+        </div>
+        <dl class="points-contents__data">
+          <dt class="points-contents__dt">{{ point.title }}</dt>
+          <dd class="points-contents__dd">{{ point.text }}</dd>
+        </dl>
+      </li>
+    </ul>
   </div>
+  <svg
+    class="points__bottom"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 50"
+  >
+    <path
+      fill="#ffffff"
+      fill-opacity="1"
+      d="M0,50,60,39.16C120,28.73,240,6.44,360,6.74c120-.3,240,22,360,21.68,120,.31,240-22,360-27s240,5.06,300,10.83l60,5.37V50H0Z"
+    ></path>
+  </svg>
 </div>

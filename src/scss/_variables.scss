@@ -17,8 +17,4 @@ $color-google: #db4437;
 $font-logo: 'Anonymous Pro', monospace;
 
 $bg-grad: linear-gradient(225deg, #ffe985 0, #f57c00 100%);
-$bg-grad-hero: radial-gradient(
-  circle 534px at 7.8% 17.6%,
-  #ffe985 1.7%,
-  #f89f46 91.8%
-);
+$bg-grad-hero: linear-gradient(135deg, #f6d95a 0%, #f89f46 100%);
