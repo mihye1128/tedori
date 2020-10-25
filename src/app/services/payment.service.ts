@@ -7,7 +7,13 @@ import { Condition } from '../interfaces/condition';
 export class PaymentService {
   constructor() {}
 
-  getPayment(condition: Condition) {
+  getPayment(
+    condition: Condition
+  ): {
+    baseSalary: number;
+    allowance: number;
+    travelCost: number;
+  } {
     let baseSalary: number;
     let allowance: number;
     let travelCost: number;

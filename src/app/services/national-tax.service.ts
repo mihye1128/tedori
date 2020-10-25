@@ -18,7 +18,7 @@ export class NationalTaxService {
     return this.http.get<NationalTaxTable>(this.nationalTaxData).toPromise();
   }
 
-  getNationalTax(taxTargetFee: number, dependents: number) {
+  getNationalTax(taxTargetFee: number, dependents: number): number {
     let tax: number;
 
     this.nationalTaxTable.table.forEach((rank) => {

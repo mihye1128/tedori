@@ -17,13 +17,12 @@ import { Condition } from '../interfaces/condition';
 export class ConditionsService {
   conditions = new Subject<Condition[]>();
   conditions$ = this.conditions.asObservable();
-
-  updateConditions: Condition[] = [];
+  updatedConditions: Condition[] = [];
   deletedIds: string[] = [];
 
-  dependentsCounts = [...Array(7)].map((_, i) => i + 1);
-  titleMaxLength = 12;
-  range = {
+  readonly dependentsCounts = [...Array(7)].map((_, i) => i + 1);
+  readonly titleMaxLength = 12;
+  readonly range = {
     base: {
       min: 0,
       max: 9999999,
@@ -70,26 +69,17 @@ export class ConditionsService {
   ) {}
 
   transferData(condition: Condition): Condition {
-    const base = condition.type === 'monthly' ? +condition.base : 0;
-    const allowance = condition.type === 'monthly' ? +condition.allowance : 0;
-    const travelCost = condition.type === 'monthly' ? +condition.travelCost : 0;
-    const basePerHour =
-      condition.type === 'hourly' ? +condition.basePerHour : 0;
-    const travelCostPerDay =
-      condition.type === 'hourly' ? +condition.travelCostPerDay : 0;
-    const hourPerDay = condition.type === 'hourly' ? +condition.hourPerDay : 0;
-    const dayPerMonth =
-      condition.type === 'hourly' ? +condition.dayPerMonth : 0;
     return {
       title: condition.title,
       type: condition.type,
-      base,
-      allowance,
-      travelCost,
-      basePerHour,
-      travelCostPerDay,
-      hourPerDay,
-      dayPerMonth,
+      base: condition.type === 'monthly' ? +condition.base : 0,
+      allowance: condition.type === 'monthly' ? +condition.allowance : 0,
+      travelCost: condition.type === 'monthly' ? +condition.travelCost : 0,
+      basePerHour: condition.type === 'hourly' ? +condition.basePerHour : 0,
+      travelCostPerDay:
+        condition.type === 'hourly' ? +condition.travelCostPerDay : 0,
+      hourPerDay: condition.type === 'hourly' ? +condition.hourPerDay : 0,
+      dayPerMonth: condition.type === 'hourly' ? +condition.dayPerMonth : 0,
       ins: condition.ins,
       unemploymentIns: condition.unemploymentIns,
       area: condition.area,
@@ -102,14 +92,14 @@ export class ConditionsService {
   }
 
   setCondition(condition: Condition) {
-    const updateConditions = this.updateConditions;
+    const updatedConditions = this.updatedConditions;
     if (
-      updateConditions.find(
+      updatedConditions.find(
         (updateConditionData) => updateConditionData.id === condition.id
       )
     ) {
       let updateCondition: Condition;
-      updateConditions.map((updateConditionData) => {
+      updatedConditions.forEach((updateConditionData) => {
         if (updateConditionData.id === condition.id) {
           updateCondition = updateConditionData;
         }
@@ -165,7 +155,7 @@ export class ConditionsService {
       .pipe(map((snaps) => snaps.map((snap) => snap.payload.doc)));
   }
 
-  updateCondition(condition: Condition, id: string): Promise<void> {
+  async updateCondition(condition: Condition, id: string): Promise<void> {
     return this.db
       .doc(`conditions/${id}`)
       .set(condition, { merge: true })
@@ -177,7 +167,7 @@ export class ConditionsService {
       });
   }
 
-  deleteCondition(id: string): Promise<void> {
+  async deleteCondition(id: string): Promise<void> {
     return this.db
       .doc(`conditions/${id}`)
       .delete()

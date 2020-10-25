@@ -11,7 +11,7 @@ export class SocialInsService {
 
   constructor() {}
 
-  getStandardMonthlyFee(total: number, insType: string = 'default') {
+  getStandardMonthlyFee(total: number, insType: string = 'default'): number {
     let standard: number;
     this.standardMonthlyFeeTable.forEach((grade) => {
       if (total < grade.max && total >= grade.min) {
@@ -35,7 +35,10 @@ export class SocialInsService {
     subscribedSocialIns: boolean,
     area: string,
     healthInsRateList: ByArea[]
-  ) {
+  ): {
+    healthInsWorder: number;
+    healthInsOwner: number;
+  } {
     let healthInsWorder: number;
     let healthInsOwner: number;
 
@@ -62,7 +65,10 @@ export class SocialInsService {
     subscribedSocialIns: boolean,
     age: string,
     nursingInsRate: number
-  ) {
+  ): {
+    nursingInsWorker: number;
+    nursingInsOwner: number;
+  } {
     let nursingInsWorker: number;
     let nursingInsOwner: number;
 
@@ -82,7 +88,10 @@ export class SocialInsService {
     total: number,
     subscribedSocialIns: boolean,
     pensionInsRate: number
-  ) {
+  ): {
+    pensionInsWorker: number;
+    pensionInsOwner: number;
+  } {
     let pensionInsWorker: number;
     let pensionInsOwner: number;
 
@@ -105,7 +114,7 @@ export class SocialInsService {
     total: number,
     subscribedSocialIns: boolean,
     childrenInsRate: number
-  ) {
+  ): number {
     let childrenIns: number;
 
     if (subscribedSocialIns) {

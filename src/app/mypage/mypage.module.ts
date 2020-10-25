@@ -19,7 +19,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { SharedModule } from '../shared/shared.module';
 import { MypageComponent } from './mypage/mypage.component';
-import { PipesModule } from '../pipes/pipes.module';
 import { ConditionCardComponent } from './condition-card/condition-card.component';
 import { ConditionCardDataComponent } from './condition-card-data/condition-card-data.component';
 import { ConditionCardResultComponent } from './condition-card-result/condition-card-result.component';
@@ -28,6 +27,7 @@ import { ConditionListComponent } from './condition-list/condition-list.componen
 import { ResultMainComponent } from './result-main/result-main.component';
 import { ResultSearchComponent } from './result-search/result-search.component';
 import { PageHeadModule } from '../page-head/page-head.module';
+import { CalcPipesModule } from '../pipes/calc-pipes.module';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,7 @@ import { PageHeadModule } from '../page-head/page-head.module';
     FormsModule,
     SharedModule,
     PageHeadModule,
-    PipesModule,
+    CalcPipesModule,
   ],
 })
 export class MypageModule {}
