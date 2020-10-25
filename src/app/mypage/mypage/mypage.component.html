@@ -5,6 +5,21 @@
 ></app-page-head>
 <section class="mypage">
   <div class="container">
+    <div class="mypage__settings">
+      <button
+        mat-stroked-button
+        [matMenuTriggerFor]="settingMenu"
+        aria-label="設定"
+      >
+        アカウント設定
+      </button>
+      <mat-menu #settingMenu="matMenu" class="mypage__settings-menu">
+        <button mat-menu-item (click)="openDeleteAccountDialog()">
+          <mat-icon>delete</mat-icon>
+          <span>アカウント削除</span>
+        </button>
+      </mat-menu>
+    </div>
     <app-search-form></app-search-form>
     <router-outlet></router-outlet>
   </div>

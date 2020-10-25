@@ -1,0 +1,14 @@
+<h2 mat-dialog-title class="dialog__title">
+  TEDORIβのアカウントを削除しますか？
+</h2>
+<div mat-dialog-content>
+  <p>アカウントを削除すると、保存されたデータは全て消去されます。</p>
+</div>
+<div mat-dialog-actions class="dialog__actions">
+  <button mat-flat-button color="warn" (click)="deleteUserAccount()">
+    削除
+  </button>
+  <button mat-stroked-button mat-dialog-close>
+    キャンセル
+  </button>
+</div>

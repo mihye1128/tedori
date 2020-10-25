@@ -34,6 +34,7 @@ import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.com
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
+import { DeleteAccountDialogComponent } from './dialogs/delete-account-dialog/delete-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     NotFoundComponent,
     DeleteDialogComponent,
     EditDialogComponent,
+    DeleteAccountDialogComponent,
   ],
   imports: [
     BrowserModule,
