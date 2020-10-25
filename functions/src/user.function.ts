@@ -7,7 +7,6 @@ const db = admin.firestore();
 export const deleteAfUser = functions
   .region('asia-northeast1')
   .https.onCall((data, context) => {
-    console.log(data);
     return admin.auth().deleteUser(data);
   });
 
