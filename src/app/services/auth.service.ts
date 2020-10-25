@@ -14,7 +14,7 @@ export class AuthService {
   loginProcessing = false;
 
   constructor(
-    private afAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth,
     private router: Router,
     private snackBar: MatSnackBar
   ) {

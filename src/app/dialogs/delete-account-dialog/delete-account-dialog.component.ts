@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AngularFireFunctions } from '@angular/fire/functions';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-delete-account-dialog',
@@ -12,23 +12,28 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DeleteAccountDialogComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA)
     private dialogRef: MatDialogRef<DeleteAccountDialogComponent>,
     private snackBar: MatSnackBar,
-    private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private fns: AngularFireFunctions
   ) {}
 
   ngOnInit(): void {}
 
-  deleteUserAccount() {
-    this.userService.deleteUserAccount(this.authService.uid).then(() => {
-      this.dialogRef.close();
-      this.snackBar.open(
-        'アカウントを削除しました。反映には時間がかかります。'
-      );
-      this.router.navigateByUrl('/');
-    });
+  async deleteUserAccount() {
+    const callable = this.fns.httpsCallable('deleteAfUser');
+
+    return callable(this.authService.uid)
+      .toPromise()
+      .then(() => {
+        this.router.navigateByUrl('/');
+        this.authService.afAuth.signOut().then(() => {
+          this.snackBar.open(
+            'アカウントを削除しました。反映には時間がかかります。'
+          );
+        });
+        this.dialogRef.close();
+      });
   }
 }
