@@ -24,6 +24,7 @@ export class NationalTaxCalcComponent implements OnInit {
         Validators.required,
         Validators.min(this.range.min),
         Validators.max(this.range.max),
+        Validators.pattern(/^[0-9]\d*$/),
       ],
     ],
     dependents: 0,

@@ -18,18 +18,15 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 171, 64, 0.75);
+    background-color: rgba(255, 243, 224, 0.86);
   }
   &__title {
     position: relative;
     margin: 0;
-    color: #fff;
+    color: $color-font-800;
     font-size: 24px;
-    font-weight: 700;
-    text-shadow: 1px 1px 0px $color-font-800, -1px 1px 0px $color-font-800,
-      1px -1px 0px $color-font-800, -1px -1px 0px $color-font-800,
-      1px 0px 0px $color-font-800, 0px 1px 0px $color-font-800,
-      -1px 0px 0px $color-font-800, 0px -1px 0px $color-font-800;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     @include sm {
       font-size: 36px;
     }
@@ -37,7 +34,7 @@
   &__sub-title {
     position: relative;
     margin: 0.5em 0 0;
-    color: #fff;
+    color: $color-font-800;
     font-size: 16px;
     font-family: $font-logo;
     @include sm {
