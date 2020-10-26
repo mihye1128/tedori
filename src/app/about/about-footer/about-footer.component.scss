@@ -48,7 +48,8 @@
       }
     }
   }
-  &__btn {
+  &__action {
+    position: relative;
     margin: 24px auto 0;
     z-index: 3;
     @include md {
