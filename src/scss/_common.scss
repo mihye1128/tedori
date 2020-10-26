@@ -73,3 +73,49 @@
     }
   }
 }
+
+.btn-main {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  border-radius: 36px;
+  padding: 0.75em 4em;
+  width: 100%;
+  max-width: 340px;
+  font-size: 16px;
+  text-align: center;
+  background: $bg-grad-hero;
+  color: #fff;
+  box-shadow: 0px 8px 14px -4px rgba(204, 143, 1, 0.4);
+  overflow: hidden;
+  @include md {
+    width: auto;
+    max-width: inherit;
+  }
+  &:disabled {
+    pointer-events: none;
+    background: none;
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: background-color 0.4s;
+  }
+  &:hover::before {
+    background-color: $color-main-light03;
+  }
+  span {
+    position: relative;
+  }
+}

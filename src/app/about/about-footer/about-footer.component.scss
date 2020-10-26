@@ -49,40 +49,10 @@
     }
   }
   &__btn {
-    box-sizing: border-box;
-    position: relative;
     margin: 24px auto 0;
-    display: inline-block;
-    border-radius: 36px;
-    padding: 0.75em 4em;
-    width: 100%;
-    max-width: 340px;
-    font-size: 16px;
-    text-align: center;
-    background: $bg-grad-hero;
-    color: #fff;
-    box-shadow: 0px 8px 14px -4px rgba(204, 143, 1, 0.4);
-    overflow: hidden;
     z-index: 3;
     @include md {
       margin-top: 32px;
-      width: auto;
-      max-width: inherit;
-    }
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      transition: background-color 0.4s;
-    }
-    &:hover::before {
-      background-color: #f89f46;
-    }
-    span {
-      position: relative;
     }
   }
   &__blob1,
