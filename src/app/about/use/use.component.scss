@@ -44,12 +44,14 @@
     width: 75%;
     height: auto;
     max-width: 240px;
-    transform: translateY(20px);
-    transition: all 0.5s ease 0s;
-    opacity: 0;
-    &.aos-animate {
-      opacity: 1;
-      transform: translateY(0);
+    &.aos-init {
+      transform: translateY(20px);
+      transition: all 0.5s ease 0s;
+      opacity: 0;
+      &.aos-animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     @include md {
       width: 50%;

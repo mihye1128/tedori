@@ -1,4 +1,3 @@
-<h2 class="main-title">源泉徴収税額 計算</h2>
 <div class="calc">
   <form [formGroup]="form" (ngSubmit)="getNationalTax()">
     <div class="calc__body">
@@ -19,11 +18,12 @@
         <mat-error
           *ngIf="
             form.get('target').hasError('min') ||
-            form.get('target').hasError('max')
+            form.get('target').hasError('max') ||
+            form.get('target').hasError('pattern')
           "
           >{{ range.min | number }}から{{
             range.max | number
-          }}までの数字を入力してください。</mat-error
+          }}までの整数を入力してください。</mat-error
         >
       </mat-form-field>
       <mat-form-field appearance="fill" class="calc__field">
@@ -41,12 +41,11 @@
     </div>
     <div class="calc__action">
       <button
-        mat-raised-button
         [disabled]="form.invalid || form.pristine || processing"
         color="accent"
-        class="form__submit-btn"
+        class="btn-main"
       >
-        計算する
+        <span>計算する</span>
       </button>
     </div>
     <dl class="result">

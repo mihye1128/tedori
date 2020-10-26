@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as AOS from 'aos';
 
 @Component({
@@ -6,10 +6,10 @@ import * as AOS from 'aos';
   templateUrl: './use.component.html',
   styleUrls: ['./use.component.scss'],
 })
-export class UseComponent implements OnInit {
+export class UseComponent implements OnInit, AfterViewInit {
   uses = [
     {
-      img: '/assets/images/use-worker.svg',
+      img: 'assets/images/use-worker.svg',
       target: '就活・転職活動中に',
       title: '手取り額をカンタン試算',
       text: [
@@ -18,7 +18,7 @@ export class UseComponent implements OnInit {
       ],
     },
     {
-      img: '/assets/images/use-business.svg',
+      img: 'assets/images/use-business.svg',
       target: '採用後のコストを把握したい時に',
       title: '事業主負担額も同時に算出',
       text: [
@@ -27,7 +27,7 @@ export class UseComponent implements OnInit {
       ],
     },
     {
-      img: '/assets/images/use-family.svg',
+      img: 'assets/images/use-family.svg',
       target: '家計収入を計算したい時に',
       title: 'ふたりの収入をまとめて計算',
       text: [
@@ -41,7 +41,9 @@ export class UseComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit() {
-    AOS.init();
+  ngAfterViewInit(): void {
+    AOS.init({
+      once: true,
+    });
   }
 }
