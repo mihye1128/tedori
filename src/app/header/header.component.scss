@@ -61,6 +61,49 @@
     font-family: $font-logo;
     font-weight: 400;
   }
+  &__nav {
+    margin: 0 1em 0 0;
+    padding-left: 0;
+    list-style: none;
+    display: none;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-family: $font-default;
+    color: $color-font-800;
+    @include sm {
+      display: flex;
+    }
+    li {
+      &:not(:first-of-type) {
+        &::before {
+          content: '|';
+          margin-left: 0.5em;
+          margin-right: 0.5em;
+        }
+      }
+    }
+    a {
+      position: relative;
+      transition: opacity 0.4s;
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        border-radius: 2px;
+        background-color: $color-main;
+        transition: width 0.4s;
+      }
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
   &__login {
     box-sizing: border-box;
     position: relative;

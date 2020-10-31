@@ -21,7 +21,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { SharedModule } from '../shared/shared.module';
 import { PageHeadModule } from '../page-head/page-head.module';
 import { CalcPipesModule } from '../pipes/calc-pipes.module';
 
@@ -49,7 +48,6 @@ import { CalcPipesModule } from '../pipes/calc-pipes.module';
     MatSelectModule,
     MatDividerModule,
     MatIconModule,
-    SharedModule,
     PageHeadModule,
     CalcPipesModule,
   ],
