@@ -1,14 +1,6 @@
 {
-  "targets": {
-    "tedori-beta": {
-      "hosting": {
-        "tedori-beta": [
-          "tedori-beta"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "tedori-beta"
+    "dev": "tedori-beta",
+    "prod": "tedori-2c86c"
   }
 }

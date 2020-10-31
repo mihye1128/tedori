@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import algoliasearch, { SearchIndex } from 'algoliasearch';
 
 const config = functions.config();
-const client = algoliasearch(config.algolia.app_id, config.algolia.secret_key);
+const client = algoliasearch(config.algolia.app_id, config.algolia.api_key);
 
 export class Algolia {
   private maxContentLength = 500;

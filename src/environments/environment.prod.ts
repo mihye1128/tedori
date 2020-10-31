@@ -1,17 +1,17 @@
 export const environment = {
   production: true,
   algolia: {
-    appId: 'QDL1DGZC90',
-    searchKey: 'fbe4726f7ae465b20fa632eccc47af05',
+    appId: '3FSU9O9XLA',
+    searchKey: '60b5ca4cd4a95dca0a372d0afd13c68d',
   },
   firebase: {
-    apiKey: 'AIzaSyCrOmX1JjarQ29OrT4DpqxFNB7Nl0BlbjY',
-    authDomain: 'tedori-beta.firebaseapp.com',
-    databaseURL: 'https://tedori-beta.firebaseio.com',
-    projectId: 'tedori-beta',
-    storageBucket: 'tedori-beta.appspot.com',
-    messagingSenderId: '368500501250',
-    appId: '1:368500501250:web:0d0d9cdccf205efe61f01b',
-    measurementId: 'G-52R11BTJNV',
+    apiKey: 'AIzaSyDG3GA-RQruOBzY6-SMroijYCQcDK3E7oQ',
+    authDomain: 'tedori-2c86c.firebaseapp.com',
+    databaseURL: 'https://tedori-2c86c.firebaseio.com',
+    projectId: 'tedori-2c86c',
+    storageBucket: 'tedori-2c86c.appspot.com',
+    messagingSenderId: '292496620729',
+    appId: '1:292496620729:web:7ccf9f7a2f71e9e7fa6f68',
+    measurementId: 'G-PKH5T5XSKB',
   },
 };
