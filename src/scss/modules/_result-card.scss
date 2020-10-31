@@ -89,6 +89,8 @@
   &__dd,
   &__detail-dd {
     flex: 1;
+    max-width: 220px;
+    margin: 0 auto;
     text-align: right;
     padding-right: 16px;
   }
