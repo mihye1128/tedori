@@ -10,7 +10,6 @@
   ></app-main-result-owner>
   <div class="result__actions" *ngIf="authService.afUser$ | async">
     <button
-      color="accent"
       class="btn-main"
       (click)="conditionsService.saveConditions(conditions)"
     >

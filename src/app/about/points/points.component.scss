@@ -9,7 +9,7 @@ ul {
 
 .points {
   position: relative;
-  background-color: #fff3e0;
+  background-color: $color-base;
   padding-top: 80px;
   padding-bottom: calc(80px + 3.5vw);
   @include md {
@@ -57,7 +57,7 @@ ul {
       display: block;
       border-radius: 8px;
       padding: 2em 1.5em;
-      box-shadow: 0.2em 0.2em 1em 0 rgba(0, 0, 0, 0.1);
+      box-shadow: $box-shadow;
       background-color: #fff;
       width: calc(100% / 3 - 40px / 3);
     }

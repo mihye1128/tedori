@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +21,7 @@ import { MainResultWorkerComponent } from './main-result-worker/main-result-work
 import { MainResultOwnerComponent } from './main-result-owner/main-result-owner.component';
 import { PageHeadModule } from '../page-head/page-head.module';
 import { CalcPipesModule } from '../pipes/calc-pipes.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { CalcPipesModule } from '../pipes/calc-pipes.module';
     HomeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule,
+    MatIconModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,

@@ -11,7 +11,18 @@ export class MainResultWorkerComponent implements OnInit {
   @Input() rate: Insurance;
   @Input() conditions: Condition[];
 
+  openedIncomeDetail = false;
+  openedDeductionDetail = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  openDetail(target: 'income' | 'deduction') {
+    if (target === 'income') {
+      this.openedIncomeDetail = !this.openedIncomeDetail;
+    } else if (target === 'deduction') {
+      this.openedDeductionDetail = !this.openedDeductionDetail;
+    }
+  }
 }

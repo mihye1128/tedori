@@ -12,12 +12,12 @@ $color-main: #f57c00;
 $color-main-light01: #ffe985;
 $color-main-light02: #f6d95a;
 $color-main-light03: #f89f46;
-$color-base: #f9f5f1;
+$color-base: #fff3e0;
 $color-accent: #4caf50;
 $color-footer: #49423c;
 $color-google: #db4437;
 
-$font-logo: 'Anonymous Pro', monospace;
+$font-logo: 'Ubuntu', sans-serif;
 
 $bg-grad: linear-gradient(225deg, $color-main-light01 0, $color-main 100%);
 $bg-grad-hero: linear-gradient(
@@ -25,3 +25,5 @@ $bg-grad-hero: linear-gradient(
   $color-main-light02 0%,
   $color-main-light03 100%
 );
+
+$box-shadow: 5px 15px 30px -10px rgba(245, 124, 0, 0.2);

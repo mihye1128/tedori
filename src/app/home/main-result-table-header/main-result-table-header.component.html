@@ -1,17 +1,7 @@
-<ng-container *ngIf="conditions[0].title !== '' || conditions.length > 1">
-  <mat-expansion-panel class="result-panel" disabled>
-    <mat-expansion-panel-header class="result-panel__header disabled">
-      <mat-panel-title class="result-panel__title"></mat-panel-title>
-      <mat-panel-description class="result-panel__desc">
-        <ng-container>
-          <span
-            class="result-panel__head"
-            *ngFor="let condition of conditions; index as i"
-          >
-            {{ getConditionTitle(condition, i) }}
-          </span>
-        </ng-container>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-  </mat-expansion-panel>
-</ng-container>
+<dl class="result-card__data">
+  <dt class="result-card__dt">条件名</dt>
+  <dd class="result-card__dd" *ngFor="let condition of conditions; index as i">
+    {{ getConditionTitle(condition, i) }}
+  </dd>
+  <dd class="result-card__btn"></dd>
+</dl>
