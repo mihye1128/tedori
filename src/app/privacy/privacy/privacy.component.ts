@@ -10,7 +10,7 @@ export class PrivacyComponent implements OnInit {
   constructor(private seoService: SeoService) {
     this.seoService.setTitleAndMeta(
       'プライバシーポリシー',
-      'TEDORIβのプライバシーポリシーです。'
+      'TEDORIのプライバシーポリシーです。'
     );
   }
 
