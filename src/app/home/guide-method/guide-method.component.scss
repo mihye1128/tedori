@@ -3,11 +3,10 @@
 
 .method {
   &__data {
-    margin-top: 32px;
+    margin-top: 24px;
     color: $color-font-700;
     line-height: 1.5;
     @include sm {
-      margin-top: 40px;
       display: flex;
       flex-wrap: wrap;
     }

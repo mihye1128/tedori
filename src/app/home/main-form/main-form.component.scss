@@ -4,8 +4,11 @@
 .form {
   &__card {
     padding: 0 24px;
-    @include sm {
-      padding: 0 32px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: $box-shadow;
+    @include md {
+      padding: 0 40px;
     }
   }
   &__actions {
@@ -33,9 +36,8 @@
 .condition {
   padding-top: 40px;
   padding-bottom: 60px;
-  max-width: 600px;
   margin: 0 auto;
-  @include sm {
+  @include md {
     display: flex;
     flex-wrap: wrap;
   }
@@ -54,14 +56,14 @@
   }
   &__income,
   &__deduction {
-    @include sm {
+    @include md {
       width: calc(50% - 16px);
       margin-top: 16px;
     }
   }
   &__deduction {
     margin-top: 16px;
-    @include sm {
+    @include md {
       margin-top: 0;
       margin-left: 32px;
     }

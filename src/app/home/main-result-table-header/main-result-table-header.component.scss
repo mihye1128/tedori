@@ -1,4 +1,13 @@
-.mat-expansion-panel {
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
+@import 'mixins';
+
+.result-card {
+  &__data {
+    border-top: none;
+  }
+  &__dd {
+    font-size: 14px;
+    @include sm {
+      font-size: 16px;
+    }
+  }
 }

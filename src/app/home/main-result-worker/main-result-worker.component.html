@@ -1,196 +1,198 @@
 <h3 class="main-sub-title">労働者支給額</h3>
-<mat-accordion>
+
+<div class="result-card">
   <app-main-result-table-header
     [conditions]="conditions"
   ></app-main-result-table-header>
-  <mat-expansion-panel class="result-panel">
-    <mat-expansion-panel-header class="result-panel__header">
-      <mat-panel-title class="result-panel__title">
-        総支給額
-      </mat-panel-title>
-      <mat-panel-description class="result-panel__desc">
-        <span class="result-panel__price" *ngFor="let condition of conditions">
-          {{ condition | calc: 'total' }}<span class="yen">円</span>
-        </span>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
 
-    <dl class="result-panel__detail">
-      <dt>時給</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container *ngIf="condition.type === 'monthly'; else basePerHour">
-            -
-          </ng-container>
-          <ng-template #basePerHour>
-            {{ condition.basePerHour | number }}<span class="yen">円</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>交通費/日</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container
-            *ngIf="condition.type === 'monthly'; else travelCostPerDay"
-          >
-            -
-          </ng-container>
-          <ng-template #travelCostPerDay>
-            {{ condition.travelCostPerDay | number }}<span class="yen">円</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>就業時間/日</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container *ngIf="condition.type === 'monthly'; else hourPerDay">
-            -
-          </ng-container>
-          <ng-template #hourPerDay>
-            {{ condition.hourPerDay }}<span class="yen">時間</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>就業日数</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container *ngIf="condition.type === 'monthly'; else dayPerMonth">
-            -
-          </ng-container>
-          <ng-template #dayPerMonth>
-            {{ condition.dayPerMonth }}<span class="yen">日</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>基本給</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          {{ condition | calc: 'baseSalary' }}<span class="yen">円</span>
-        </dd>
-      </div>
-      <dt>諸手当</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container>
-            <ng-container *ngIf="condition.type === 'hourly'; else allowance">
-              -
-            </ng-container>
-            <ng-template #allowance>
-              {{ condition.allowance }}<span class="yen">円</span>
-            </ng-template>
-          </ng-container>
-        </dd>
-      </div>
-      <dt>交通費</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          {{ condition | calc: 'travelCost' }}<span class="yen">円</span>
-        </dd>
-      </div>
+  <dl class="result-card__data hover" (click)="openDetail('income')">
+    <dt class="result-card__dt">総支給額</dt>
+    <dd class="result-card__dd" *ngFor="let condition of conditions">
+      {{ condition | calc: 'total' }}<span class="yen">円</span>
+    </dd>
+    <dd class="result-card__btn" [class.open]="openedIncomeDetail">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </dd>
+  </dl>
+
+  <div class="result-card__detail" [class.open]="openedIncomeDetail">
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">時給</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container *ngIf="condition.type === 'monthly'; else basePerHour">
+          -
+        </ng-container>
+        <ng-template #basePerHour>
+          {{ condition.basePerHour | number }}<span class="yen">円</span>
+        </ng-template>
+      </dd>
     </dl>
-  </mat-expansion-panel>
-  <mat-expansion-panel class="result-panel">
-    <mat-expansion-panel-header class="result-panel__header">
-      <mat-panel-title class="result-panel__title">
-        控除額合計
-      </mat-panel-title>
-      <mat-panel-description class="result-panel__desc">
-        <span class="result-panel__price" *ngFor="let condition of conditions">
-          {{ condition | calc: 'deductionTotal':rate
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">交通費/日</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container
+          *ngIf="condition.type === 'monthly'; else travelCostPerDay"
+        >
+          -
+        </ng-container>
+        <ng-template #travelCostPerDay>
+          {{ condition.travelCostPerDay | number }}<span class="yen">円</span>
+        </ng-template>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">就業時間/日</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container *ngIf="condition.type === 'monthly'; else hourPerDay">
+          -
+        </ng-container>
+        <ng-template #hourPerDay>
+          {{ condition.hourPerDay }}<span class="yen">時間</span>
+        </ng-template>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">就業日数</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container *ngIf="condition.type === 'monthly'; else dayPerMonth">
+          -
+        </ng-container>
+        <ng-template #dayPerMonth>
+          {{ condition.dayPerMonth }}<span class="yen">日</span>
+        </ng-template>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">基本給</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        {{ condition | calc: 'baseSalary' }}<span class="yen">円</span>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">諸手当</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container *ngIf="condition.type === 'hourly'; else allowance">
+          -
+        </ng-container>
+        <ng-template #allowance>
+          {{ condition.allowance }}<span class="yen">円</span>
+        </ng-template>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">交通費</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        {{ condition | calc: 'travelCost' }}<span class="yen">円</span>
+      </dd>
+    </dl>
+  </div>
+
+  <dl class="result-card__data hover" (click)="openDetail('deduction')">
+    <dt class="result-card__dt">控除額合計</dt>
+    <dd class="result-card__dd" *ngFor="let condition of conditions">
+      {{ condition | calc: 'deductionTotal':rate }}<span class="yen">円</span>
+    </dd>
+    <dd class="result-card__btn" [class.open]="openedDeductionDetail">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </dd>
+  </dl>
+
+  <div class="result-card__detail" [class.open]="openedDeductionDetail">
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">健康保険料</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container *ngIf="condition.ins === false; else healthIns">
+          -
+        </ng-container>
+        <ng-template #healthIns>
+          {{ condition | calc: 'healthInsWorder':rate
           }}<span class="yen">円</span>
-        </span>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <dl class="result-panel__detail">
-      <dt>健康保険料</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container *ngIf="condition.ins === false; else healthIns">
-            -
-          </ng-container>
-          <ng-template #healthIns>
-            {{ condition | calc: 'healthInsWorder':rate
-            }}<span class="yen">円</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>厚生年金保険料</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container *ngIf="condition.ins === false; else pensionIns">
-            -
-          </ng-container>
-          <ng-template #pensionIns>
-            {{ condition | calc: 'pensionInsWorker':rate
-            }}<span class="yen">円</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>介護保険料</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container
-            *ngIf="
-              condition.ins === false || condition.age !== 'middle';
-              else nursingIns
-            "
-          >
-            -
-          </ng-container>
-          <ng-template #nursingIns>
-            {{ condition | calc: 'nursingInsWorker':rate
-            }}<span class="yen">円</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>雇用保険料</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          <ng-container
-            *ngIf="
-              condition.unemploymentIns === false;
-              else unemploymentInsWorker
-            "
-          >
-            -
-          </ng-container>
-          <ng-template #unemploymentInsWorker>
-            {{ condition | calc: 'unemploymentInsWorker':rate
-            }}<span class="yen">円</span>
-          </ng-template>
-        </dd>
-      </div>
-      <dt>源泉所得税</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          {{ condition | calc: 'nationalTax':rate }}<span class="yen">円</span>
-        </dd>
-      </div>
-      <dt>住民税</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          {{ condition.cityTax | number }}<span class="yen">円</span>
-        </dd>
-      </div>
-      <dt>その他控除</dt>
-      <div>
-        <dd *ngFor="let condition of conditions">
-          {{ condition.otherDeduction | number }}<span class="yen">円</span>
-        </dd>
-      </div>
+        </ng-template>
+      </dd>
     </dl>
-  </mat-expansion-panel>
-  <mat-expansion-panel class="result-panel" disabled>
-    <mat-expansion-panel-header class="result-panel__header disabled">
-      <mat-panel-title class="result-panel__title">
-        差引支給額
-      </mat-panel-title>
-      <mat-panel-description class="result-panel__desc">
-        <span class="result-panel__price" *ngFor="let condition of conditions">
-          {{ condition | calc: 'takeHomeFee':rate }}<span class="yen">円</span>
-        </span>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-  </mat-expansion-panel>
-</mat-accordion>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">厚生年金保険料</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container *ngIf="condition.ins === false; else pensionIns">
+          -
+        </ng-container>
+        <ng-template #pensionIns>
+          {{ condition | calc: 'pensionInsWorker':rate
+          }}<span class="yen">円</span>
+        </ng-template>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">介護保険料</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container
+          *ngIf="
+            condition.ins === false || condition.age !== 'middle';
+            else nursingIns
+          "
+        >
+          -
+        </ng-container>
+        <ng-template #nursingIns>
+          {{ condition | calc: 'nursingInsWorker':rate
+          }}<span class="yen">円</span>
+        </ng-template>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">雇用保険料</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        <ng-container
+          *ngIf="
+            condition.unemploymentIns === false;
+            else unemploymentInsWorker
+          "
+        >
+          -
+        </ng-container>
+        <ng-template #unemploymentInsWorker>
+          {{ condition | calc: 'unemploymentInsWorker':rate
+          }}<span class="yen">円</span>
+        </ng-template>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">源泉所得税</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        {{ condition | calc: 'nationalTax':rate }}<span class="yen">円</span>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">住民税</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        {{ condition.cityTax | number }}<span class="yen">円</span>
+      </dd>
+    </dl>
+
+    <dl class="result-card__detail-data">
+      <dt class="result-card__detail-dt">その他控除</dt>
+      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+        {{ condition.otherDeduction | number }}<span class="yen">円</span>
+      </dd>
+    </dl>
+  </div>
+
+  <dl class="result-card__data">
+    <dt class="result-card__dt">差引支給額</dt>
+    <dd class="result-card__dd" *ngFor="let condition of conditions">
+      {{ condition | calc: 'takeHomeFee':rate }}<span class="yen">円</span>
+    </dd>
+    <dd class="result-card__btn"></dd>
+  </dl>
+</div>

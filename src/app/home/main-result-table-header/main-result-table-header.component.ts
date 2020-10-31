@@ -15,7 +15,7 @@ export class MainResultTableHeaderComponent implements OnInit {
 
   getConditionTitle(condition: Condition, i: number) {
     if (condition.title === '') {
-      return '条件' + (i + 1);
+      return '-';
     } else {
       return condition.title;
     }

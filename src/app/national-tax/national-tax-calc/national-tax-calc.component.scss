@@ -2,8 +2,25 @@
 @import 'mixins';
 
 .calc {
-  margin: 0 auto;
-  max-width: 400px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: $color-base;
+  @include sm {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  &__card {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 480px;
+    padding: 32px 24px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: $box-shadow;
+    @include sm {
+      padding: 40px;
+    }
+  }
   &__field {
     width: 100%;
     &:not(:first-of-type) {

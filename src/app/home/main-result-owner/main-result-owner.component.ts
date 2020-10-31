@@ -11,7 +11,13 @@ export class MainResultOwnerComponent implements OnInit {
   @Input() rate: Insurance;
   @Input() conditions: Condition[];
 
+  openedOwnerDetail = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  openDetail() {
+    this.openedOwnerDetail = !this.openedOwnerDetail;
+  }
 }

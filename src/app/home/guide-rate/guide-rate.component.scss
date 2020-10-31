@@ -5,13 +5,12 @@
   &__table {
     color: $color-font-700;
     width: 100%;
-    margin-top: 32px;
+    margin-top: 24px;
     font-size: 12px;
     border-collapse: collapse;
     border-spacing: 0;
     @include sm {
       font-size: 14px;
-      margin-top: 40px;
     }
     th,
     td {

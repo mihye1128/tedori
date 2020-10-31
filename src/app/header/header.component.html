@@ -3,32 +3,27 @@
     <div class="header__left">
       <p class="header__title">
         <a routerLink="/" class="header__link">
-          <img
-            src="assets/images/logo-header.svg"
-            alt="テドリ ベータ版"
-            class="header__logo"
-          />
-          <span class="header__desc">給与試算ツール</span>
+          Tedori
         </a>
       </p>
     </div>
     <div class="header__right">
       <ng-template #default>
         <button
-          mat-flat-button
-          color="primary"
           class="header__login"
           matTooltip="Googleアカウントでログインする"
           aria-label="Googleアカウントでログインする"
           [disabled]="authService.loginProcessing"
           (click)="authService.login()"
         >
-          <img
-            *ngIf="!authService.loginProcessing"
-            src="assets/images/icon-google.svg"
-            alt="Googleアカウント"
-          />
-          {{ authService.loginProcessing ? 'ログイン中' : 'ログイン' }}
+          <span>
+            <img
+              *ngIf="!authService.loginProcessing"
+              src="assets/images/icon-google.svg"
+              alt="Googleアカウント"
+            />
+            {{ authService.loginProcessing ? 'ログイン中' : 'ログイン' }}
+          </span>
         </button>
       </ng-template>
       <ng-container *ngIf="authService.afUser$ | async as user; else default">

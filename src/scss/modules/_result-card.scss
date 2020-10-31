@@ -1,0 +1,109 @@
+.result-card {
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+  font-size: 14px;
+  @include sm {
+    font-size: 16px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  &__btn {
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-font-600;
+    @include sm {
+      width: 40px;
+    }
+    &.open {
+      mat-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__detail {
+    max-height: 0;
+    padding-right: 40px;
+    overflow: hidden;
+    &.open {
+      max-height: none;
+      padding-top: 8px;
+      padding-bottom: 16px;
+    }
+  }
+  &__data,
+  &__dt,
+  &__dd,
+  &__detail-data,
+  &__detail-dt,
+  &__detail-dd,
+  &__btn {
+    margin: 0;
+  }
+  &__dt,
+  &__dd,
+  &__detail-dt {
+    font-weight: 400;
+  }
+
+  &__data {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-top: 1px solid $color-font-300;
+    @include sm {
+      padding: 12px 24px;
+    }
+    &.hover {
+      cursor: pointer;
+      transition: background-color 0.4s;
+      &:hover {
+        background-color: rgba(255, 233, 133, 0.1);
+      }
+    }
+  }
+  &__detail-data {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    color: $color-font-700;
+    padding: 0 16px;
+    @include sm {
+      padding: 0 24px;
+    }
+    &:not(:first-of-type) {
+      margin-top: 0.25em;
+    }
+  }
+  &__dt,
+  &__detail-dt {
+    width: 110px;
+    @include sm {
+      width: 180px;
+    }
+  }
+  &__dd,
+  &__detail-dd {
+    flex: 1;
+    text-align: right;
+    padding-right: 16px;
+  }
+  &__dd {
+    font-size: 14px;
+    @include sm {
+      font-size: 20px;
+    }
+  }
+
+  .yen {
+    font-size: 0.8em;
+    @include sm {
+      margin-left: 0.25em;
+      font-size: 0.6em;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup" (ngSubmit)="submit()" class="form">
-  <mat-card class="form__card">
+  <div class="form__card">
     <div class="select">
       <mat-radio-group
         aria-label=""
@@ -464,7 +464,7 @@
         </ng-container>
       </ng-container>
     </ng-container>
-  </mat-card>
+  </div>
   <div class="form__actions">
     <button
       [disabled]="formGroup.invalid || formGroup.pristine"
