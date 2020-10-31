@@ -165,3 +165,40 @@
     box-shadow: none;
   }
 }
+
+.hedder-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.23);
+  text-align: center;
+  z-index: 999;
+  @include sm {
+    display: none;
+  }
+  &__list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  &__item {
+    flex: 1;
+    color: #fff;
+    background: $bg-grad-hero;
+    &:not(:first-of-type) {
+      margin-left: 1px;
+    }
+  }
+  &__link {
+    display: block;
+    font-size: 14px;
+    padding: 14px;
+    transition: background-color 0.4s;
+    background-color: $color-main-light03;
+    &:hover {
+      background-color: rgba(248, 159, 70, 0);
+    }
+  }
+}
