@@ -8,7 +8,7 @@ import { SeoService } from 'src/app/services/seo.service';
 })
 export class TermsComponent implements OnInit {
   constructor(private seoService: SeoService) {
-    this.seoService.setTitleAndMeta('利用規約', 'TEDORIβの利用規約です。');
+    this.seoService.setTitleAndMeta('利用規約', 'TEDORIの利用規約です。');
   }
 
   ngOnInit(): void {}

@@ -5,9 +5,9 @@ import { Meta, Title } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class SeoService {
-  readonly siteName = 'TEDORIβ';
+  readonly siteName = 'TEDORI';
   readonly defaultDescription =
-    'TEDORIβは、条件を入力するだけで、簡単に差し引き支給額や事業主負担額を試算できます。';
+    'TEDORIは、条件を入力するだけで、簡単に差し引き支給額や事業主負担額を試算できます。';
 
   constructor(private titleService: Title, private meta: Meta) {}
 

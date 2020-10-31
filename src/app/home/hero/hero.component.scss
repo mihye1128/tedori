@@ -69,13 +69,15 @@
     }
   }
   &__bottom {
+    pointer-events: none;
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     right: 0;
   }
   &__blob1,
   &__blob2 {
+    pointer-events: none;
     position: absolute;
     opacity: 0.75;
     z-index: 1;
