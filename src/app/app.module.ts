@@ -14,7 +14,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { SharedModule } from './shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import {
@@ -59,7 +61,9 @@ import { DeleteAccountDialogComponent } from './dialogs/delete-account-dialog/de
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    SharedModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
     MatToolbarModule,
     MatMenuModule,
     MatSnackBarModule,

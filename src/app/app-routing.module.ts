@@ -10,16 +10,23 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'salary',
+    loadChildren: () =>
+      import('./salary/salary.module').then((m) => m.SalaryModule),
+  },
+  {
+    path: 'national-tax',
+    loadChildren: () =>
+      import('./national-tax/national-tax.module').then(
+        (m) => m.NationalTaxModule
+      ),
+  },
+  {
     path: 'mypage',
     loadChildren: () =>
       import('./mypage/mypage.module').then((m) => m.MypageModule),
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'about',
-    loadChildren: () =>
-      import('./about/about.module').then((m) => m.AboutModule),
   },
   {
     path: 'privacy',
@@ -30,13 +37,6 @@ const routes: Routes = [
     path: 'terms',
     loadChildren: () =>
       import('./terms/terms.module').then((m) => m.TermsModule),
-  },
-  {
-    path: 'national-tax',
-    loadChildren: () =>
-      import('./national-tax/national-tax.module').then(
-        (m) => m.NationalTaxModule
-      ),
   },
   {
     path: '**',

@@ -1,0 +1,22 @@
+<app-page-head
+  title="給与試算"
+  subTitle="Salary calculation"
+  image="assets/images/head-home.jpg"
+></app-page-head>
+<div class="main">
+  <div class="main-container">
+    <app-main-form></app-main-form>
+    <div id="result">
+      <app-main-result
+        *ngIf="rateService.rate"
+        [rate]="rateService.rate"
+      ></app-main-result>
+    </div>
+  </div>
+</div>
+<div class="guide" *ngIf="rateService.rate">
+  <div class="main-container">
+    <app-guide-rate [rate]="rateService.rate"></app-guide-rate>
+    <app-guide-method [rate]="rateService.rate"></app-guide-method>
+  </div>
+</div>
