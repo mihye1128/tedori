@@ -42,8 +42,10 @@ export class UseComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    AOS.init({
-      once: true,
-    });
+    setTimeout(() => {
+      AOS.init({
+        once: true,
+      });
+    }, 100);
   }
 }
