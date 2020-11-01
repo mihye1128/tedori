@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { SalaryRoutingModule } from './salary-routing.module';
 import { SalaryComponent } from './salary/salary.component';
 import { MainFormComponent } from './main-form/main-form.component';
@@ -11,7 +13,6 @@ import { MainResultOwnerComponent } from './main-result-owner/main-result-owner.
 import { GuideRateComponent } from './guide-rate/guide-rate.component';
 import { GuideMethodComponent } from './guide-method/guide-method.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
