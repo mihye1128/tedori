@@ -13,95 +13,101 @@
     <dd class="result-card__btn"></dd>
   </dl>
 
-  <dl class="result-card__data hover" (click)="openDetail()">
+  <dl class="result-card__data hover" (click)="isOpen = !isOpen">
     <dt class="result-card__dt">事業者負担</dt>
     <dd class="result-card__dd" *ngFor="let condition of conditions">
       {{ condition | calc: 'ownerBurdenTotal':rate }}<span class="yen">円</span>
     </dd>
-    <dd class="result-card__btn" [class.open]="openedOwnerDetail">
+    <dd class="result-card__btn" [class.open]="isOpen">
       <mat-icon>keyboard_arrow_down</mat-icon>
     </dd>
   </dl>
 
-  <div class="result-card__detail" [class.open]="openedOwnerDetail">
-    <dl class="result-card__detail-data">
-      <dt class="result-card__detail-dt">健康保険料</dt>
-      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
-        <ng-container *ngIf="condition.ins === false; else healthInsOwner">
-          -
-        </ng-container>
-        <ng-template #healthInsOwner>
-          {{ condition | calc: 'healthInsOwner':rate
+  <div class="result-card__detail" [@toggle]="isOpen">
+    <div class="result-card__detail-contents">
+      <dl class="result-card__detail-data">
+        <dt class="result-card__detail-dt">健康保険料</dt>
+        <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+          <ng-container *ngIf="condition.ins === false; else healthInsOwner">
+            -
+          </ng-container>
+          <ng-template #healthInsOwner>
+            {{ condition | calc: 'healthInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </dl>
+
+      <dl class="result-card__detail-data">
+        <dt class="result-card__detail-dt">厚生年金保険料</dt>
+        <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+          <ng-container *ngIf="condition.ins === false; else pensionInsOwner">
+            -
+          </ng-container>
+          <ng-template #pensionInsOwner>
+            {{ condition | calc: 'pensionInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </dl>
+
+      <dl class="result-card__detail-data">
+        <dt class="result-card__detail-dt">介護保険料</dt>
+        <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+          <ng-container
+            *ngIf="
+              condition.ins === false || condition.age !== 'middle';
+              else nursingInsOwner
+            "
+          >
+            -
+          </ng-container>
+          <ng-template #nursingInsOwner>
+            {{ condition | calc: 'nursingInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </dl>
+
+      <dl class="result-card__detail-data">
+        <dt class="result-card__detail-dt">子ども・子育て拠出金</dt>
+        <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+          <ng-container *ngIf="condition.ins === false; else childrenIns">
+            -
+          </ng-container>
+          <ng-template #childrenIns>
+            {{ condition | calc: 'childrenIns':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </dl>
+
+      <dl class="result-card__detail-data">
+        <dt class="result-card__detail-dt">労災保険料</dt>
+        <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+          {{ condition | calc: 'compensationIns':rate
           }}<span class="yen">円</span>
-        </ng-template>
-      </dd>
-    </dl>
+        </dd>
+      </dl>
 
-    <dl class="result-card__detail-data">
-      <dt class="result-card__detail-dt">厚生年金保険料</dt>
-      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
-        <ng-container *ngIf="condition.ins === false; else pensionInsOwner">
-          -
-        </ng-container>
-        <ng-template #pensionInsOwner>
-          {{ condition | calc: 'pensionInsOwner':rate
-          }}<span class="yen">円</span>
-        </ng-template>
-      </dd>
-    </dl>
-
-    <dl class="result-card__detail-data">
-      <dt class="result-card__detail-dt">介護保険料</dt>
-      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
-        <ng-container
-          *ngIf="
-            condition.ins === false || condition.age !== 'middle';
-            else nursingInsOwner
-          "
-        >
-          -
-        </ng-container>
-        <ng-template #nursingInsOwner>
-          {{ condition | calc: 'nursingInsOwner':rate
-          }}<span class="yen">円</span>
-        </ng-template>
-      </dd>
-    </dl>
-
-    <dl class="result-card__detail-data">
-      <dt class="result-card__detail-dt">子ども・子育て拠出金</dt>
-      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
-        <ng-container *ngIf="condition.ins === false; else childrenIns">
-          -
-        </ng-container>
-        <ng-template #childrenIns>
-          {{ condition | calc: 'childrenIns':rate }}<span class="yen">円</span>
-        </ng-template>
-      </dd>
-    </dl>
-
-    <dl class="result-card__detail-data">
-      <dt class="result-card__detail-dt">労災保険料</dt>
-      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
-        {{ condition | calc: 'compensationIns':rate
-        }}<span class="yen">円</span>
-      </dd>
-    </dl>
-
-    <dl class="result-card__detail-data">
-      <dt class="result-card__detail-dt">雇用保険料</dt>
-      <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
-        <ng-container
-          *ngIf="condition.unemploymentIns === false; else unemploymentInsOwner"
-        >
-          -
-        </ng-container>
-        <ng-template #unemploymentInsOwner>
-          {{ condition | calc: 'unemploymentInsOwner':rate
-          }}<span class="yen">円</span>
-        </ng-template>
-      </dd>
-    </dl>
+      <dl class="result-card__detail-data">
+        <dt class="result-card__detail-dt">雇用保険料</dt>
+        <dd class="result-card__detail-dd" *ngFor="let condition of conditions">
+          <ng-container
+            *ngIf="
+              condition.unemploymentIns === false;
+              else unemploymentInsOwner
+            "
+          >
+            -
+          </ng-container>
+          <ng-template #unemploymentInsOwner>
+            {{ condition | calc: 'unemploymentInsOwner':rate
+            }}<span class="yen">円</span>
+          </ng-template>
+        </dd>
+      </dl>
+    </div>
   </div>
 
   <dl class="result-card__data">
