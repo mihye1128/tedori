@@ -66,28 +66,24 @@
     padding-left: 0;
     list-style: none;
     display: none;
+    align-items: center;
     font-size: 14px;
     font-family: $font-default;
     color: $color-font-800;
     @include sm {
       display: flex;
     }
-    li {
-      &:not(:first-of-type) {
-        &::before {
-          content: '|';
-          margin-left: 0.5em;
-          margin-right: 0.5em;
-        }
-      }
-    }
     a {
       position: relative;
+      display: flex;
+      padding: 0 14px;
+      min-height: 48px;
+      align-items: center;
       transition: opacity 0.4s;
       &::before {
         content: '';
         position: absolute;
-        bottom: -4px;
+        bottom: 0;
         left: 50%;
         transform: translateX(-50%);
         width: 0;
