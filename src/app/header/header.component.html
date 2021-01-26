@@ -31,7 +31,7 @@
             <img
               *ngIf="!authService.loginProcessing"
               src="assets/images/icon-google.svg"
-              alt="Googleアカウント"
+              alt=""
             />
             {{ authService.loginProcessing ? 'ログイン中' : 'ログイン' }}
           </span>
@@ -60,13 +60,13 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="hedder-bottom">
-  <ul class="hedder-bottom__list">
-    <li class="hedder-bottom__item">
-      <a routerLink="/salary" class="hedder-bottom__link">給与試算</a>
+<div class="header-bottom">
+  <ul class="header-bottom__list">
+    <li class="header-bottom__item">
+      <a routerLink="/salary" class="header-bottom__link">給与試算</a>
     </li>
-    <li class="hedder-bottom__item">
-      <a routerLink="/national-tax" class="hedder-bottom__link"
+    <li class="header-bottom__item">
+      <a routerLink="/national-tax" class="header-bottom__link"
         >源泉所得税額試算</a
       >
     </li>
