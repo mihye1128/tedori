@@ -40,4 +40,3 @@ jobs:
           args: deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
-          PROJECT_ID: dev
