@@ -65,8 +65,12 @@
         <small>総支給額の</small>
         {{ rate.unemploymentIns.rate }}/1000
       </td>
-      <td>{{ rate.unemploymentIns.workerBurden }}/9</td>
-      <td>{{ rate.unemploymentIns.ownerBurden }}/9</td>
+      <td>
+        {{ rate.unemploymentIns.workerBurden }}/{{ rate.unemploymentIns.rate }}
+      </td>
+      <td>
+        {{ rate.unemploymentIns.ownerBurden }}/{{ rate.unemploymentIns.rate }}
+      </td>
     </tr>
   </tbody>
 </table>
