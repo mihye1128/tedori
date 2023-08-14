@@ -43,5 +43,5 @@ jobs:
         with:
           args: deploy
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
+          GCP_SA_KEY: ${{ secrets.GCLOUD_SERVICE_KEY_DEV }}
           PROJECT_ID: tedori-beta
