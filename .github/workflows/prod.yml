@@ -1,4 +1,4 @@
-name: master - Build and Deploy
+name: production - Build and Deploy
 on:
   push:
     branches:
@@ -43,5 +43,5 @@ jobs:
         with:
           args: deploy
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_PROD }}
-          PROJECT_ID: tedori-2c86c
+          GCP_SA_KEY: ${{ secrets.GCLOUD_SERVICE_KEY_PROD }}
+          PROJECT_ID: prod

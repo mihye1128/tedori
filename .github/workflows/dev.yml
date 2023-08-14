@@ -1,4 +1,4 @@
-name: develop - Build and Deploy
+name: development - Build and Deploy
 on:
   push:
     branches:
@@ -27,9 +27,6 @@ jobs:
   deploy:
     name: Deploy
     needs: build
-    # env:
-    #   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-    #   GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY_DEV }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -41,9 +38,6 @@ jobs:
           path: dist
       - name: Install Dependencies
         run: cd functions && npm install
-      # 認証情報を保持するjsonファイルをGOOGLE_APPLICATION_CREDENTIALSで指定したpassに生成
-      # - name: make GOOGLE_APPLICATION_CREDENTIALS
-      #   run: echo $GCLOUD_SERVICE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
