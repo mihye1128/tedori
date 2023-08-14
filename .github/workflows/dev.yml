@@ -50,4 +50,4 @@ jobs:
           args: deploy
         env:
           GCP_SA_KEY: ${{ secrets.GCLOUD_SERVICE_KEY_DEV }}
-        #   PROJECT_ID: tedori-beta
+          PROJECT_ID: dev
